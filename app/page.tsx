@@ -1,4 +1,5 @@
 "use client"
+import { Button } from "@/components/ui";
 import Image from "next/image";
 import { supabase } from "@/lib/supabase";
 import Link from "next/link";
