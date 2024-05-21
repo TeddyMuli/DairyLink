@@ -12,7 +12,7 @@ export default function TopBar() {
                 <Link href='#about' className="px-4 py-2">About</Link>
                 <Link href="#contacts" className="px-4 py-2">Contacts</Link>
                 <Link href='/auth/login' className="px-4 py-2">LogIn</Link>
-                <Link href='/auth/register' className="px-4 py-2 bg-blue-600 rounded-md">Register</Link>
+                <Link href='/auth/register' className="px-4 py-2 text-white bg-black rounded-md">Register</Link>
             </nav>
         </div>
     )

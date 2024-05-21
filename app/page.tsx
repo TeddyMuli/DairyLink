@@ -26,7 +26,7 @@ export default function Home() {
         </div>
         <Image src={`/cool cow.jpeg`} alt="cow" width={451} height={400} className="ml-auto" />
       </div>
-      <div className="justify-center place-items-center mt-16">
+      <div id="about" className="justify-center place-items-center mt-16">
         <h1 className="text-2xl font-bold mb-8 text-center">About Us</h1>
         <div className="flex">
           <div className="grid justify-center place-items-center">
@@ -43,7 +43,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="mt-16">
+      <div id="features" className="mt-16">
         <h1 className="text-2xl font-bold mb-12 text-center">Our Features</h1>
         <div className="grid place-items-center">
           <ul className="list-disc font-medium">
