@@ -12,7 +12,7 @@ export default function Navbar() {
     { title: "Home", path: "/" },
     { title: "Features", path: "/#features" },
     { title: "About", path: "/#about" },
-    { title: "Contact", path: "/#contact" },
+    { title: "Contacts", path: "/#contacts" },
     { title: "Login", path: "/auth/login" },
     { title: "Register", path: "/auth/register" },
   ];
