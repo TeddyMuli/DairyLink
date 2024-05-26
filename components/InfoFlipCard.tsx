@@ -1,3 +1,5 @@
+"use client";
+
 import { FC, ReactNode, useState } from "react";
 import ReactCardFlip from "react-card-flip";
 import { Button } from "./ui";
