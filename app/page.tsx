@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "@/components/ui";
+import InfoFlipCard from "@/components/InfoFlipCard";
 import { supabase } from "@/lib/supabase";
 import { Session } from "@supabase/auth-helpers-nextjs";
 import Image from "next/image";
@@ -52,6 +52,7 @@ export default function Home() {
               Our team consists of experienced professionals <br /> who deal
               with the creation of data management tools and application
             </p>
+            <></>
             <Image
               src={"/cow.png"}
               alt="cow"
@@ -59,7 +60,7 @@ export default function Home() {
               height={115}
               className="mt-4"
             />
-            <Button className="bg-black rounded-full">Read More</Button>
+            {/* <Button className="bg-black rounded-full">Read More</Button> */}
           </div>
           <div className="flex flex-col items-center border-2 border-black p-2 rounded-lg m-2 gap-2">
             <p className="font-medium text-center">
@@ -72,7 +73,7 @@ export default function Home() {
               height={115}
               className="mt-8"
             />
-            <Button className="bg-black rounded-full">Read More</Button>
+            {/* <Button className="bg-black rounded-full">Read More</Button> */}
           </div>
           <div className="flex flex-col items-center border-2 border-black p-2 rounded-lg m-2 gap-2">
             <p className="font-medium text-center">
@@ -86,65 +87,98 @@ export default function Home() {
               height={115}
               className="mt-8"
             />
-            <Button className="bg-black rounded-full">Read More</Button>
+            {/* <Button className="bg-black rounded-full">Read More</Button> */}
           </div>
         </div>
       </div>
       <div id="features" className="mt-16">
         <h1 className="text-2xl font-bold mb-12 text-center">Our Features</h1>
-        <div className="grid grid-cols-1 grid-rows-4 md:grid-cols-4 md:grid-rows-1">
-          <div className="flex flex-col items-center border-2 border-black py-4 px-2 rounded-lg m-2 gap-2">
-            <Image
-              src={"/profile.jpg"}
-              width={100}
-              height={100}
-              alt="profile"
-            />
-            <p className="text-lg mb-2 font-medium m-2">Member Profile</p>
-            <p className="text-center">
-              Enable customization & personalization
-            </p>
-            <Button className="bg-black rounded-full">Read More</Button>
-          </div>
-          <div className="flex flex-col items-center border-2 border-black py-4 px-2 rounded-lg m-2 gap-2">
-            <Image
-              src={"/dashboard.jpg"}
-              width={100}
-              height={100}
-              alt="profile"
-            />
-            <p className="text-lg mb-2 font-medium m-2">
-              Interactive dashboard
-            </p>
-            <p className="text-center">
-              Able to view graphical reports on milk, monthly payout slips and
-              agro vet statements.
-            </p>
-            <Button className="bg-black rounded-full">Read More</Button>
-          </div>
-          <div className="flex flex-col items-center border-2 border-black py-4 px-2 rounded-lg m-2 gap-2">
-            <Image src={"/news.jpg"} width={100} height={100} alt="profile" />
-            <p className="text-lg mb-2 font-medium m-2">Cooperative News</p>
-            <p className="text-center">
-              Ability to view updates and infromation such as e-learning
-              materials
-            </p>
-            <Button className="bg-black rounded-full">Read More</Button>
-          </div>
-          <div className="flex flex-col items-center border-2 border-black py-4 px-2 rounded-lg m-2 gap-2">
-            <Image
-              src={"/other_services.jpg"}
-              width={100}
-              height={100}
-              alt="profile"
-            />
-            <p className="text-lg mb-2 font-medium m-2">Other Services</p>
-            <p className="text-center">
-              Requests for feeds, chemicals, fertilixers, A.I services, training
-              and farm visit, soft loans, lodge & view complaints
-            </p>
-            <Button className="bg-black rounded-full">Read More</Button>
-          </div>
+        <div className="grid grid-cols-1 grid-rows-4 md:grid-cols-4 md:grid-rows-1 gap-3">
+          <InfoFlipCard
+            frontContent={
+              <>
+                <Image
+                  src={"/profile.jpg"}
+                  width={100}
+                  height={100}
+                  alt="profile"
+                />
+                <p className="text-lg my-2 font-medium">Member Profile</p>
+              </>
+            }
+            backContent={
+              <>
+                <p className="text-center">
+                  Enable customization & personalization
+                </p>
+              </>
+            }
+          />
+          <InfoFlipCard
+            frontContent={
+              <>
+                <Image
+                  src={"/dashboard.jpg"}
+                  width={100}
+                  height={100}
+                  alt="profile"
+                />
+                <p className="text-lg my-2 font-medium">
+                  Interactive Dashboard
+                </p>
+              </>
+            }
+            backContent={
+              <>
+                <p className="text-center">
+                  Able to view graphical reports on milk, monthly payout slips
+                  and agro vet statements.
+                </p>
+              </>
+            }
+          />
+          <InfoFlipCard
+            frontContent={
+              <>
+                <Image
+                  src={"/news.jpg"}
+                  width={100}
+                  height={100}
+                  alt="profile"
+                />
+                <p className="text-lg my-2 font-medium">Cooperative News</p>
+              </>
+            }
+            backContent={
+              <>
+                <p className="text-center">
+                  Ability to view updates and infromation such as e-learning
+                  materials
+                </p>
+              </>
+            }
+          />
+          <InfoFlipCard
+            frontContent={
+              <>
+                <Image
+                  src={"/other_services.jpg"}
+                  width={100}
+                  height={100}
+                  alt="profile"
+                />
+                <p className="text-lg my-2 font-medium">Other Services</p>
+              </>
+            }
+            backContent={
+              <>
+                <p className="text-center">
+                  Requests for feeds, chemicals, fertilixers, A.I services,
+                  training and farm visit, soft loans, lodge & view complaints
+                </p>
+              </>
+            }
+          />
         </div>
       </div>
       <div id="contacts" className="flex flex-col justify-center items-center">
