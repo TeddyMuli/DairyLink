@@ -4,6 +4,9 @@ import { supabase } from "@/lib/supabase";
 import { Session } from "@supabase/auth-helpers-nextjs";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import TopBar from "@/components/shared/TopBar";
+import Link from "next/link";
+import TeamMember from "@/components/TeamMember";
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
@@ -19,87 +22,95 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="mb-24">
-      <div className="grid border-2 border-black p-4 rounded-lg my-8 mx-4 pb-12">
-        <div className="flex flex-col mt-8 justify-center items-center">
-          <h1 className="text-4xl font-bold mb-4">Welcome to DairyLink!</h1>
-          <p className="mb-8 justify-normal">
-            Our company and products are geared towards the satistaction of
-            dairy cooperative's needs
-          </p>
-        </div>
-        <div className="flex flex-col items-center">
-          <p className="mt-4 mb-8 px-4 py-2 bg-black text-white w-48 text-lg text-center rounded-lg">
-            <a href="#features">View Features</a>
-          </p>
+    <main className="">
+      <div className="grid rounded-lg pb-12">
+        <div className="bg-customGreen text-white p-10">
+          <div className="flex flex-col mt-24 justify-center items-center">
+            <h1 className="text-4xl font-bold mb-4 text-center">Welcome to DairyLink!</h1>
+            <p className="mb-8 justify-normal">
+              Our company and products are geared towards the satistaction of
+              dairy cooperative's needs
+            </p>
+          </div>
+          <div className="flex flex-col items-center">
+            <Link href="/#features" className="mt-4 mb-8 px-4 py-2 bg-black text-white w-48 text-lg text-center rounded-lg">
+              View Features
+            </Link>
+          </div>
         </div>
         <div className="flex justify-center items-center">
+          {/** 
           <div style={{ filter: "brightness(50%)" }}>
             <Image src={`/money.jpg`} alt="cow" width={200} height={200} />
           </div>
-          <Image src={`/farmer.jpg`} alt="cow" width={400} height={400} />
+          */}
+          <div style={{ position: 'relative', width: '100%', height: '500px' }}>
+            <Image src={`/cowlandscape.jpg`} alt="cow" fill objectFit="cover" />
+          </div>
+          {/** 
           <div style={{ filter: "brightness(50%)" }}>
             <Image src={`/dairy_cow.jpg`} alt="cow" width={200} height={200} />
           </div>
+          */}
         </div>
       </div>
-
-      <div id="about" className="justify-center place-items-center mt-16">
-        <h1 className="text-2xl font-bold mb-8 text-center">About Us</h1>
-        <div className="grid grid-cols-1 grid-rows-3 md:grid-cols-3 md:grid-rows-1 gap-4">
-          <div className="flex flex-col items-center border-2 border-black p-2 rounded-lg m-2 gap-2">
-            <p className="font-medium text-center">
-              Our team consists of experienced professionals <br /> who deal
-              with the creation of data management tools and application
-            </p>
-            <></>
-            <Image
-              src={"/cow.png"}
-              alt="cow"
-              width={115}
-              height={115}
-              className="mt-4"
-            />
-            {/* <Button className="bg-black rounded-full">Read More</Button> */}
-          </div>
-          <div className="flex flex-col items-center border-2 border-black p-2 rounded-lg m-2 gap-2">
-            <p className="font-medium text-center">
-              We attach great importance to customer satisfaction
-            </p>
-            <Image
-              src={"/service.png"}
-              alt="service"
-              width={115}
-              height={115}
-              className="mt-8"
-            />
-            {/* <Button className="bg-black rounded-full">Read More</Button> */}
-          </div>
-          <div className="flex flex-col items-center border-2 border-black p-2 rounded-lg m-2 gap-2">
-            <p className="font-medium text-center">
-              We value quality of service, security and a seamless user
-              experience
-            </p>
-            <Image
-              src={"/reliability.png"}
-              alt="reliabilty"
-              width={115}
-              height={115}
-              className="mt-8"
-            />
-            {/* <Button className="bg-black rounded-full">Read More</Button> */}
+      <div className="bg-customGreen -mt-12 text-white py-16">
+        <div id="about" className="justify-center place-items-center">
+          <h1 className="text-2xl font-bold mb-8 text-center">About Us</h1>
+          <div className="grid grid-cols-1 grid-rows-3 md:grid-cols-3 md:grid-rows-1 gap-4">
+            <div className="flex flex-col items-center p-2 rounded-lg m-2 gap-2">
+              <p className="font-medium text-center">
+                Our team consists of experienced professionals <br /> who deal
+                with the creation of data management tools and application
+              </p>
+              <></>
+              <Image
+                src={"/cow.png"}
+                alt="cow"
+                width={115}
+                height={115}
+                className="mt-4 filter invert brightness-0"
+              />
+              {/* <Button className="bg-black rounded-full">Read More</Button> */}
+            </div>
+            <div className="flex flex-col items-center p-2 rounded-lg m-2 gap-2">
+              <p className="font-medium text-center">
+                We attach great importance to customer satisfaction
+              </p>
+              <Image
+                src={"/service.png"}
+                alt="service"
+                width={115}
+                height={115}
+                className="mt-8 filter invert brightness-0"
+              />
+              {/* <Button className="bg-black rounded-full">Read More</Button> */}
+            </div>
+            <div className="flex flex-col items-center p-2 rounded-lg m-2 gap-2">
+              <p className="font-medium text-center">
+                We value quality of service, security and a seamless user
+                experience
+              </p>
+              <Image
+                src={"/reliability.png"}
+                alt="reliabilty"
+                width={115}
+                height={115}
+                className="mt-8 filter invert brightness-0"
+              />
+              {/* <Button className="bg-black rounded-full">Read More</Button> */}
+            </div>
           </div>
         </div>
-      </div>
-      <div id="features" className="mt-16">
-        <h1 className="text-2xl font-bold mb-12 text-center">Our Features</h1>
+      <div id="features" className="mt-16 p-2 border-t-2 border-white mx-6">
+        <h1 className="text-2xl font-bold mb-12 text-center pt-6">Our Features</h1>
         <div className="grid grid-cols-1 grid-rows-4 md:grid-cols-4 md:grid-rows-1 gap-3">
           <InfoFlipCard
             frontContent={
               <>
                 <Image
                   src={"/profile.jpg"}
-                  width={100}
+                  width={400}
                   height={100}
                   alt="profile"
                 />
@@ -119,7 +130,7 @@ export default function Home() {
               <>
                 <Image
                   src={"/dashboard.jpg"}
-                  width={100}
+                  width={400}
                   height={100}
                   alt="profile"
                 />
@@ -142,7 +153,7 @@ export default function Home() {
               <>
                 <Image
                   src={"/news.jpg"}
-                  width={100}
+                  width={400}
                   height={100}
                   alt="profile"
                 />
@@ -163,7 +174,7 @@ export default function Home() {
               <>
                 <Image
                   src={"/other_services.jpg"}
-                  width={100}
+                  width={400}
                   height={100}
                   alt="profile"
                 />
@@ -181,13 +192,43 @@ export default function Home() {
           />
         </div>
       </div>
-      <div id="contacts" className="flex flex-col justify-center items-center">
-        <div className="mt-16">
-          <h1 className="text-2xl font-bold mb-12 text-center">Contacts</h1>
-          <p>Email: info@dairylink.jhubafrica.com</p>
-          <p>Phone: +254 7** *** ***</p>
+
+      <div id="team" className="border-t-2 border-white py-6 mx-6 mt-10">
+        <h1 className="text-3xl text-center py-4 mb-4 text-white">Meet the team</h1>
+        <div className="grid lg:grid-cols-3 lg:grid-rows-2 px-8 justify-center place-items-center pt-6">
+          <div>
+            {/** 7 */}
+            <TeamMember name="Dr. Nderu" />
+          </div>
+          <div>
+            {/** 1 */}
+            <TeamMember name="ian karanja" />
+          </div>
+          <div>
+            {/** 2 */}
+            <TeamMember name="Teddy muli" />
+          </div>
+          <div>
+            {/** 3 */}
+            <TeamMember name="alfred warui" />
+          </div>
+          <div>
+            {/** 4 */}
+            <TeamMember name="samuel" />
+          </div>
+          <div>
+            {/** 5 */}
+            <TeamMember name="favian mokaya" />
+          </div>
+          <div>
+            {/** 6 */}
+            <TeamMember name="aketch atem" />
+          </div>
         </div>
       </div>
+
+      </div>
+      
     </main>
   );
 }

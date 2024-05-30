@@ -74,11 +74,3 @@
       @apply bg-background text-foreground;
     }
   }
-
-  body {
-    background-image: url('/dairylink_bg_img.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    color: white;
-  }

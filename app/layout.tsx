@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`m-8 ${inter.className}`}>
+      <body className={`${inter.className}`}>
         <main>
           <section>
             <TopBar />
