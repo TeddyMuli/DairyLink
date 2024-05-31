@@ -35,7 +35,7 @@ export default function Footer() {
       </div>
       <div className="flex flex-col lg:flex-row gap-4 justify-center items-center pb-8 my-12">
         <div>
-          <Link href="/terms" className="hover:text-customGreen2 mr-4 lg:mr-0">Terms of Service</Link>
+          <Link href="/terms" className="hover:text-customGreen2 mr-4">Terms of Service</Link>
           <Link href="/privacypolicy" className="hover:text-customGreen2">Privacy Policy</Link>
         </div>
         <div>
