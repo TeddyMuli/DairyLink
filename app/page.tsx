@@ -45,7 +45,7 @@ export default function Home() {
           </div>
           */}
           <div style={{ position: 'relative', width: '100%', height: '500px' }}>
-            <Image src={`/cowlandscape.jpg`} alt="cow" fill objectFit="cover" />
+            <Image src={`/cowlandscape.jpg`} alt="cow" layout="fill" objectFit="cover" />
           </div>
           {/** 
           <div style={{ filter: "brightness(50%)" }}>
