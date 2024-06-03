@@ -54,6 +54,27 @@ export default function Home() {
         </div>
       </div>
       <div className="bg-customGreen -mt-12 text-white py-16">
+        {/** challenges */}
+        <div className="grid justify-center items-center gap-8 border-b border-white mb-8 mx-4">
+          <p className="text-center text-6xl">Current challenges</p>
+          <div className="grid grid-cols-1 lg:grid-cols-3 grid-rows-1 px-4">
+            <div className="max-w-[400px] border-b-2 lg:border-0 mb-2">
+              <h3 className="text-center text-xl font-bold">01</h3>
+              <h3 className="py-4 text-center text-2xl font-semibold">Computerized systems</h3>
+              <p className="text-center text-xl py-3">Lack of Computerized systems for efficient management of member data and services crucial for their operations. </p>
+            </div>
+            <div className="max-w-[400px] border-b-2 lg:border-0 mb-2">
+              <h3 className="text-center text-xl font-bold">02</h3>
+              <h3 className="py-4 text-center text-2xl font-semibold">Legacy Systems</h3>
+              <p className="text-center text-xl py-3">Dairy Cooperatives often face challenges in managing member applications leading to delays and inefficiencies. These challenges include use of basic software solutions like excel spreadsheets.</p>
+            </div>
+            <div className="max-w-[400px] mb-8">
+              <h3 className="text-center text-xl font-bold">03</h3>
+              <h3 className="py-4 text-center text-2xl font-semibold">Lack of Farmer support</h3>
+              <p className="text-center text-xl py-3">"The Farmers were also faced with the challenge of lack of access to market information, resource constraints, limkited access to banking services as well as little farmer education. "  - Research by Anne W. Wainana on the challenges faced by Dairy Farmer's in Kiambu County at USIU</p>
+            </div>
+          </div>
+        </div>
         <div id="about" className="justify-center place-items-center">
           <h1 className="text-6xl mb-8 text-center">About Us</h1>
           <div className="grid grid-cols-1 grid-rows-3 md:grid-cols-3 md:grid-rows-1 gap-4 text-xl">
@@ -102,7 +123,9 @@ export default function Home() {
           </div>
         </div>
       <div id="features" className="mt-16 p-2 border-t border-white mx-6">
-        <div className="text-4xl mb-12 text-right max-w-[400px] mt-4">DISCOVER THE FEATURES OF OUR UPCOMING APP</div>
+        <div className="text-right">
+          <p className="text-4xl mb-12 mt-4">DISCOVER THE FEATURES<br /> OF OUR UPCOMING APP</p>
+        </div>
         <div className="grid grid-cols-1 grid-rows-4 md:grid-cols-4 md:grid-rows-1 gap-3 text-xl">
           <InfoFlipCard
             frontContent={
