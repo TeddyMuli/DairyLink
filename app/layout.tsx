@@ -1,10 +1,19 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Quicksand, Tinos } from "next/font/google";
 import "./globals.css";
 import TopBar from "@/components/shared/TopBar";
 import Footer from "@/components/shared/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
+const quickSand = Quicksand({ 
+  subsets: ["latin"],
+  variable: "--font-quickSand"
+});
+const tinos = Tinos({
+  subsets: ['latin'],
+  weight: ["400", '700'],
+  variable: "--font-tinos"
+});
 
 export const metadata: Metadata = {
   title: "DairyLink",
@@ -18,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`m-8 ${inter.className}`}>
+      <body className={`${tinos.variable}`}>
         <main>
           <section>
             <TopBar />
