@@ -8,10 +8,10 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
   return (
     <div className="">
-      <div className="grid lg:grid-cols-3 lg:grid-rows-1 justify-center place-items-center mt-16 mb-12">
+      <div className="grid lg:grid-cols-3 lg:grid-rows-1 justify-center place-items-center mt-16 mb-12 text-xl">
         <div id="contacts" className="pl-8">   
           <h1 className="text-2xl font-bold mb-4 text-center">Contacts</h1>
-          <p>Email: info@dairylink.jhubafrica.com</p>
+          <p>Email: dairylinkcoop@gmail.com</p>
           <p>Phone: +254 743 376 478</p>
         </div>
 

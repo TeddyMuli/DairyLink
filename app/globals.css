@@ -69,8 +69,9 @@
   @layer base {
     * {
       @apply border-border;
+      letter-spacing: 0.1rem;
     }
     body {
-      @apply bg-background text-foreground;
+      @apply font-primary bg-background text-foreground;
     }
   }

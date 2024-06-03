@@ -16,7 +16,7 @@ export default function Navbar() {
         <div className="flex items-center justify-center py-3 md:py-5 md:block gap-8">
           <div className="flex space-x-4 md:space-x-6">
             <Link href="/">
-              <h1 className="text-3xl font-bold text-accent">Dairy<span className="text-black">Link</span></h1>
+              <h1 className="text-6xl font-bold text-accent">Dairy<span className="text-black">Link</span></h1>
             </Link>
           </div>
           <div className="md:hidden">
@@ -34,7 +34,7 @@ export default function Navbar() {
             state ? "block" : "hidden"
           }`}
         >
-          <ul className="justify-end items-center space-y-8 md:flex md:space-x-6 md:space-y-0">
+          <ul className="justify-end items-center space-y-8 md:flex md:space-x-6 md:space-y-0 text-xl">
             {menus.map((item, idx) => (
               <li key={idx} className={`text-white hover:text-customGreen2`}>
                 {item.title === "Register" ? (

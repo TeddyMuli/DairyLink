@@ -26,10 +26,9 @@ export default function Home() {
       <div className="grid rounded-lg pb-12">
         <div className="bg-customGreen text-white p-10">
           <div className="flex flex-col mt-24 justify-center items-center">
-            <h1 className="text-4xl font-bold mb-4 text-center">Welcome to DairyLink!</h1>
-            <p className="mb-8 justify-normal">
-              Our company and products are geared towards the satistaction of
-              dairy cooperative's needs
+            <h1 className="animate-typing overflow-hidden border-r-4 border-r-white text-xl mb-4 text-center">YOUR TRUSTED PATNER IN</h1>
+            <p className="mb-8 justify-normal text-6xl max-w-[800px] text-center">
+              CONNECTING DAIRY FARMERS AND SIMPLIFYING SUCCESS
             </p>
           </div>
           <div className="flex flex-col items-center">
@@ -56,8 +55,8 @@ export default function Home() {
       </div>
       <div className="bg-customGreen -mt-12 text-white py-16">
         <div id="about" className="justify-center place-items-center">
-          <h1 className="text-2xl font-bold mb-8 text-center">About Us</h1>
-          <div className="grid grid-cols-1 grid-rows-3 md:grid-cols-3 md:grid-rows-1 gap-4">
+          <h1 className="text-6xl mb-8 text-center">About Us</h1>
+          <div className="grid grid-cols-1 grid-rows-3 md:grid-cols-3 md:grid-rows-1 gap-4 text-xl">
             <div className="flex flex-col items-center p-2 rounded-lg m-2 gap-2">
               <p className="font-medium text-center">
                 Our team consists of experienced professionals <br /> who deal
@@ -102,19 +101,19 @@ export default function Home() {
             </div>
           </div>
         </div>
-      <div id="features" className="mt-16 p-2 border-t-2 border-white mx-6">
-        <h1 className="text-2xl font-bold mb-12 text-center pt-6">Our Features</h1>
-        <div className="grid grid-cols-1 grid-rows-4 md:grid-cols-4 md:grid-rows-1 gap-3">
+      <div id="features" className="mt-16 p-2 border-t border-white mx-6">
+        <div className="text-4xl mb-12 text-right max-w-[400px] mt-4">DISCOVER THE FEATURES OF OUR UPCOMING APP</div>
+        <div className="grid grid-cols-1 grid-rows-4 md:grid-cols-4 md:grid-rows-1 gap-3 text-xl">
           <InfoFlipCard
             frontContent={
               <>
                 <Image
                   src={"/profile.jpg"}
-                  width={400}
-                  height={100}
+                  width={500}
+                  height={500}
                   alt="profile"
                 />
-                <p className="text-lg my-2 font-medium">Member Profile</p>
+                <p className="my-2 font-medium">Member Profile</p>
               </>
             }
             backContent={
@@ -130,11 +129,11 @@ export default function Home() {
               <>
                 <Image
                   src={"/dashboard.jpg"}
-                  width={400}
-                  height={100}
+                  width={500}
+                  height={500}
                   alt="profile"
                 />
-                <p className="text-lg my-2 font-medium">
+                <p className="my-2 font-medium">
                   Interactive Dashboard
                 </p>
               </>
@@ -153,11 +152,11 @@ export default function Home() {
               <>
                 <Image
                   src={"/news.jpg"}
-                  width={400}
-                  height={100}
+                  width={500}
+                  height={500}
                   alt="profile"
                 />
-                <p className="text-lg my-2 font-medium">Cooperative News</p>
+                <p className="my-2 font-medium">Cooperative News</p>
               </>
             }
             backContent={
@@ -174,11 +173,11 @@ export default function Home() {
               <>
                 <Image
                   src={"/other_services.jpg"}
-                  width={400}
-                  height={100}
+                  width={500}
+                  height={500}
                   alt="profile"
                 />
-                <p className="text-lg my-2 font-medium">Other Services</p>
+                <p className="my-2 font-medium">Other Services</p>
               </>
             }
             backContent={
@@ -194,7 +193,7 @@ export default function Home() {
       </div>
 
       <div id="team" className="border-t-2 border-white py-6 mx-6 mt-10">
-        <h1 className="text-3xl text-center py-4 mb-4 text-white">Meet the team</h1>
+        <h1 className="text-6xl text-center py-4 mb-4 text-white">Meet the team</h1>
         <div className="grid lg:grid-cols-3 lg:grid-rows-2 px-8 justify-center place-items-center pt-6">
           <div>
             {/** 7 */}

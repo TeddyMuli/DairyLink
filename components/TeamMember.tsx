@@ -6,10 +6,10 @@ const TeamMember = ({name} : {name: string}) => {
             <Image
                 src="/team.png"
                 alt="teammember"
-                width={200}
-                height={200}
+                width={300}
+                height={300}
             />
-            <p className="capitalize text-white text-center p-2">{name}</p>
+            <p className="capitalize text-white text-xl text-center p-2">{name}</p>
         </div>
     );
 }

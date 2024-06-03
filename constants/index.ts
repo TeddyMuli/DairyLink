@@ -4,6 +4,5 @@ export const menus = [
     { title: "About", path: "/#about" },
     { title: "Team", path: "/#team" },
     { title: "Contacts", path: "/#contacts" },
-    { title: "Login", path: "/auth/login" },
-    { title: "Register", path: "/auth/register" },
+    
   ];
