@@ -1,22 +1,23 @@
 "use client";
 
+import { menus } from "@/constants";
 import { Menu } from "lucide-react";
 import Link from "next/link";
 import * as React from "react";
 import { Button } from "../ui";
-import { register } from "module";
-import { menus } from "@/constants";
 
 export default function Navbar() {
   const [state, setState] = React.useState(false);
 
   return (
     <nav className=" w-full border-b md:border-0 bg-customGreen pt-8">
-      <div className="flex flex-col items-center px-4 max-w-screen-xl  md:flex md:px-8">
+      <div className="flex flex-col items-center px-4 max-w-screen-xl  md:flex md:px-8 mx-auto">
         <div className="flex items-center justify-center py-3 md:py-5 md:block gap-8">
           <div className="flex space-x-4 md:space-x-6">
             <Link href="/">
-              <h1 className="text-6xl font-bold text-accent">Dairy<span className="text-black">Link</span></h1>
+              <h1 className="text-6xl font-bold text-accent">
+                Dairy<span className="text-black">Link</span>
+              </h1>
             </Link>
           </div>
           <div className="md:hidden">
@@ -28,7 +29,7 @@ export default function Navbar() {
             </button>
           </div>
         </div>
-        
+
         <div
           className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
             state ? "block" : "hidden"
@@ -38,7 +39,11 @@ export default function Navbar() {
             {menus.map((item, idx) => (
               <li key={idx} className={`text-white hover:text-customGreen2`}>
                 {item.title === "Register" ? (
-                  <Button asChild variant={"outline"} className="text-black transition-all duration-300 hover:translate-x-[-4px] hover:translate-y-[-4px]">
+                  <Button
+                    asChild
+                    variant={"outline"}
+                    className="text-black transition-all duration-300 hover:translate-x-[-4px] hover:translate-y-[-4px]"
+                  >
                     <Link href={item.path}>{item.title}</Link>
                   </Button>
                 ) : (
