@@ -1,18 +1,18 @@
+import Footer from "@/components/shared/Footer";
+import TopBar from "@/components/shared/TopBar";
 import type { Metadata } from "next";
 import { Inter, Quicksand, Tinos } from "next/font/google";
 import "./globals.css";
-import TopBar from "@/components/shared/TopBar";
-import Footer from "@/components/shared/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
-const quickSand = Quicksand({ 
+const quickSand = Quicksand({
   subsets: ["latin"],
-  variable: "--font-quickSand"
+  variable: "--font-quickSand",
 });
 const tinos = Tinos({
-  subsets: ['latin'],
-  weight: ["400", '700'],
-  variable: "--font-tinos"
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-tinos",
 });
 
 export const metadata: Metadata = {
@@ -31,9 +31,7 @@ export default function RootLayout({
         <main>
           <section>
             <TopBar />
-            <div>
-              {children}
-            </div>
+            <div>{children}</div>
           </section>
         </main>
         <Footer />
