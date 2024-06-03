@@ -17,6 +17,8 @@ export default function Home() {
   useEffect(() => {
     AOS.init({
       duration: 1000,
+      anchorPlacement: "top-center",
+      easing: "ease-in-out",
     });
 
     supabase.auth
