@@ -10,6 +10,16 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { TypeAnimation } from "react-type-animation";
 
+const team = [
+  { name: "Dr. Nderu", link: "https://www.linkedin.com/in/dr-lawrence-nderu/", img: "/team/nderu.jpeg" },
+  { name: "Ian Karanja", link: "https://www.linkedin.com/in/ian-karanja-00027724b/", img: "/team/ian.jpg" },
+  { name: "Teddy Muli", link: "https://www.linkedin.com/in/teddymuli/", img: "/team/ted2.jpg" },
+  { name: "Alfred Warui", link: "https://www.linkedin.com/in/alfred-kahenya-07a309229/", img: "/team/alfred.jpg" },
+  { name: "Samuel Ruoti", link: "#", img: "/team/sam.jpg" },
+  { name: "Favian Mokaya", link: "https://www.linkedin.com/in/favianmokaya/", img: "/team/favian.jpg" },
+  { name: "Aketch Atem", link: "https://www.linkedin.com/in/akech-dau-atem-723455222/", img: "/team/aketch.jpg" },
+]
+
 export default function Home() {
   const [loading, setLoading] = useState(false);
   const [session, setSession] = useState<Session | null>(null);
@@ -38,14 +48,13 @@ export default function Home() {
               YOUR TRUSTED PARTNER IN
             </h1>
             <TypeAnimation
-              className="text-6xl max-w-[800px] text-center"
+              className="text-4xl lg:text-6xl max-w-[400px] lg:max-w-[800px] text-center"
               sequence={[
                 "CONNECTING DAIRY FARMERS AND SIMPLIFYING SUCCESS",
                 1000,
                 "CONNECTING DAIRY FARMERS AND SIMPLIFYING OPERATIONS",
                 1000,
               ]}
-              wrapper="p"
               repeat={Infinity}
               speed={50}
               cursor={false}
@@ -70,7 +79,7 @@ export default function Home() {
             <Image
               src={`/cowlandscape.jpg`}
               alt="cow"
-              layout="fill"
+              fill
               objectFit="cover"
             />
           </div>
@@ -83,7 +92,7 @@ export default function Home() {
       </div>
       <div className="bg-customGreen -mt-12 text-white py-16">
         {/** challenges */}
-        <div className="grid justify-center items-center gap-8 border-b border-white mb-8 mx-4">
+        <div className="grid justify-center items-center gap-8 border-b border-white mb-8">
           <p className="text-center text-6xl">Current challenges</p>
           <div className="grid grid-cols-1 lg:grid-cols-3 grid-rows-1 px-4">
             <div
@@ -132,7 +141,7 @@ export default function Home() {
         <div
           id="about"
           className="justify-center place-items-center"
-          data-aos="fade-down-right"
+          data-aos="fade-up"
         >
           <h1 className="text-6xl mb-8 text-center">About Us</h1>
           <div className="grid grid-cols-1 grid-rows-3 md:grid-cols-3 md:grid-rows-1 gap-4 text-xl">
@@ -189,7 +198,7 @@ export default function Home() {
           </div>
           <div
             className="grid grid-cols-1 grid-rows-4 md:grid-cols-4 md:grid-rows-1 gap-3 text-xl"
-            data-aos="fade-down-left"
+            data-aos="fade-up"
           >
             <InfoFlipCard
               frontContent={
@@ -282,34 +291,13 @@ export default function Home() {
             Meet the team
           </h1>
           <div className="grid lg:grid-cols-3 lg:grid-rows-2 px-8 justify-center place-items-center pt-6">
-            <div>
-              {/** 7 */}
-              <TeamMember name="Dr. Nderu" />
-            </div>
-            <div>
-              {/** 1 */}
-              <TeamMember name="ian karanja" />
-            </div>
-            <div>
-              {/** 2 */}
-              <TeamMember name="Teddy muli" />
-            </div>
-            <div>
-              {/** 3 */}
-              <TeamMember name="alfred warui" />
-            </div>
-            <div>
-              {/** 4 */}
-              <TeamMember name="samuel" />
-            </div>
-            <div>
-              {/** 5 */}
-              <TeamMember name="favian mokaya" />
-            </div>
-            <div>
-              {/** 6 */}
-              <TeamMember name="aketch atem" />
-            </div>
+            {team.map((item, index) => {
+              return (
+              <div key={index} className="h-[300px] w-[300px]">
+                <TeamMember link={item.link} name={item.name} img_src={item.img} />
+              </div>
+              )
+            })}
           </div>
         </div>
       </div>

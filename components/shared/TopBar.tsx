@@ -11,7 +11,7 @@ export default function Navbar() {
 
   return (
     <nav className=" w-full border-b md:border-0 bg-customGreen pt-8">
-      <div className="flex flex-col items-center px-4 max-w-screen-xl  md:flex md:px-8 mx-auto">
+      <div className="flex flex-col items-center px-4 max-w-screen-xl  md:flex md:px-8 mx-0 lg:mx-auto">
         <div className="flex items-center justify-center py-3 md:py-5 md:block gap-8">
           <div className="flex space-x-4 md:space-x-6">
             <Link href="/">
