@@ -11,13 +11,13 @@ import { useEffect, useState } from "react";
 import { TypeAnimation } from "react-type-animation";
 
 const team = [
-  { name: "Dr. Nderu", link: "https://www.linkedin.com/in/dr-lawrence-nderu/", img: "/team/nderu.jpeg" },
-  { name: "Ian Karanja", link: "https://www.linkedin.com/in/ian-karanja-00027724b/", img: "/team/ian.jpg" },
-  { name: "Teddy Muli", link: "https://www.linkedin.com/in/teddymuli/", img: "/team/ted2.jpg" },
-  { name: "Alfred Warui", link: "https://www.linkedin.com/in/alfred-kahenya-07a309229/", img: "/team/alfred.jpg" },
-  { name: "Samuel Ruoti", link: "#", img: "/team/sam.jpg" },
-  { name: "Favian Mokaya", link: "https://www.linkedin.com/in/favianmokaya/", img: "/team/favian.jpg" },
-  { name: "Aketch Atem", link: "https://www.linkedin.com/in/akech-dau-atem-723455222/", img: "/team/aketch.jpg" },
+  { name: "Dr. Nderu", link: "https://www.linkedin.com/in/dr-lawrence-nderu/", img: "/team/nderu.jpeg", role: "Mentor" },
+  { name: "Ian Karanja", link: "https://www.linkedin.com/in/ian-karanja-00027724b/", img: "/team/ian.jpg", role: "Product Manager" },
+  { name: "Teddy Muli", link: "https://www.linkedin.com/in/teddymuli/", img: "/team/ted2.jpg", role: "Frontend Engineer" },
+  { name: "Alfred Warui", link: "https://www.linkedin.com/in/alfred-kahenya-07a309229/", img: "/team/alfred.jpg", role: "Data Analyst" },
+  { name: "Samuel Ruoti", link: "#", img: "/team/sam.jpg", role: "Backend Engineer" },
+  { name: "Favian Mokaya", link: "https://www.linkedin.com/in/favianmokaya/", img: "/team/favian.jpg", role: "UI/UX designer" },
+  { name: "Aketch Atem", link: "https://www.linkedin.com/in/akech-dau-atem-723455222/", img: "/team/aketch.jpg", role: "Machine Learning Engineer" },
 ]
 
 export default function Home() {
@@ -290,11 +290,11 @@ export default function Home() {
           <h1 className="text-6xl text-center py-4 mb-4 text-white">
             Meet the team
           </h1>
-          <div className="grid lg:grid-cols-3 lg:grid-rows-2 px-8 justify-center place-items-center pt-6">
+          <div className="grid lg:grid-cols-3 lg:grid-rows-2 gap-4 mx-8 justify-center place-items-center mt-6">
             {team.map((item, index) => {
               return (
-              <div key={index} className="h-[300px] w-[300px]">
-                <TeamMember link={item.link} name={item.name} img_src={item.img} />
+              <div key={index}>
+                <TeamMember link={item.link} name={item.name} img_src={item.img} role={item.role} />
               </div>
               )
             })}
