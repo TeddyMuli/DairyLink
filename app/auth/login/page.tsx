@@ -2,90 +2,20 @@
 
 import { supabase } from "@/lib/supabase";
 import { Session } from "inspector";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+
+const providers = [
+  { src: "/assets/fb_logo.png", alt: "facebook", link: "#" },
+  { src: "/assets/google_logo.png", alt: "facebook", link: "#" },
+  { src: "/assets/linkedin_logo.png", alt: "facebook", link: "#" }
+]
 
 type AlertProps = {
   type: "info" | "error";
   msg: string;
 };
-
-export default function Page() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [alert, setAlert] = useState<AlertProps>();
-  const { push } = useRouter();
-  const [loading, setLoading] = useState(false);
-  const [session, setSession] = useState<Session | null>(null);
-
-  return (
-    <>
-      {alert && <Alert msg={alert.msg} type={alert.type} />}
-      <div className="shadow-lg rounded-md p-6 border bg-white w-2/5 h-full">
-        <h1 className="font-semibold mb-2 text-slate-500">Login</h1>
-        <form className="flex flex-col gap-4 mt-4 w-full h-full">
-          <div className="flex flex-col gap-1">
-            <input
-              type="email"
-              id="email"
-              className="px-3 py-2 text-sm text-slate-400 border border-slate-300 rounded outline-none"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email"
-            />
-          </div>
-
-          <div className="flex flex-col gap-1">
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="px-3 py-2 text-sm text-slate-400 border border-slate-300 rounded outline-none"
-              placeholder="Password"
-            />
-          </div>
-
-          <hr />
-
-          <button
-            type="button"
-            className="bg-slate-900 font-semibold rounded py-2 text-white"
-            onClick={async (e) => {
-              e.preventDefault();
-              setLoading(true);
-              const { data, error } = await supabase.auth.signInWithPassword({
-                email,
-                password,
-              });
-              if (error) setAlert({ msg: error.message, type: "error" });
-              setLoading(false);
-              if (data.session) push("/");
-            }}
-            disabled={loading}
-          >
-            {loading ? "..." : "Login"}
-          </button>
-          <button
-            type="button"
-            className="bg-slate-900 font-semibold rounded py-2 text-white"
-            onClick={async (e) => {
-              e.preventDefault();
-              const { data, error } = await supabase.auth.signUp({
-                email,
-                password,
-              });
-              if (error) setAlert({ msg: error.message, type: "error" });
-              else setAlert({ msg: "Check your email!", type: "info" });
-            }}
-          >
-            Register
-          </button>
-        </form>
-      </div>
-    </>
-  );
-}
 
 const Alert: React.FC<AlertProps> = ({ type, msg }) => {
   let style = "";
@@ -109,3 +39,90 @@ const Alert: React.FC<AlertProps> = ({ type, msg }) => {
     </div>
   );
 };
+
+export default function Page() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [alert, setAlert] = useState<AlertProps>();
+  const { push } = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [session, setSession] = useState<Session | null>(null);
+
+  const backgroundImageStyle = {
+    backgroundImage: "url('/assets/dairy_cow.jpg')",
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    height: '120vh',
+    width: '100%',
+  };
+
+  return (
+    <div style={backgroundImageStyle}>
+      <div className="container mx-auto grid grid-cols-1 grid-rows-2 lg:grid-cols-2 lg:grid-rows-1 text-xl pt-4">
+        <div className="flex flex-col justify-center items-center text-6xl text-left bg-white bg-opacity-30 w-[500px] rounded-xl ml-8">
+          <h1 className="font-bold mt-[100px]">DairyLink</h1>
+          <div className="my-auto">
+            <p className="text-green-800 font-medium">Connecting<br />dairy farmers<br />and simplifying<br /><span className="font-extrabold">success</span></p>
+          </div>
+        </div>
+        <div className="bg-white rounded-xl m-8 p-8">
+          <h1 className="text-center text-6xl font-extrabold p-4">Welcome</h1>
+          <p className="text-center font-semibold pb-4">Create an account or login to access DairyLink</p>
+          <div className="px-8">
+            <div className="flex flex-col">
+              <label className="text-xl p-2">Email address</label>
+              <input
+                type="text"
+                name=""
+                placeholder="Email address"
+                className="p-4 border-2 border-black/40 rounded-lg focus:border-green-500 outline-none"
+              />
+            </div>
+
+            <div className="flex flex-col">
+              <label className="text-xl p-2">Enter Password</label>
+              <input
+                type="text"
+                name=""
+                className="p-4 border-2 border-black/40 focus:border-green-500 rounded-lg outline-none"
+                placeholder="Enter Password"
+              />
+            </div>
+            <div className="flex gap-4 py-4">
+              <input type="checkbox" name="" id="" />
+              <p>Remember me</p>
+            </div>
+            <div className="flex justify-center items-center">
+              <button className="py-4 bg-blue-600 font-bold text-2xl rounded-lg text-white w-[500px]">Login</button>
+            </div>
+            <div className="flex justify-center items-center py-4">
+              <p>Don't have an account? <span className="text-blue-600 font-bold">SignUp</span></p>
+            </div>
+            <div className="flex flex-col justify-center items-center">
+              <Image
+                src="/assets/pendulum.png"
+                alt="pendulum"
+                width={50}
+                height={50}
+              />
+              <div className="flex flex-row gap-[100px] pt-2">
+                {providers.map((provider, index) => {
+                  return (
+                    <Image
+                      key={index}
+                      src={provider.src}
+                      alt={provider.alt}
+                      width={50}
+                      height={50}
+                      className="cursor-pointer"
+                    />
+                  )
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

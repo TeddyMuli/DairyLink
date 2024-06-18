@@ -5,12 +5,14 @@ import { Menu } from "lucide-react";
 import Link from "next/link";
 import * as React from "react";
 import { Button } from "../ui";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [state, setState] = React.useState(false);
+  const pathname = usePathname()
 
   return (
-    <nav className=" w-full border-b md:border-0 bg-customGreen pt-8">
+    <nav className={`${(pathname !== "/") && "hidden"} w-full border-b md:border-0 bg-customGreen pt-8`}>
       <div className="flex flex-col items-center px-4 max-w-screen-xl  md:flex md:px-8 mx-0 lg:mx-auto">
         <div className="flex items-center justify-center py-3 md:py-5 md:block gap-8">
           <div className="flex space-x-4 md:space-x-6">
