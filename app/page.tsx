@@ -1,28 +1,70 @@
 "use client";
 import InfoFlipCard from "@/components/InfoFlipCard";
 import TeamMember from "@/components/TeamMember";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui";
 import { supabase } from "@/lib/supabase";
 import { Session } from "@supabase/auth-helpers-nextjs";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import { TypeAnimation } from "react-type-animation";
+import { useEffect, useRef, useState } from "react";
 
 const team = [
-  { name: "Dr. Nderu", link: "https://www.linkedin.com/in/dr-lawrence-nderu/", img: "/team/nderu.jpeg", role: "Mentor" },
-  { name: "Ian Karanja", link: "https://www.linkedin.com/in/ian-karanja-00027724b/", img: "/team/ian.jpg", role: "Product Manager" },
-  { name: "Teddy Muli", link: "https://www.linkedin.com/in/teddymuli/", img: "/team/ted2.jpg", role: "Frontend Engineer" },
-  { name: "Alfred Warui", link: "https://www.linkedin.com/in/alfred-kahenya-07a309229/", img: "/team/alfred.jpg", role: "Data Analyst" },
-  { name: "Samuel Ruoti", link: "#", img: "/team/sam.jpg", role: "Backend Engineer" },
-  { name: "Favian Mokaya", link: "https://www.linkedin.com/in/favianmokaya/", img: "/team/favian.jpg", role: "UI/UX designer" },
-  { name: "Aketch Atem", link: "https://www.linkedin.com/in/akech-dau-atem-723455222/", img: "/team/aketch.jpg", role: "Machine Learning Engineer" },
-]
+  {
+    name: "Dr. Nderu",
+    link: "https://www.linkedin.com/in/dr-lawrence-nderu/",
+    img: "/assets/images/team/nderu.jpeg",
+    role: "Mentor",
+  },
+  {
+    name: "Ian Karanja",
+    link: "https://www.linkedin.com/in/ian-karanja-00027724b/",
+    img: "/assets/images/team/ian.jpg",
+    role: "Product Manager",
+  },
+  {
+    name: "Teddy Muli",
+    link: "https://www.linkedin.com/in/teddymuli/",
+    img: "/team/ted2.jpg",
+    role: "Frontend Engineer",
+  },
+  {
+    name: "Alfred Warui",
+    link: "https://www.linkedin.com/in/alfred-kahenya-07a309229/",
+    img: "/assets/images/team/alfred.jpg",
+    role: "Data Analyst",
+  },
+  {
+    name: "Samuel Ruoti",
+    link: "#",
+    img: "/team/sam.jpg",
+    role: "Backend Engineer",
+  },
+  {
+    name: "Favian Mokaya",
+    link: "https://www.linkedin.com/in/favianmokaya/",
+    img: "/assets/images/team/favian.jpg",
+    role: "UI/UX designer",
+  },
+  {
+    name: "Aketch Atem",
+    link: "https://www.linkedin.com/in/akech-dau-atem-723455222/",
+    img: "/team/aketch.jpg",
+    role: "Machine Learning Engineer",
+  },
+];
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
   const [session, setSession] = useState<Session | null>(null);
+  const plugin = useRef(Autoplay({ delay: 1000, stopOnInteraction: true }));
 
   useEffect(() => {
     AOS.init({
@@ -42,7 +84,7 @@ export default function Home() {
   return (
     <main className="">
       <div className="grid rounded-lg pb-12">
-        <div className="bg-customGreen text-white p-10">
+        {/* <div className="bg-customGreen text-white p-10">
           <div className="flex flex-col mt-24 justify-center items-center">
             <h1 className=" text-xl mb-4 text-center">
               YOUR TRUSTED PARTNER IN
@@ -68,20 +110,64 @@ export default function Home() {
               View Features
             </Link>
           </div>
-        </div>
+        </div> */}
         <div className="flex justify-center items-center">
           {/** 
           <div style={{ filter: "brightness(50%)" }}>
             <Image src={`/money.jpg`} alt="cow" width={200} height={200} />
           </div>
           */}
-          <div style={{ position: "relative", width: "100%", height: "500px" }}>
+          <div style={{ position: "relative", width: "100%", height: "80vh" }}>
             <Image
-              src={`/cowlandscape.jpg`}
+              src={`/assets/images/cowlandscape.jpg`}
               alt="cow"
               fill
               objectFit="cover"
             />
+            <div className="absolute inset-0 text-white flex flex-col justify-center items-center z-10">
+              {/* <div className="flex flex-col mt-24 justify-center items-center">
+                <h1 className=" text-xl mb-4 text-center">
+                  YOUR TRUSTED PARTNER IN
+                </h1>
+                <TypeAnimation
+                  className="text-4xl lg:text-6xl max-w-[400px] lg:max-w-[800px] text-center"
+                  sequence={[
+                    "CONNECTING DAIRY FARMERS AND SIMPLIFYING SUCCESS",
+                    1000,
+                    "CONNECTING DAIRY FARMERS AND SIMPLIFYING OPERATIONS",
+                    1000,
+                  ]}
+                  repeat={Infinity}
+                  speed={50}
+                  cursor={false}
+                />
+              </div> */}
+              <Carousel
+                plugins={[plugin.current]}
+                className="w-3/4"
+                onMouseEnter={plugin.current.stop}
+                onMouseLeave={plugin.current.reset}
+              >
+                <CarouselContent className="flex">
+                  <CarouselItem>
+                    <div className="flex flex-col items-center justify-center text-center tracking-tighter font-bold">
+                      <p className="text-4xl">CONNECTING</p>
+                      <p className="text-8xl">DAIRY FARMERS</p>
+                      <p className="text-4xl">AND SIMPLIFYING SUCCESS</p>
+                    </div>
+                  </CarouselItem>
+                  <CarouselItem>
+                    <div className="flex flex-col items-center justify-center text-center tracking-tighter font-bold">
+                      <p className="text-4xl">CONNECTING</p>
+                      <p className="text-8xl">DAIRY FARMERS</p>
+                      <p className="text-4xl">AND SIMPLIFYING OPERATIONS</p>
+                    </div>
+                  </CarouselItem>
+                </CarouselContent>
+                <CarouselPrevious className="w-16 h-16" />
+                <CarouselNext className="w-16 h-16" />
+              </Carousel>
+            </div>
           </div>
           {/** 
           <div style={{ filter: "brightness(50%)" }}>
@@ -293,10 +379,15 @@ export default function Home() {
           <div className="grid lg:grid-cols-3 lg:grid-rows-2 gap-4 mx-8 justify-center place-items-center mt-6">
             {team.map((item, index) => {
               return (
-              <div key={index}>
-                <TeamMember link={item.link} name={item.name} img_src={item.img} role={item.role} />
-              </div>
-              )
+                <div key={index}>
+                  <TeamMember
+                    link={item.link}
+                    name={item.name}
+                    img_src={item.img}
+                    role={item.role}
+                  />
+                </div>
+              );
             })}
           </div>
         </div>
