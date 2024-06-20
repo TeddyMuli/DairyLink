@@ -197,19 +197,21 @@ export default function Home() {
         </div>
         <div
           id="about"
-          className="justify-center place-items-center"
-          data-aos="fade-up"
+          className="relative bg-[url(/assets/images/about-us-bg.jpeg)] bg-cover bg-center bg-no-repeat p-8 text-white"
+          // data-aos="fade-up"
         >
-          <h1 className="text-6xl mb-8 text-center">About Us</h1>
-          <div className="grid grid-cols-1 grid-rows-3 md:grid-cols-3 md:grid-rows-1 gap-4 text-xl">
-            <div className="flex flex-col items-center p-2 rounded-lg m-2 gap-2">
+          <div className="absolute inset-0 bg-black opacity-60" />
+          <h1 className="text-6xl mb-8 text-center font-bold z-10 relative">
+            About Us
+          </h1>
+          <div className="grid grid-cols-1 grid-rows-3 md:grid-cols-3 md:grid-rows-1 gap-4 text-xl items-center relative z-10">
+            <div className="flex flex-col-reverse items-center p-2 rounded-lg m-2 gap-2">
               <p className="font-medium text-center">
                 Our team consists of experienced professionals <br /> who deal
                 with the creation of data management tools and application
               </p>
-              <></>
               <Image
-                src={"/cow.png"}
+                src={"/assets/images/cow.png"}
                 alt="cow"
                 width={115}
                 height={115}
@@ -217,12 +219,12 @@ export default function Home() {
               />
               {/* <Button className="bg-black rounded-full">Read More</Button> */}
             </div>
-            <div className="flex flex-col items-center p-2 rounded-lg m-2 gap-2">
+            <div className="flex flex-col-reverse items-center p-2 rounded-lg m-2 gap-2">
               <p className="font-medium text-center">
                 We attach great importance to customer satisfaction
               </p>
               <Image
-                src={"/service.png"}
+                src={"/assets/images/service.png"}
                 alt="service"
                 width={115}
                 height={115}
@@ -230,13 +232,13 @@ export default function Home() {
               />
               {/* <Button className="bg-black rounded-full">Read More</Button> */}
             </div>
-            <div className="flex flex-col items-center p-2 rounded-lg m-2 gap-2">
+            <div className="flex flex-col-reverse items-center p-2 rounded-lg m-2 gap-2">
               <p className="font-medium text-center">
                 We value quality of service, security and a seamless user
                 experience
               </p>
               <Image
-                src={"/reliability.png"}
+                src={"/assets/images/reliability.png"}
                 alt="reliabilty"
                 width={115}
                 height={115}
