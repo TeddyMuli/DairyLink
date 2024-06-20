@@ -1,4 +1,5 @@
 "use client";
+import Challenges from "@/components/Challenges";
 import InfoFlipCard from "@/components/InfoFlipCard";
 import TeamMember from "@/components/TeamMember";
 import {
@@ -83,8 +84,8 @@ export default function Home() {
 
   return (
     <main className="">
-      <div className="grid rounded-lg pb-12">
-        {/* <div className="bg-customGreen text-white p-10">
+      {/* <div className="grid rounded-lg"> */}
+      {/* <div className="bg-customGreen text-white p-10">
           <div className="flex flex-col mt-24 justify-center items-center">
             <h1 className=" text-xl mb-4 text-center">
               YOUR TRUSTED PARTNER IN
@@ -111,117 +112,87 @@ export default function Home() {
             </Link>
           </div>
         </div> */}
-        <div className="flex justify-center items-center">
-          {/** 
+      {/* <div className="flex justify-center items-center mb-8"> */}
+      {/** 
           <div style={{ filter: "brightness(50%)" }}>
             <Image src={`/money.jpg`} alt="cow" width={200} height={200} />
           </div>
           */}
-          <div style={{ position: "relative", width: "100%", height: "80vh" }}>
-            <Image
-              src={`/assets/images/cowlandscape.jpg`}
-              alt="cow"
-              fill
-              objectFit="cover"
-            />
-            <div className="absolute inset-0 text-white flex flex-col justify-center items-center z-10">
-              {/* <div className="flex flex-col mt-24 justify-center items-center">
-                <h1 className=" text-xl mb-4 text-center">
-                  YOUR TRUSTED PARTNER IN
-                </h1>
-                <TypeAnimation
-                  className="text-4xl lg:text-6xl max-w-[400px] lg:max-w-[800px] text-center"
-                  sequence={[
-                    "CONNECTING DAIRY FARMERS AND SIMPLIFYING SUCCESS",
-                    1000,
-                    "CONNECTING DAIRY FARMERS AND SIMPLIFYING OPERATIONS",
-                    1000,
-                  ]}
-                  repeat={Infinity}
-                  speed={50}
-                  cursor={false}
-                />
-              </div> */}
-              <Carousel
-                plugins={[plugin.current]}
-                className="w-3/4"
-                onMouseEnter={plugin.current.stop}
-                onMouseLeave={plugin.current.reset}
-              >
-                <CarouselContent className="flex">
-                  <CarouselItem>
-                    <div className="flex flex-col items-center justify-center text-center tracking-tighter font-bold">
-                      <p className="text-4xl">CONNECTING</p>
-                      <p className="text-8xl">DAIRY FARMERS</p>
-                      <p className="text-4xl">AND SIMPLIFYING SUCCESS</p>
-                    </div>
-                  </CarouselItem>
-                  <CarouselItem>
-                    <div className="flex flex-col items-center justify-center text-center tracking-tighter font-bold">
-                      <p className="text-4xl">CONNECTING</p>
-                      <p className="text-8xl">DAIRY FARMERS</p>
-                      <p className="text-4xl">AND SIMPLIFYING OPERATIONS</p>
-                    </div>
-                  </CarouselItem>
-                </CarouselContent>
-                <CarouselPrevious className="w-16 h-16" />
-                <CarouselNext className="w-16 h-16" />
-              </Carousel>
-            </div>
-          </div>
-          {/** 
+      <div
+        // style={{ position: "relative", width: "100%", height: "80vh" }}
+        className="relative w-full h-96 md:h-[600px] lg:h-[800px] flex flex-col justify-center items-center "
+      >
+        <Image
+          src={`/assets/images/cowlandscape.jpg`}
+          alt="cow"
+          fill
+          objectFit="cover"
+        />
+        <div className="absolute inset-0 text-white flex flex-col justify-center items-center z-10">
+          <Carousel
+            plugins={[plugin.current]}
+            className="w-3/4"
+            onMouseEnter={plugin.current.stop}
+            onMouseLeave={plugin.current.reset}
+          >
+            <CarouselContent className="flex">
+              <CarouselItem>
+                <div className="flex flex-col items-center justify-center text-center tracking-tighter font-bold">
+                  <p className="text-md md:text-4xl">CONNECTING</p>
+                  <p className="text-2xl md:text-8xl">DAIRY FARMERS</p>
+                  <p className="text-md md:text-4xl">AND SIMPLIFYING SUCCESS</p>
+                </div>
+              </CarouselItem>
+              <CarouselItem>
+                <div className="flex flex-col items-center justify-center text-center tracking-tighter font-bold">
+                  <p className="text-md md:text-4xl">CONNECTING</p>
+                  <p className="text-2xl md:text-8xl">DAIRY FARMERS</p>
+                  <p className="text-md md:text-4xl">
+                    AND SIMPLIFYING OPERATIONS
+                  </p>
+                </div>
+              </CarouselItem>
+            </CarouselContent>
+            <CarouselPrevious className="md:w-16 md:h-16" />
+            <CarouselNext className="md:w-16 md:h-16" />
+          </Carousel>
+        </div>
+      </div>
+      {/** 
           <div style={{ filter: "brightness(50%)" }}>
             <Image src={`/dairy_cow.jpg`} alt="cow" width={200} height={200} />
           </div>
           */}
-        </div>
-      </div>
-      <div className="bg-customGreen -mt-12 text-white py-16">
-        {/** challenges */}
-        <div className="grid justify-center items-center gap-8 border-b border-white mb-8">
-          <p className="text-center text-6xl">Current challenges</p>
-          <div className="grid grid-cols-1 lg:grid-cols-3 grid-rows-1 px-4">
-            <div
-              className="max-w-[400px] border-b-2 lg:border-0 mb-2 "
-              data-aos="fade-up"
-            >
-              <h3 className="text-center text-xl font-bold">01</h3>
-              <h3 className="py-4 text-center text-2xl font-semibold">
-                Computerized systems
-              </h3>
-              <p className="text-center text-xl py-3">
-                Lack of Computerized systems for efficient management of member
-                data and services crucial for their operations.{" "}
-              </p>
-            </div>
-            <div
-              className="max-w-[400px] border-b-2 lg:border-0 mb-2"
-              data-aos="fade-up"
-            >
-              <h3 className="text-center text-xl font-bold">02</h3>
-              <h3 className="py-4 text-center text-2xl font-semibold">
-                Legacy Systems
-              </h3>
-              <p className="text-center text-xl py-3">
-                Dairy Cooperatives often face challenges in managing member
-                applications leading to delays and inefficiencies. These
-                challenges include use of basic software solutions like excel
-                spreadsheets.
-              </p>
-            </div>
-            <div className="max-w-[400px] mb-8" data-aos="fade-up">
-              <h3 className="text-center text-xl font-bold">03</h3>
-              <h3 className="py-4 text-center text-2xl font-semibold">
-                Lack of Farmer support
-              </h3>
-              <p className="text-center text-xl py-3">
-                "The Farmers were also faced with the challenge of lack of
-                access to market information, resource constraints, limkited
-                access to banking services as well as little farmer education. "
+      {/* </div> */}
+      {/* </div> */}
+      <div className="mt-8">
+        <div className="grid justify-center items-center gap-10 border-b border-white mb-8">
+          <p className="text-center text-4xl md:text-6xl font-bold">
+            Current challenges
+          </p>
+          <div className="grid grid-cols-1 lg:grid-cols-3 grid-rows-1 px-4 gap-8">
+            <Challenges
+              number="01"
+              heading="Computerized systems"
+              description="Lack of Computerized systems for efficient management of member data and services crucial for their operations."
+            />
+            <Challenges
+              number="02"
+              heading="Legacy Systems"
+              description="Dairy Cooperatives often face 
+              challenges in managing member applications leading to delays and inefficiencies. These challenges
+              include use of basic software solutions like excel spreadsheets."
+            />
+
+            <Challenges
+              number="03"
+              heading="Lack of Farmer support"
+              description='"The Farmers were also faced with the challenge of lack of
+                access to market information, resource constraints, limited
+                access to banking services as well as little farmer education."
                 - Research by Anne W. Wainana on the challenges faced by Dairy
-                Farmer's in Kiambu County at USIU
-              </p>
-            </div>
+                Farmers in Kiambu County at USIU'
+            />
           </div>
         </div>
         <div
