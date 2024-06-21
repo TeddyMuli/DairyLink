@@ -111,42 +111,7 @@ const [showAll, setShowAll] = useState<boolean>(false);
 
   return (
     <main className="">
-      {/* <div className="grid rounded-lg"> */}
-      {/* <div className="bg-customGreen text-white p-10">
-          <div className="flex flex-col mt-24 justify-center items-center">
-            <h1 className=" text-xl mb-4 text-center">
-              YOUR TRUSTED PARTNER IN
-            </h1>
-            <TypeAnimation
-              className="text-4xl lg:text-6xl max-w-[400px] lg:max-w-[800px] text-center"
-              sequence={[
-                "CONNECTING DAIRY FARMERS AND SIMPLIFYING SUCCESS",
-                1000,
-                "CONNECTING DAIRY FARMERS AND SIMPLIFYING OPERATIONS",
-                1000,
-              ]}
-              repeat={Infinity}
-              speed={50}
-              cursor={false}
-            />
-          </div>
-          <div className="flex flex-col items-center">
-            <Link
-              href="/#features"
-              className="mt-4 mb-8 px-4 py-2 bg-black text-white w-48 text-lg text-center rounded-lg hover:bg-gray-800"
-            >
-              View Features
-            </Link>
-          </div>
-        </div> */}
-      {/* <div className="flex justify-center items-center mb-8"> */}
-      {/** 
-          <div style={{ filter: "brightness(50%)" }}>
-            <Image src={`/money.jpg`} alt="cow" width={200} height={200} />
-          </div>
-          */}
       <div
-        // style={{ position: "relative", width: "100%", height: "80vh" }}
         className="relative w-full h-96 md:h-[600px] lg:h-[800px] flex flex-col justify-center items-center "
       >
         <Image
@@ -185,13 +150,6 @@ const [showAll, setShowAll] = useState<boolean>(false);
           </Carousel>
         </div>
       </div>
-      {/** 
-          <div style={{ filter: "brightness(50%)" }}>
-            <Image src={`/dairy_cow.jpg`} alt="cow" width={200} height={200} />
-          </div>
-          */}
-      {/* </div> */}
-      {/* </div> */}
       <div className="mt-8">
         <div className="grid justify-center items-center gap-10 border-b border-white mb-8">
           <p className="text-center text-4xl md:text-6xl font-bold">
@@ -244,7 +202,6 @@ const [showAll, setShowAll] = useState<boolean>(false);
                 height={115}
                 className="mt-4 filter invert brightness-0"
               />
-              {/* <Button className="bg-black rounded-full">Read More</Button> */}
             </div>
             <div className="flex flex-col-reverse items-center p-2 rounded-lg m-2 gap-2">
               <p className="font-medium text-center">
@@ -257,7 +214,6 @@ const [showAll, setShowAll] = useState<boolean>(false);
                 height={115}
                 className="mt-8 filter invert brightness-0"
               />
-              {/* <Button className="bg-black rounded-full">Read More</Button> */}
             </div>
             <div className="flex flex-col-reverse items-center p-2 rounded-lg m-2 gap-2">
               <p className="font-medium text-center">
@@ -271,7 +227,6 @@ const [showAll, setShowAll] = useState<boolean>(false);
                 height={115}
                 className="mt-8 filter invert brightness-0"
               />
-              {/* <Button className="bg-black rounded-full">Read More</Button> */}
             </div>
           </div>
         </div>
@@ -286,93 +241,50 @@ const [showAll, setShowAll] = useState<boolean>(false);
             <InfoFlipCard
               bgImage="farmer.jpg"
               frontContent={
-                <>
-                  {/* <Image
-                    src={"/assets/images/farmer.jpg"}
-                    // width={600}
-                    // height={600}
-                    alt="profile"
-                    objectFit="fill"
-                    layout="fill"
-                    className="absolute inset-0 z-10"
-                  /> */}
-                  <p className="relative z-20 my-2 text-white text-2xl font-bold">
-                    Member Profile
-                  </p>
-                </>
+                <p className="relative z-20 my-2 text-white text-2xl font-bold">
+                  Member Profile
+                </p>
               }
               backContent={
-                <>
-                  <p className="text-center relative z-20">
-                    Enable customization & personalization
-                  </p>
-                </>
+                <p className="text-center relative z-20">
+                  Enable customization & personalization
+                </p>
               }
             />
             <InfoFlipCard
               bgImage="dashboard.jpg"
               frontContent={
-                <>
-                  {/* <Image
-                    src={"/assets/images/dashboard.jpg"}
-                    width={500}
-                    height={500}
-                    alt="profile"
-                  /> */}
-                  <p className="relative z-20 my-2 text-white text-2xl font-bold">Interactive Dashboard</p>
-                </>
+                <p className="relative z-20 my-2 text-white text-2xl font-bold">Interactive Dashboard</p>
               }
               backContent={
-                <>
-                  <p className="text-center">
-                    Able to view graphical reports on milk, monthly payout slips
-                    and agro vet statements.
-                  </p>
-                </>
+                <p className="text-center">
+                  Able to view graphical reports on milk, monthly payout slips
+                  and agro vet statements.
+                </p>
               }
             />
             <InfoFlipCard
               bgImage="news.jpg"
               frontContent={
-                <>
-                  {/* <Image
-                    src={"/assets/images/news.jpg"}
-                    width={500}
-                    height={500}
-                    alt="profile"
-                  /> */}
-                  <p className="relative z-20 my-2 text-white text-2xl font-bold">Cooperative News</p>
-                </>
+                <p className="relative z-20 my-2 text-white text-2xl font-bold">Cooperative News</p>
               }
               backContent={
-                <>
-                  <p className="text-center">
-                    Ability to view updates and infromation such as e-learning
-                    materials
-                  </p>
-                </>
+                <p className="text-center">
+                  Ability to view updates and infromation such as e-learning
+                  materials
+                </p>
               }
             />
             <InfoFlipCard
               bgImage="other_services.jpg"
               frontContent={
-                <>
-                  {/* <Image
-                    src={"/assets/images/other_services.jpg"}
-                    width={500}
-                    height={500}
-                    alt="profile"
-                  /> */}
-                  <p className="relative z-20 my-2 text-white text-2xl font-bold">Other Services</p>
-                </>
+                <p className="relative z-20 my-2 text-white text-2xl font-bold">Other Services</p>
               }
               backContent={
-                <>
-                  <p className="text-center">
-                    Requests for feeds, chemicals, fertilixers, A.I services,
-                    training and farm visit, soft loans, lodge & view complaints
-                  </p>
-                </>
+                <p className="text-center">
+                  Requests for feeds, chemicals, fertilixers, A.I services,
+                  training and farm visit, soft loans, lodge & view complaints
+                </p>
               }
             />
           </div>
@@ -385,7 +297,6 @@ const [showAll, setShowAll] = useState<boolean>(false);
           <div className="grid lg:grid-cols-4 md:grid-cols-4 grid-cols-1 gap-4 mx-8 justify-center place-items-center mt-6">
             {teamsData.map((item, index) => {
               return (
-                // <div key={index}>
                   <TeamMember
                     link={item.link}
                     name={item.name}
@@ -393,7 +304,6 @@ const [showAll, setShowAll] = useState<boolean>(false);
                     role={item.role}
                     key={item.name}
                   />
-                // </div>
               );
             })}
           </div>
