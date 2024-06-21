@@ -257,6 +257,7 @@ export default function Home() {
             // data-aos="fade-up"
           >
             <InfoFlipCard
+              bgImage="farmer.jpg"
               frontContent={
                 <>
                   {/* <Image
@@ -268,7 +269,7 @@ export default function Home() {
                     layout="fill"
                     className="absolute inset-0 z-10"
                   /> */}
-                  <p className="my-2 relative z-20 text-white text-2xl font-bold">
+                  <p className="relative z-20 my-2 text-white text-2xl font-bold">
                     Member Profile
                   </p>
                 </>
@@ -282,6 +283,7 @@ export default function Home() {
               }
             />
             <InfoFlipCard
+              bgImage="dashboard.jpg"
               frontContent={
                 <>
                   {/* <Image
@@ -290,7 +292,7 @@ export default function Home() {
                     height={500}
                     alt="profile"
                   /> */}
-                  <p className="my-2 font-medium">Interactive Dashboard</p>
+                  <p className="relative z-20 my-2 text-white text-2xl font-bold">Interactive Dashboard</p>
                 </>
               }
               backContent={
@@ -303,6 +305,7 @@ export default function Home() {
               }
             />
             <InfoFlipCard
+              bgImage="news.jpg"
               frontContent={
                 <>
                   {/* <Image
@@ -311,7 +314,7 @@ export default function Home() {
                     height={500}
                     alt="profile"
                   /> */}
-                  <p className="my-2 font-medium">Cooperative News</p>
+                  <p className="relative z-20 my-2 text-white text-2xl font-bold">Cooperative News</p>
                 </>
               }
               backContent={
@@ -324,6 +327,7 @@ export default function Home() {
               }
             />
             <InfoFlipCard
+              bgImage="other_services.jpg"
               frontContent={
                 <>
                   {/* <Image
@@ -332,7 +336,7 @@ export default function Home() {
                     height={500}
                     alt="profile"
                   /> */}
-                  <p className="my-2 font-medium">Other Services</p>
+                  <p className="relative z-20 my-2 text-white text-2xl font-bold">Other Services</p>
                 </>
               }
               backContent={

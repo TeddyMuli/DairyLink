@@ -8,9 +8,10 @@ import { Button } from "./ui";
 interface InfoFlipCardProps {
   frontContent: ReactNode;
   backContent: ReactNode;
+  bgImage: string;
 }
 
-const InfoFlipCard: FC<InfoFlipCardProps> = ({ frontContent, backContent }) => {
+const InfoFlipCard: FC<InfoFlipCardProps> = ({ frontContent, backContent,bgImage }) => {
   const [isFlipped, setIsFlipped] = useState<boolean>(false);
 
   const handleFlipInfoCard = () => {
@@ -43,12 +44,14 @@ const InfoFlipCard: FC<InfoFlipCardProps> = ({ frontContent, backContent }) => {
       }}
     >
       <div
-        className={`bg-[url(/assets/images/about-us-bg.jpeg)] bg-cover bg-center bg-no-repeat brightness-50 w-full h-80 relative z-0 flex flex-col justify-center items-center`}
+        style={{'--image-url': `url(/assets/images/${bgImage})`} as React.CSSProperties}
+        className={`relative bg-[image:var(--image-url)] bg-cover bg-center bg-no-repeat w-full h-80  flex flex-col justify-center items-center`}
       >
+        <div className="absolute inset-0 bg-black opacity-60" />
         {frontContent}
-        <div className="relative z-50 w-1/5 h-2 bg-white mt-4 mb-14" />
+        <div className=" w-1/5 h-2 bg-white mt-4 mb-14 relative z-20" />
         <Button
-          className="bg-green-600 hover:bg-green-500 rounded-full relative z-20 font-bold text-xl flex items-center gap-2"
+          className="relative z-20 bg-green-600 hover:bg-green-500 rounded-full font-bold text-xl flex items-center gap-2"
           onClick={handleFlipInfoCard}
         >
           Read More{" "}
