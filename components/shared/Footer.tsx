@@ -1,25 +1,20 @@
 "use client";
 
 import { menus } from "@/constants";
+import { Mail, PhoneCall } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   return (
-    <div className="">
-      <div className="grid lg:grid-cols-3 lg:grid-rows-1 justify-center place-items-center mt-16 mb-12 text-xl">
-        <div id="contacts" className="pl-8">
-          <h1 className="text-2xl font-bold mb-4 text-center">Contacts</h1>
-          <p>Email: dairylinkcoop@gmail.com</p>
-          <p>Phone: +254 743 376 478</p>
-        </div>
-
-        <div className="">
-          <h1 className="text-2xl font-bold text-center mb-4 justify mt-4 lg:mt-0">
-            Links
+    <div className="border-t border-black mt-16 pt-14 px-8">
+      <div className="grid lg:grid-cols-3 md:grid-cols-3 grid-cols-1 gap-4  items-start mb-12 text-xl">
+        <div className="flex flex-col items-center ">
+          <h1 className="text-2xl font-bold text-center mb-4  mt-4 lg:mt-0">
+            Quick Links
           </h1>
-          <div className="grid grid-cols-2 grid-rows-1 gap-4">
+          <div className="grid grid-cols-1  gap-2">
             {menus.map((link, index) => (
               <Link
                 key={index}
@@ -31,8 +26,16 @@ export default function Footer() {
             ))}
           </div>
         </div>
+        
+        <div id="contacts" className="mb-10 md:mb-0">
+          <h1 className="text-2xl font-bold mb-4 text-center">Contact Us</h1>
+          <div className="flex flex-col gap-2 items-center">
+            <p className="flex flex-row gap-2 items-center"><Mail />dairylinkcoop@gmail.com</p>
+            <p className="flex flex-row gap-2 items-center"><PhoneCall /> +254 743 376 478</p>
+          </div>
+        </div>
 
-        <div className="items-center">
+        <div className="flex flex-row items-start">
           <a
             href="https://jhubafrica.com/"
             target="_blank"
@@ -43,6 +46,7 @@ export default function Footer() {
               alt="jhub"
               width={200}
               height={200}
+              style={{marginTop: "-40px",overflow: "hidden"}}
             />
           </a>
           <a

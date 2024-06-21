@@ -399,7 +399,7 @@ const [showAll, setShowAll] = useState<boolean>(false);
           </div>
           {!showAll && <p onClick={()=>setShowAll(
             prevState => !prevState
-          )} className="text-center hover:cursor-pointer hover:text-blue-600 text-4xl font-bold text-blue-500 underline underline-offset-4">
+          )} className="capitalize text-center hover:cursor-pointer hover:text-blue-600 text-4xl font-bold text-blue-500 underline underline-offset-4">
             View the entire team
           </p>}
         </div>
