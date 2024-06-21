@@ -65,7 +65,7 @@ const team = [
 export default function Home() {
   const [loading, setLoading] = useState(false);
   const [session, setSession] = useState<Session | null>(null);
-  const plugin = useRef(Autoplay({ delay: 1000, stopOnInteraction: true }));
+  const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
 
   useEffect(() => {
     AOS.init({
@@ -248,32 +248,34 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div id="features" className="mt-16 p-2 border-t border-white mx-6">
-          <div className="text-right">
-            <p className="text-4xl mb-12 mt-4">
-              DISCOVER THE FEATURES
-              <br /> OF OUR UPCOMING APP
-            </p>
-          </div>
+        <div id="features" className="mt-10 p-2 border-t border-white mx-6">
+          <p className="text-5xl mb-12 text-center mt-4 font-bold text-black">
+            Discover the features of our upcoming App
+          </p>
           <div
             className="grid grid-cols-1 grid-rows-4 md:grid-cols-4 md:grid-rows-1 gap-3 text-xl"
-            data-aos="fade-up"
+            // data-aos="fade-up"
           >
             <InfoFlipCard
               frontContent={
                 <>
                   <Image
-                    src={"/profile.jpg"}
-                    width={500}
-                    height={500}
+                    src={"/assets/images/farmer.jpg"}
+                    // width={600}
+                    // height={600}
                     alt="profile"
+                    objectFit="fill"
+                    layout="fill"
+                    className="absolute inset-0 z-10"
                   />
-                  <p className="my-2 font-medium">Member Profile</p>
+                  <p className="my-2 relative z-20 text-white text-2xl font-bold">
+                    Member Profile
+                  </p>
                 </>
               }
               backContent={
                 <>
-                  <p className="text-center">
+                  <p className="text-center relative z-20">
                     Enable customization & personalization
                   </p>
                 </>
@@ -283,7 +285,7 @@ export default function Home() {
               frontContent={
                 <>
                   <Image
-                    src={"/dashboard.jpg"}
+                    src={"/assets/images/dashboard.jpg"}
                     width={500}
                     height={500}
                     alt="profile"
@@ -304,7 +306,7 @@ export default function Home() {
               frontContent={
                 <>
                   <Image
-                    src={"/news.jpg"}
+                    src={"/assets/images/news.jpg"}
                     width={500}
                     height={500}
                     alt="profile"
@@ -325,7 +327,7 @@ export default function Home() {
               frontContent={
                 <>
                   <Image
-                    src={"/other_services.jpg"}
+                    src={"/assets/images/other_services.jpg"}
                     width={500}
                     height={500}
                     alt="profile"

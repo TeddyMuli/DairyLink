@@ -39,7 +39,7 @@ export default function Navbar() {
             {menus.map((item, idx) => (
               <li
                 key={idx}
-                className={` hover:text-black hover:font-bold hover:border-b-2 text-slate-500 text-2xl`}
+                className={` hover:text-black hover:font-bold hover:underline hover:underline-offset-1 text-slate-500 text-2xl`}
               >
                 {item.title === "Register" ? (
                   <Button
