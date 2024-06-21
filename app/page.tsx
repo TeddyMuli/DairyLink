@@ -40,7 +40,7 @@ const team = [
     name: "Alfred Warui",
     link: "https://www.linkedin.com/in/alfred-kahenya-07a309229/",
     img: "/assets/images/team/alfred.jpg",
-    role: "Data Analyst",
+    role: "Software Engineer",
   },
   {
     name: "Samuel Ruoti",
@@ -65,6 +65,14 @@ const team = [
 export default function Home() {
   const [loading, setLoading] = useState(false);
   const [session, setSession] = useState<Session | null>(null);
+  const [teamsData,setTeamsData] = useState<{
+    name: string;
+    link: string;
+    img: string;
+    role: string;
+}[]>(team);
+const [showAll, setShowAll] = useState<boolean>(false);
+
   const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
 
   useEffect(() => {
@@ -80,7 +88,26 @@ export default function Home() {
       .catch((err) => {
         console.log("ERROR GET SESSION: ", err);
       });
+
+      handleShowFewTeamMembers();
   }, []);
+
+  useEffect(() => {
+    if(showAll){
+      handleShowAllTeamMembers();
+    } else{
+      handleShowFewTeamMembers();
+    }
+  }, [showAll]);
+
+
+  const handleShowFewTeamMembers = () => {
+    setTeamsData(team.slice(0, 4));
+  }
+
+  const handleShowAllTeamMembers = () => {
+    setTeamsData(team);
+  }
 
   return (
     <main className="">
@@ -351,24 +378,30 @@ export default function Home() {
           </div>
         </div>
 
-        <div id="team" className="border-t-2 border-white py-6 mx-6 mt-10">
-          <h1 className="text-6xl text-center py-4 mb-4 text-white">
+        <div id="team" className="py-6 mt-10">
+          <h1 className="text-6xl text-center py-4 mb-4 font-bold tracking-tight">
             Meet the team
           </h1>
-          <div className="grid lg:grid-cols-3 lg:grid-rows-2 gap-4 mx-8 justify-center place-items-center mt-6">
-            {team.map((item, index) => {
+          <div className="grid lg:grid-cols-4 md:grid-cols-4 grid-cols-1 gap-4 mx-8 justify-center place-items-center mt-6">
+            {teamsData.map((item, index) => {
               return (
-                <div key={index}>
+                // <div key={index}>
                   <TeamMember
                     link={item.link}
                     name={item.name}
                     img_src={item.img}
                     role={item.role}
+                    key={item.name}
                   />
-                </div>
+                // </div>
               );
             })}
           </div>
+          {!showAll && <p onClick={()=>setShowAll(
+            prevState => !prevState
+          )} className="text-center hover:cursor-pointer hover:text-blue-600 text-4xl font-bold text-blue-500 underline underline-offset-4">
+            View the entire team
+          </p>}
         </div>
       </div>
     </main>
