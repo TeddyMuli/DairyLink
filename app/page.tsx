@@ -259,7 +259,7 @@ export default function Home() {
             <InfoFlipCard
               frontContent={
                 <>
-                  <Image
+                  {/* <Image
                     src={"/assets/images/farmer.jpg"}
                     // width={600}
                     // height={600}
@@ -267,7 +267,7 @@ export default function Home() {
                     objectFit="fill"
                     layout="fill"
                     className="absolute inset-0 z-10"
-                  />
+                  /> */}
                   <p className="my-2 relative z-20 text-white text-2xl font-bold">
                     Member Profile
                   </p>
@@ -284,12 +284,12 @@ export default function Home() {
             <InfoFlipCard
               frontContent={
                 <>
-                  <Image
+                  {/* <Image
                     src={"/assets/images/dashboard.jpg"}
                     width={500}
                     height={500}
                     alt="profile"
-                  />
+                  /> */}
                   <p className="my-2 font-medium">Interactive Dashboard</p>
                 </>
               }
@@ -305,12 +305,12 @@ export default function Home() {
             <InfoFlipCard
               frontContent={
                 <>
-                  <Image
+                  {/* <Image
                     src={"/assets/images/news.jpg"}
                     width={500}
                     height={500}
                     alt="profile"
-                  />
+                  /> */}
                   <p className="my-2 font-medium">Cooperative News</p>
                 </>
               }
@@ -326,12 +326,12 @@ export default function Home() {
             <InfoFlipCard
               frontContent={
                 <>
-                  <Image
+                  {/* <Image
                     src={"/assets/images/other_services.jpg"}
                     width={500}
                     height={500}
                     alt="profile"
-                  />
+                  /> */}
                   <p className="my-2 font-medium">Other Services</p>
                 </>
               }

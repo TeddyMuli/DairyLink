@@ -28,7 +28,7 @@ const InfoFlipCard: FC<InfoFlipCardProps> = ({ frontContent, backContent }) => {
           justifyContent: "center",
           // padding: "1rem",
           borderRadius: "0.5rem",
-          position: "relative",
+          // position: "relative",
         },
         back: {
           display: "flex",
@@ -38,13 +38,15 @@ const InfoFlipCard: FC<InfoFlipCardProps> = ({ frontContent, backContent }) => {
           border: "2px solid black",
           padding: "1rem",
           borderRadius: "0.5rem",
-          position: "absolute",
+          // position: "absolute",
         },
       }}
     >
-      <>
+      <div
+        className={`bg-[url(/assets/images/about-us-bg.jpeg)] bg-cover bg-center bg-no-repeat brightness-50 w-full h-80 relative z-0 flex flex-col justify-center items-center`}
+      >
         {frontContent}
-        <div className="relative z-20 w-1/5 h-2 bg-white mt-4 mb-14" />
+        <div className="relative z-50 w-1/5 h-2 bg-white mt-4 mb-14" />
         <Button
           className="bg-green-600 hover:bg-green-500 rounded-full relative z-20 font-bold text-xl flex items-center gap-2"
           onClick={handleFlipInfoCard}
@@ -52,7 +54,7 @@ const InfoFlipCard: FC<InfoFlipCardProps> = ({ frontContent, backContent }) => {
           Read More{" "}
           <ChevronRight className="h-4 w-4 rounded-full border-2 text-white" />
         </Button>
-      </>
+      </div>
       <>
         {backContent}
         <Button
