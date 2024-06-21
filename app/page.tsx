@@ -33,7 +33,7 @@ const team = [
   {
     name: "Teddy Muli",
     link: "https://www.linkedin.com/in/teddymuli/",
-    img: "/team/ted2.jpg",
+    img: "/assets/images/team/ted2.jpg",
     role: "Frontend Engineer",
   },
   {
@@ -45,7 +45,7 @@ const team = [
   {
     name: "Samuel Ruoti",
     link: "#",
-    img: "/team/sam.jpg",
+    img: "/assets/images/team/sam.jpg",
     role: "Backend Engineer",
   },
   {
@@ -57,7 +57,7 @@ const team = [
   {
     name: "Aketch Atem",
     link: "https://www.linkedin.com/in/akech-dau-atem-723455222/",
-    img: "/team/aketch.jpg",
+    img: "/assets/images/team/aketch.jpg",
     role: "Machine Learning Engineer",
   },
 ];
