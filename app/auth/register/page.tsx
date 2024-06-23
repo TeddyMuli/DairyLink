@@ -105,7 +105,7 @@ export default function Page() {
                   <div className="flex flex-row gap-[100px] pt-2 pb-8">
                     {providers.map((provider, index) => {
                       return (
-                        <div key={index} className="cursor-pointer bg-zinc-300 p-4 rounded-lg">
+                        <div key={index} className="cursor-pointer bg-zinc-300 p-3 rounded-lg">
                           <Image
                             src={provider.src}
                             alt={provider.alt}
