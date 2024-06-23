@@ -18,7 +18,7 @@ const config = {
       },
     },
     fontFamily: {
-      primary: "var(--font-tinos)"
+      primary: "var(--font-quickSand)"
     },
     extend: {
       colors: {

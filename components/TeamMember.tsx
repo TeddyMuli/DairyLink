@@ -11,7 +11,7 @@ const TeamMember = ({name, img_src, link, role} : {name: string, img_src: string
                         alt="teammember"
                         fill={true}
                         objectFit="cover"
-                        className="p-2"
+                        className="p-2 rounded-2xl"
                     />
                 </div>
             </a>

@@ -3,14 +3,11 @@
 import { supabase } from "@/lib/supabase";
 import { Session } from "inspector";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { providers } from "@/constants"
 
-const providers = [
-  { src: "/assets/fb_logo.png", alt: "facebook", link: "#" },
-  { src: "/assets/google_logo.png", alt: "facebook", link: "#" },
-  { src: "/assets/linkedin_logo.png", alt: "facebook", link: "#" }
-]
 
 type AlertProps = {
   type: "info" | "error";
@@ -52,7 +49,7 @@ export default function Page() {
     backgroundImage: "url('/assets/dairy_cow.jpg')",
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    height: '120vh',
+    height: '130vh',
     width: '100%',
   };
 
@@ -96,7 +93,7 @@ export default function Page() {
               <button className="py-4 bg-blue-600 font-bold text-2xl rounded-lg text-white w-[500px]">Login</button>
             </div>
             <div className="flex justify-center items-center py-4">
-              <p>Don't have an account? <span className="text-blue-600 font-bold">SignUp</span></p>
+              <p>Don't have an account? <Link href="/auth/register" className="text-blue-600 font-bold">SignUp</Link></p>
             </div>
             <div className="flex flex-col justify-center items-center">
               <Image

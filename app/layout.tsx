@@ -27,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${tinos.variable}`}>
+      <body className={`${quickSand.variable}`}>
         <main>
           <section>
             <TopBar />
