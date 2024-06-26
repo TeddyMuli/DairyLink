@@ -1,5 +1,6 @@
+"use client"
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import { providers } from "@/constants";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import Link from "next/link";
@@ -25,6 +26,14 @@ export default function Page() {
   
   const radioStyles = "flex gap-4 border-2 border-black/40 rounded-xl p-4 hover:border-green-500 checked:border-green-500 cursor-pointer";
   const linkStyles = "text-blue-400";
+  const [formData, setFormData] = useState<formData>({
+    user_name: "",
+    email_address: "",
+    account_type: "",
+    new_password: "",
+    confirm_password: "",
+    remember_me: false
+  })
 
   return (
     <div style={backgroundImageStyle}>
@@ -37,12 +46,12 @@ export default function Page() {
         </div>
         <div className="bg-white rounded-xl m-8 p-4">
           <h1 className="text-center text-5xl font-extrabold py-4">Create your account</h1>
-          <div className="px-8">
+          <form onSubmit={(e) => signup(e, formData)} className="px-8">
             <div className="flex flex-col">
               <label className="text-lg p-2">User name</label>
               <input
                 type="text"
-                name="username"
+                name=""
                 placeholder="Enter your Username"
                 className="p-4 border-2 border-black/40 rounded-lg focus:border-green-500 outline-none"
               />
@@ -52,7 +61,7 @@ export default function Page() {
               <label className="text-lg p-2">Email address</label>
               <input
                 type="text"
-                name="email"
+                name=""
                 placeholder="Email address"
                 className="p-4 border-2 border-black/40 rounded-lg focus:border-green-500 outline-none"
               />
@@ -78,7 +87,7 @@ export default function Page() {
               <label className="text-lg p-2">New Password</label>
               <input
                 type="text"
-                name="password"
+                name=""
                 className="p-4 border-2 border-black/40 focus:border-green-500 rounded-lg outline-none"
                 placeholder="Enter new Password"
               />
@@ -100,7 +109,7 @@ export default function Page() {
               <p className="text-sm pb-4">By signing up you agree to our, <Link className={linkStyles} href="/privacypolicy">privacy policy</Link>, <Link className={linkStyles} href="/terms">terms of service</Link> and <Link className={linkStyles} href="/cookies">cookie policy</Link></p>
             </div>
             <div className="flex justify-center items-center">
-              <button onClick={signup} className="py-4 bg-blue-600 font-bold text-2xl rounded-lg text-white w-[500px]">Sign Up</button>
+              <button className="py-4 bg-blue-600 font-bold text-2xl rounded-lg text-white w-[500px]">Sign Up</button>
             </div>
             <div className="flex justify-center items-center py-4">
               <p>Have an account? <Link href="/auth/login" className="text-blue-600 font-bold">Login</Link></p>
@@ -128,7 +137,7 @@ export default function Page() {
                 })}
               </div>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>

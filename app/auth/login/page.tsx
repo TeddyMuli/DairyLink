@@ -6,7 +6,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { providers } from "@/constants"
+import { providers } from "@/constants";
+import { login, signup } from '../action';
+
+interface formData {
+  email_address: string,
+  password: string,
+  remember_me: boolean
+}
 
 
 type AlertProps = {
@@ -52,6 +59,11 @@ export default function Page() {
     height: '130vh',
     width: '100%',
   };
+  const [formData, setFormData] = useState<formData>({
+    email_address: "",
+    password: "",
+    remember_me: false
+  })
 
   return (
     <div style={backgroundImageStyle}>
@@ -65,7 +77,7 @@ export default function Page() {
         <div className="bg-white rounded-xl m-8 p-8">
           <h1 className="text-center text-6xl font-extrabold p-4">Welcome</h1>
           <p className="text-center font-semibold pb-4">Create an account or login to access DairyLink</p>
-          <div className="px-8">
+          <form onSubmit={login(formData)} className="px-8">
             <div className="flex flex-col">
               <label className="text-xl p-2">Email address</label>
               <input
@@ -117,7 +129,7 @@ export default function Page() {
                 })}
               </div>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
