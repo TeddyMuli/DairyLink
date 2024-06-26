@@ -39,7 +39,7 @@ export default function Page() {
           <h1 className="text-center text-5xl font-extrabold py-4">Create your account</h1>
           <div className="px-8">
             <div className="flex flex-col">
-              <label className="text-lg p-2">User name</label>
+              <label htmlFor="username" className="text-lg p-2">User name</label>
               <input
                 type="text"
                 name="username"
@@ -49,7 +49,7 @@ export default function Page() {
             </div>
 
             <div className="flex flex-col">
-              <label className="text-lg p-2">Email address</label>
+              <label htmlFor="email" className="text-lg p-2">Email address</label>
               <input
                 type="text"
                 name="email"
@@ -75,18 +75,18 @@ export default function Page() {
             </div>
 
             <div className="flex flex-col">
-              <label className="text-lg p-2">New Password</label>
+              <label htmlFor="password" className="text-lg p-2">New Password</label>
               <input
-                type="text"
+                type="password"
                 name="password"
                 className="p-4 border-2 border-black/40 focus:border-green-500 rounded-lg outline-none"
                 placeholder="Enter new Password"
               />
             </div>
             <div className="flex flex-col">
-              <label className="text-lg p-2">Confirm Password</label>
+              <label htmlFor="password" className="text-lg p-2">Confirm Password</label>
               <input
-                type="text"
+                type="password"
                 name=""
                 className="p-4 border-2 border-black/40 focus:border-green-500 rounded-lg outline-none"
                 placeholder="Confirm Password"
@@ -100,7 +100,7 @@ export default function Page() {
               <p className="text-sm pb-4">By signing up you agree to our, <Link className={linkStyles} href="/privacypolicy">privacy policy</Link>, <Link className={linkStyles} href="/terms">terms of service</Link> and <Link className={linkStyles} href="/cookies">cookie policy</Link></p>
             </div>
             <div className="flex justify-center items-center">
-              <button onClick={signup} className="py-4 bg-blue-600 font-bold text-2xl rounded-lg text-white w-[500px]">Sign Up</button>
+              <button formAction={signup} className="py-4 bg-blue-600 font-bold text-2xl rounded-lg text-white w-[500px]">Sign Up</button>
             </div>
             <div className="flex justify-center items-center py-4">
               <p>Have an account? <Link href="/auth/login" className="text-blue-600 font-bold">Login</Link></p>

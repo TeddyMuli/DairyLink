@@ -77,7 +77,7 @@ export default function Page() {
         <div className="bg-white rounded-xl m-8 p-8">
           <h1 className="text-center text-6xl font-extrabold p-4">Welcome</h1>
           <p className="text-center font-semibold pb-4">Create an account or login to access DairyLink</p>
-          <form onSubmit={login(formData)} className="px-8">
+          <div className="px-8">
             <div className="flex flex-col">
               <label className="text-xl p-2">Email address</label>
               <input
@@ -91,7 +91,7 @@ export default function Page() {
             <div className="flex flex-col">
               <label className="text-xl p-2">Enter Password</label>
               <input
-                type="text"
+                type="password"
                 name=""
                 className="p-4 border-2 border-black/40 focus:border-green-500 rounded-lg outline-none"
                 placeholder="Enter Password"
@@ -102,7 +102,7 @@ export default function Page() {
               <p>Remember me</p>
             </div>
             <div className="flex justify-center items-center">
-              <button className="py-4 bg-blue-600 font-bold text-2xl rounded-lg text-white w-[500px]">Login</button>
+              <button formAction={login} className="py-4 bg-blue-600 font-bold text-2xl rounded-lg text-white w-[500px]">Login</button>
             </div>
             <div className="flex justify-center items-center py-4">
               <p>Don't have an account? <Link href="/auth/register" className="text-blue-600 font-bold">SignUp</Link></p>
@@ -129,7 +129,7 @@ export default function Page() {
                 })}
               </div>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>
