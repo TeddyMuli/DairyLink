@@ -1,20 +1,9 @@
-"use client";
-
-import { supabase } from "@/lib/supabase";
 import { Session } from "inspector";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import { providers } from "@/constants";
 import { login, signup } from '../action';
-
-interface formData {
-  email_address: string,
-  password: string,
-  remember_me: boolean
-}
-
 
 type AlertProps = {
   type: "info" | "error";
@@ -45,13 +34,6 @@ const Alert: React.FC<AlertProps> = ({ type, msg }) => {
 };
 
 export default function Page() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [alert, setAlert] = useState<AlertProps>();
-  const { push } = useRouter();
-  const [loading, setLoading] = useState(false);
-  const [session, setSession] = useState<Session | null>(null);
-
   const backgroundImageStyle = {
     backgroundImage: "url('/assets/dairy_cow.jpg')",
     backgroundSize: 'cover',
@@ -59,11 +41,6 @@ export default function Page() {
     height: '130vh',
     width: '100%',
   };
-  const [formData, setFormData] = useState<formData>({
-    email_address: "",
-    password: "",
-    remember_me: false
-  })
 
   return (
     <div style={backgroundImageStyle}>
@@ -77,22 +54,24 @@ export default function Page() {
         <div className="bg-white rounded-xl m-8 p-8">
           <h1 className="text-center text-6xl font-extrabold p-4">Welcome</h1>
           <p className="text-center font-semibold pb-4">Create an account or login to access DairyLink</p>
-          <div className="px-8">
+          <form className="px-8">
             <div className="flex flex-col">
-              <label className="text-xl p-2">Email address</label>
+              <label htmlFor="email" className="text-xl p-2">Email address</label>
               <input
+                id="email"
                 type="text"
-                name=""
+                name="email"
                 placeholder="Email address"
                 className="p-4 border-2 border-black/40 rounded-lg focus:border-green-500 outline-none"
               />
             </div>
 
             <div className="flex flex-col">
-              <label className="text-xl p-2">Enter Password</label>
+              <label htmlFor="password" className="text-xl p-2">Enter Password</label>
               <input
+                id="password"
                 type="password"
-                name=""
+                name="password"
                 className="p-4 border-2 border-black/40 focus:border-green-500 rounded-lg outline-none"
                 placeholder="Enter Password"
               />
@@ -101,7 +80,7 @@ export default function Page() {
               <input type="checkbox" name="" id="" />
               <p>Remember me</p>
             </div>
-            <div className="flex justify-center items-center">
+            <div className="flex justify-center items-center gap-4">
               <button formAction={login} className="py-4 bg-blue-600 font-bold text-2xl rounded-lg text-white w-[500px]">Login</button>
             </div>
             <div className="flex justify-center items-center py-4">
@@ -129,7 +108,7 @@ export default function Page() {
                 })}
               </div>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>

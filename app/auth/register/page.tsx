@@ -5,15 +5,6 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import Link from "next/link";
 import { signup } from "../action";
 
-interface formData {
-  user_name: string,
-  email_address: string,
-  account_type: string,
-  new_password: string,
-  confirm_password: string,
-  remember_me: boolean
-}
-
 export default function Page() {
   const backgroundImageStyle = {
     backgroundImage: "url('/assets/dairy_cow.jpg')",
@@ -41,6 +32,7 @@ export default function Page() {
             <div className="flex flex-col">
               <label htmlFor="username" className="text-lg p-2">User name</label>
               <input
+                id="username"
                 type="text"
                 name="username"
                 placeholder="Enter your Username"
@@ -51,6 +43,7 @@ export default function Page() {
             <div className="flex flex-col">
               <label htmlFor="email" className="text-lg p-2">Email address</label>
               <input
+                id="email"
                 type="text"
                 name="email"
                 placeholder="Email address"
@@ -93,11 +86,26 @@ export default function Page() {
               />
             </div>
             <div className="flex gap-4 py-4">
-              <input type="checkbox" name="" id="" />
+              <input className="p-2 bg-green-500" type="checkbox" name="" id="" />
               <p>Remember me</p>
             </div>
             <div>
-              <p className="text-sm pb-4">By signing up you agree to our, <Link className={linkStyles} href="/privacypolicy">privacy policy</Link>, <Link className={linkStyles} href="/terms">terms of service</Link> and <Link className={linkStyles} href="/cookies">cookie policy</Link></p>
+              <p
+                className="text-sm pb-4"
+              >
+                By signing up you agree to our, 
+                <Link 
+                  className={linkStyles} 
+                  href="/privacypolicy"
+                >privacy policy</Link>, 
+                <Link 
+                  className={linkStyles} 
+                  href="/terms">terms of service</Link> 
+                  and <Link 
+                    className={linkStyles} 
+                    href="/cookies"
+                    >cookie policy</Link>
+              </p>
             </div>
             <div className="flex justify-center items-center">
               <button formAction={signup} className="py-4 bg-blue-600 font-bold text-2xl rounded-lg text-white w-[500px]">Sign Up</button>
