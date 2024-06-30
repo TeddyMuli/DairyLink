@@ -3,16 +3,11 @@ import TopBar from "@/components/shared/TopBar";
 import type { Metadata } from "next";
 import { Inter, Quicksand, Tinos } from "next/font/google";
 import "./globals.css";
+import ToastProvider from "@/components/ToastProvider";
 
-const inter = Inter({ subsets: ["latin"] });
 const quickSand = Quicksand({
   subsets: ["latin"],
   variable: "--font-quickSand",
-});
-const tinos = Tinos({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  variable: "--font-tinos",
 });
 
 export const metadata: Metadata = {
@@ -31,7 +26,11 @@ export default function RootLayout({
         <main>
           <section>
             <TopBar />
-            <div>{children}</div>
+            <div>
+              <ToastProvider>
+                {children}
+              </ToastProvider>
+            </div>
           </section>
         </main>
         <Footer />

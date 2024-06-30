@@ -1,19 +1,28 @@
+import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/utils/supabase/server';
+import { redirect } from 'next/navigation';
 
-export default async function handler(req: { method: string; body: { email: any; password: any; }; }, res: { status: (arg0: number) => { (): any; new(): any; json: { (arg0: { error?: string; message?: string; }): void; new(): any; }; end: { (arg0: string): void; new(): any; }; }; setHeader: (arg0: string, arg1: string[]) => void; }) {
-  if (req.method === 'POST') {
-    const supabase = createClient();
-    const { email, password } = req.body;
+export async function POST(req: NextRequest) {
+  const supabase = createClient();
+  const { email, password } = await req.json();
+  const { data: {user} } = await supabase.auth.getUser();
 
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    const { error } = await supabase.auth.signInWithPassword({ 
+      email, 
+      password, 
+    });
 
     if (error) {
-      return res.status(401).json({ error: error.message });
+      return NextResponse.json({ error: error.message }, { status: 401 });
     }
 
-    res.status(200).json({ message: 'Login successful' });
+  if (user?.user_metadata?.accountType === "Farmer") {
+    redirect("/app");
+  } else if (user?.user_metadata?.accountType === "Farmer") {
+    redirect("/admin");
   } else {
-    res.setHeader('Allow', ['POST']);
-    res.status(405).end(`Method ${req.method} not allowed`);
+    console.log("Error retrieving user account type");
   }
+    
+  return NextResponse.json({ message: 'Login successful' });
 }

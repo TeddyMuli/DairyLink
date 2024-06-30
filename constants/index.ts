@@ -9,7 +9,7 @@ export const menus = [
   ];
 
 export const providers = [
-    { src: "/assets/fb_logo.png", alt: "facebook", link: "#" },
-    { src: "/assets/google_logo.png", alt: "facebook", link: "#" },
-    { src: "/assets/linkedin_logo.png", alt: "facebook", link: "#" }
+    { src: "/assets/fb_logo.png", alt: "facebook", name: "facebook" },
+    { src: "/assets/google_logo.png", alt: "google", name: "google" },
+    { src: "/assets/linkedin_logo.png", alt: "linkedin", link: "linkedin" }
   ]

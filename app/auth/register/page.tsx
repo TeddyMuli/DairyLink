@@ -1,11 +1,39 @@
+"use client";
+
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import { providers } from "@/constants";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import Link from "next/link";
-import { signup } from "../action";
+import { redirect, useRouter } from "next/navigation";
+import { Checkbox } from "@/components/ui/checkbox";
+import { toast } from "react-toastify";
+
+type AlertProps = {
+  type: 'info' | 'error';
+  msg: string;
+};
 
 export default function Page() {
+  const [alert, setAlert] = useState<AlertProps | null>(null);
+  const router = useRouter();
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    rememberMe: false,
+    accountType: ""
+  });
+
+  const handleFormDataChange = (e: any) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+  };
+
   const backgroundImageStyle = {
     backgroundImage: "url('/assets/dairy_cow.jpg')",
     backgroundSize: 'cover',
@@ -16,6 +44,50 @@ export default function Page() {
   
   const radioStyles = "flex gap-4 border-2 border-black/40 rounded-xl p-4 hover:border-green-500 checked:border-green-500 cursor-pointer";
   const linkStyles = "text-blue-400";
+
+  const handleSubmit = async (e: any, action: any) => {
+    e.preventDefault();
+    const response = await fetch(action === 'login' ? '/api/login' : '/api/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const result = await response.json();
+
+    if (response.ok) {
+      setFormData({
+        username: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+        rememberMe: false,
+        accountType: "Farmer"
+      })
+      toast.info("Confirm Email!")
+      router.push("/auth/login")
+    } else {
+      toast.error("Error signing up!")
+    }
+  };
+
+  // Function to handle checkbox change
+  const handleCheckboxChange = (checked: boolean) => {
+    setFormData(prevFormData => ({
+      ...prevFormData,
+      rememberMe: checked,
+    }));
+  };
+
+  // Function to handle radio group
+  const handleAccountTypeChange = (e: string) => {
+    setFormData(prevFormData => ({
+      ...prevFormData,
+      accountType: e
+    }));
+  };
 
   return (
     <div style={backgroundImageStyle}>
@@ -28,13 +100,15 @@ export default function Page() {
         </div>
         <div className="bg-white rounded-xl m-8 p-4">
           <h1 className="text-center text-5xl font-extrabold py-4">Create your account</h1>
-          <div className="px-8">
+          <form onSubmit={(e) => handleSubmit(e, 'signup')} className="px-8">
             <div className="flex flex-col">
               <label htmlFor="username" className="text-lg p-2">User name</label>
               <input
                 id="username"
                 type="text"
                 name="username"
+                value={formData.username}
+                onChange={handleFormDataChange}
                 placeholder="Enter your Username"
                 className="p-4 border-2 border-black/40 rounded-lg focus:border-green-500 outline-none"
               />
@@ -43,6 +117,8 @@ export default function Page() {
             <div className="flex flex-col">
               <label htmlFor="email" className="text-lg p-2">Email address</label>
               <input
+                value={formData.email}
+                onChange={handleFormDataChange}
                 id="email"
                 type="text"
                 name="email"
@@ -55,7 +131,7 @@ export default function Page() {
               <label className="text-lg">Account Type</label>
             </div>
             <div className="flex justify-between gap-4 mx-auto cursor-pointer">
-              <RadioGroup>
+              <RadioGroup value={formData.accountType} onValueChange={handleAccountTypeChange}>
                 <label htmlFor="Farmer" className={radioStyles}>
                   <RadioGroupItem value="Farmer" id="Farmer" />
                   <p>Farmer</p>
@@ -70,23 +146,29 @@ export default function Page() {
             <div className="flex flex-col">
               <label htmlFor="password" className="text-lg p-2">New Password</label>
               <input
+                id="password"
                 type="password"
+                value={formData.password}
+                onChange={handleFormDataChange}
                 name="password"
                 className="p-4 border-2 border-black/40 focus:border-green-500 rounded-lg outline-none"
                 placeholder="Enter new Password"
               />
             </div>
             <div className="flex flex-col">
-              <label htmlFor="password" className="text-lg p-2">Confirm Password</label>
+              <label htmlFor="confirm_password" className="text-lg p-2">Confirm Password</label>
               <input
+                id="confirmPassword"
                 type="password"
-                name=""
+                name="confirmPassword"
+                value={formData.confirmPassword}
+                onChange={handleFormDataChange}
                 className="p-4 border-2 border-black/40 focus:border-green-500 rounded-lg outline-none"
                 placeholder="Confirm Password"
               />
             </div>
             <div className="flex gap-4 py-4">
-              <input className="p-2 bg-green-500" type="checkbox" name="" id="" />
+              <Checkbox className="cursor-pointer" checked={formData.rememberMe} onCheckedChange={handleCheckboxChange} id="remember" />
               <p>Remember me</p>
             </div>
             <div>
@@ -108,7 +190,7 @@ export default function Page() {
               </p>
             </div>
             <div className="flex justify-center items-center">
-              <button formAction={signup} className="py-4 bg-blue-600 font-bold text-2xl rounded-lg text-white w-[500px]">Sign Up</button>
+              <button type="submit" className="py-4 bg-blue-600 font-bold text-2xl rounded-lg text-white w-[500px]">Sign Up</button>
             </div>
             <div className="flex justify-center items-center py-4">
               <p>Have an account? <Link href="/auth/login" className="text-blue-600 font-bold">Login</Link></p>
@@ -136,7 +218,7 @@ export default function Page() {
                 })}
               </div>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
