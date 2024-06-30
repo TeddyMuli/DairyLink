@@ -12,13 +12,13 @@ export default function Navbar() {
   const pathname = usePathname()
 
   return (
-    <nav className={`${(pathname !== "/") && "hidden"} w-full border-b md:border-0 bg-customGreen pt-8`}>
+    <nav className=" w-full my-8">
       <div className="flex flex-col items-center px-4 max-w-screen-xl  md:flex md:px-8 mx-0 lg:mx-auto">
         <div className="flex items-center justify-center py-3 md:py-5 md:block gap-8">
           <div className="flex space-x-4 md:space-x-6">
             <Link href="/">
-              <h1 className="text-6xl font-bold text-accent">
-                Dairy<span className="text-black">Link</span>
+              <h1 className="text-6xl font-bold text-accent text-slate-900">
+                Dairy<span className="text-green-600">Link</span>
               </h1>
             </Link>
           </div>
@@ -37,9 +37,12 @@ export default function Navbar() {
             state ? "block" : "hidden"
           }`}
         >
-          <ul className="justify-end items-center space-y-8 md:flex md:space-x-6 md:space-y-0 text-xl">
+          <ul className="justify-end items-center space-y-8 md:flex md:space-x-20 md:space-y-0 md:w-full">
             {menus.map((item, idx) => (
-              <li key={idx} className={`text-white hover:text-customGreen2`}>
+              <li
+                key={idx}
+                className={` hover:text-black hover:font-bold hover:underline hover:underline-offset-1 text-slate-500 text-2xl`}
+              >
                 {item.title === "Register" ? (
                   <Button
                     asChild
