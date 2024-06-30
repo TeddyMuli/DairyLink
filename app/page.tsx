@@ -110,7 +110,7 @@ const [showAll, setShowAll] = useState<boolean>(false);
   }
 
   return (
-    <main className="">
+    <div className="">
       <div
         className="relative w-full h-96 md:h-[600px] lg:h-[800px] flex flex-col justify-center items-center "
       >
@@ -315,7 +315,7 @@ const [showAll, setShowAll] = useState<boolean>(false);
         </div>
 
       </div>
-    </>
+    </div>
   );
 }
 ``
