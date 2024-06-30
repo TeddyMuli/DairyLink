@@ -1,39 +1,21 @@
-"use client";
-
+"use client"
 import Image from "next/image";
 import React, { useState } from "react";
 import { providers } from "@/constants";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import Link from "next/link";
-import { redirect, useRouter } from "next/navigation";
-import { Checkbox } from "@/components/ui/checkbox";
-import { toast } from "react-toastify";
+import { signup } from "../action";
 
-type AlertProps = {
-  type: 'info' | 'error';
-  msg: string;
-};
+interface formData {
+  user_name: string,
+  email_address: string,
+  account_type: string,
+  new_password: string,
+  confirm_password: string,
+  remember_me: boolean
+}
 
 export default function Page() {
-  const [alert, setAlert] = useState<AlertProps | null>(null);
-  const router = useRouter();
-  const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    rememberMe: false,
-    accountType: ""
-  });
-
-  const handleFormDataChange = (e: any) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
-  };
-
   const backgroundImageStyle = {
     backgroundImage: "url('/assets/dairy_cow.jpg')",
     backgroundSize: 'cover',
@@ -44,50 +26,14 @@ export default function Page() {
   
   const radioStyles = "flex gap-4 border-2 border-black/40 rounded-xl p-4 hover:border-green-500 checked:border-green-500 cursor-pointer";
   const linkStyles = "text-blue-400";
-
-  const handleSubmit = async (e: any, action: any) => {
-    e.preventDefault();
-    const response = await fetch(action === 'login' ? '/api/login' : '/api/signup', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    });
-
-    const result = await response.json();
-
-    if (response.ok) {
-      setFormData({
-        username: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-        rememberMe: false,
-        accountType: "Farmer"
-      })
-      toast.info("Confirm Email!")
-      router.push("/auth/login")
-    } else {
-      toast.error("Error signing up!")
-    }
-  };
-
-  // Function to handle checkbox change
-  const handleCheckboxChange = (checked: boolean) => {
-    setFormData(prevFormData => ({
-      ...prevFormData,
-      rememberMe: checked,
-    }));
-  };
-
-  // Function to handle radio group
-  const handleAccountTypeChange = (e: string) => {
-    setFormData(prevFormData => ({
-      ...prevFormData,
-      accountType: e
-    }));
-  };
+  const [formData, setFormData] = useState<formData>({
+    user_name: "",
+    email_address: "",
+    account_type: "",
+    new_password: "",
+    confirm_password: "",
+    remember_me: false
+  })
 
   return (
     <div style={backgroundImageStyle}>
@@ -100,28 +46,22 @@ export default function Page() {
         </div>
         <div className="bg-white rounded-xl m-8 p-4">
           <h1 className="text-center text-5xl font-extrabold py-4">Create your account</h1>
-          <form onSubmit={(e) => handleSubmit(e, 'signup')} className="px-8">
+          <form onSubmit={(e) => signup(e, formData)} className="px-8">
             <div className="flex flex-col">
-              <label htmlFor="username" className="text-lg p-2">User name</label>
+              <label className="text-lg p-2">User name</label>
               <input
-                id="username"
                 type="text"
-                name="username"
-                value={formData.username}
-                onChange={handleFormDataChange}
+                name=""
                 placeholder="Enter your Username"
                 className="p-4 border-2 border-black/40 rounded-lg focus:border-green-500 outline-none"
               />
             </div>
 
             <div className="flex flex-col">
-              <label htmlFor="email" className="text-lg p-2">Email address</label>
+              <label className="text-lg p-2">Email address</label>
               <input
-                value={formData.email}
-                onChange={handleFormDataChange}
-                id="email"
                 type="text"
-                name="email"
+                name=""
                 placeholder="Email address"
                 className="p-4 border-2 border-black/40 rounded-lg focus:border-green-500 outline-none"
               />
@@ -131,7 +71,7 @@ export default function Page() {
               <label className="text-lg">Account Type</label>
             </div>
             <div className="flex justify-between gap-4 mx-auto cursor-pointer">
-              <RadioGroup value={formData.accountType} onValueChange={handleAccountTypeChange}>
+              <RadioGroup>
                 <label htmlFor="Farmer" className={radioStyles}>
                   <RadioGroupItem value="Farmer" id="Farmer" />
                   <p>Farmer</p>
@@ -144,53 +84,32 @@ export default function Page() {
             </div>
 
             <div className="flex flex-col">
-              <label htmlFor="password" className="text-lg p-2">New Password</label>
+              <label className="text-lg p-2">New Password</label>
               <input
-                id="password"
-                type="password"
-                value={formData.password}
-                onChange={handleFormDataChange}
-                name="password"
+                type="text"
+                name=""
                 className="p-4 border-2 border-black/40 focus:border-green-500 rounded-lg outline-none"
                 placeholder="Enter new Password"
               />
             </div>
             <div className="flex flex-col">
-              <label htmlFor="confirm_password" className="text-lg p-2">Confirm Password</label>
+              <label className="text-lg p-2">Confirm Password</label>
               <input
-                id="confirmPassword"
-                type="password"
-                name="confirmPassword"
-                value={formData.confirmPassword}
-                onChange={handleFormDataChange}
+                type="text"
+                name=""
                 className="p-4 border-2 border-black/40 focus:border-green-500 rounded-lg outline-none"
                 placeholder="Confirm Password"
               />
             </div>
             <div className="flex gap-4 py-4">
-              <Checkbox className="cursor-pointer" checked={formData.rememberMe} onCheckedChange={handleCheckboxChange} id="remember" />
+              <input type="checkbox" name="" id="" />
               <p>Remember me</p>
             </div>
             <div>
-              <p
-                className="text-sm pb-4"
-              >
-                By signing up you agree to our, 
-                <Link 
-                  className={linkStyles} 
-                  href="/privacypolicy"
-                >privacy policy</Link>, 
-                <Link 
-                  className={linkStyles} 
-                  href="/terms">terms of service</Link> 
-                  and <Link 
-                    className={linkStyles} 
-                    href="/cookies"
-                    >cookie policy</Link>
-              </p>
+              <p className="text-sm pb-4">By signing up you agree to our, <Link className={linkStyles} href="/privacypolicy">privacy policy</Link>, <Link className={linkStyles} href="/terms">terms of service</Link> and <Link className={linkStyles} href="/cookies">cookie policy</Link></p>
             </div>
             <div className="flex justify-center items-center">
-              <button type="submit" className="py-4 bg-blue-600 font-bold text-2xl rounded-lg text-white w-[500px]">Sign Up</button>
+              <button className="py-4 bg-blue-600 font-bold text-2xl rounded-lg text-white w-[500px]">Sign Up</button>
             </div>
             <div className="flex justify-center items-center py-4">
               <p>Have an account? <Link href="/auth/login" className="text-blue-600 font-bold">Login</Link></p>

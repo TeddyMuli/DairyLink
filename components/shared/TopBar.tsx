@@ -5,9 +5,11 @@ import { Menu } from "lucide-react";
 import Link from "next/link";
 import * as React from "react";
 import { Button } from "../ui";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [state, setState] = React.useState(false);
+  const pathname = usePathname()
 
   return (
     <nav className=" w-full my-8">

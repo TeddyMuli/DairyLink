@@ -313,7 +313,9 @@ const [showAll, setShowAll] = useState<boolean>(false);
             View the entire team
           </p>}
         </div>
+
       </div>
-    </main>
+    </>
   );
 }
+``

@@ -7,6 +7,8 @@ import Link from "next/link";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const pathname = usePathname()
+
   return (
     <div className="border-t border-black mt-16 pt-14 px-8">
       <div className="grid lg:grid-cols-3 md:grid-cols-3 grid-cols-1 gap-4  items-start mb-12 text-xl">
