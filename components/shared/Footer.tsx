@@ -11,7 +11,7 @@ export default function Footer() {
   const pathname = usePathname()
 
   return (
-    <div className="border-t border-black mt-16 pt-14 px-8">
+    <div className={`border-t border-black mt-16 pt-14 px-8 ${pathname !== "/" && "hidden"}`}>
       <div className="grid lg:grid-cols-3 md:grid-cols-3 grid-cols-1 gap-4  items-start mb-12 text-xl">
         <div className="flex flex-col items-center ">
           <h1 className="text-2xl font-bold text-center mb-4  mt-4 lg:mt-0">
