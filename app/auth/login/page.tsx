@@ -1,111 +1,123 @@
-"use client";
-
-import { supabase } from "@/lib/supabase";
-import { Session } from "inspector";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-
-type AlertProps = {
-  type: "info" | "error";
-  msg: string;
-};
+"use client"
+import { useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { providers } from '@/constants';
+import { toast } from 'react-toastify';
+import { signInWithGoogle } from '../action';
 
 export default function Page() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [alert, setAlert] = useState<AlertProps>();
-  const { push } = useRouter();
-  const [loading, setLoading] = useState(false);
-  const [session, setSession] = useState<Session | null>(null);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const router = useRouter();
+
+  const handleSubmit = async (e: any, action: any) => {
+    e.preventDefault();
+    const response = await fetch(action === 'login' ? '/api/login' : '/api/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const result = await response.json();
+    console.log("Login Response: ", response.json())
+
+    if (response.ok) {
+      if (action === 'login') {
+        toast.success("Logged In!", {closeOnClick: true})
+        router.push('/');
+      }
+    } else {
+      toast.error("Error logging in!", {closeOnClick: true})
+    }
+  };
+
+  const backgroundImageStyle = {
+    backgroundImage: "url('/assets/dairy_cow.jpg')",
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    height: '130vh',
+    width: '100%',
+  };
 
   return (
-    <>
-      {alert && <Alert msg={alert.msg} type={alert.type} />}
-      <div className="shadow-lg rounded-md p-6 border bg-white w-2/5 h-full">
-        <h1 className="font-semibold mb-2 text-slate-500">Login</h1>
-        <form className="flex flex-col gap-4 mt-4 w-full h-full">
-          <div className="flex flex-col gap-1">
-            <input
-              type="email"
-              id="email"
-              className="px-3 py-2 text-sm text-slate-400 border border-slate-300 rounded outline-none"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email"
-            />
+    <div style={backgroundImageStyle}>
+      <div className="container mx-auto grid grid-cols-1 grid-rows-2 lg:grid-cols-2 lg:grid-rows-1 text-xl pt-4">
+        <div className="flex flex-col justify-center items-center text-6xl text-left bg-white bg-opacity-30 w-[500px] rounded-xl ml-8">
+          <h1 className="font-bold mt-[100px]">DairyLink</h1>
+          <div className="my-auto">
+            <p className="text-green-800 font-medium">
+              Connecting<br />dairy farmers<br />and simplifying<br />
+              <span className="font-extrabold">success</span>
+            </p>
           </div>
+        </div>
+        <div className="bg-white rounded-xl m-8 p-8">
+          <h1 className="text-center text-6xl font-extrabold p-4">Welcome</h1>
+          <p className="text-center font-semibold pb-4">Create an account or login to access DairyLink</p>
+          <form className="px-8" onSubmit={(e) => handleSubmit(e, 'login')}>
+            <div className="flex flex-col">
+              <label htmlFor="email" className="text-xl p-2">Email address</label>
+              <input
+                id="email"
+                type="text"
+                name="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Email address"
+                className="p-4 border-2 border-black/40 rounded-lg focus:border-green-500 outline-none"
+              />
+            </div>
 
-          <div className="flex flex-col gap-1">
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="px-3 py-2 text-sm text-slate-400 border border-slate-300 rounded outline-none"
-              placeholder="Password"
-            />
+            <div className="flex flex-col">
+              <label htmlFor="password" className="text-xl p-2">Enter Password</label>
+              <input
+                id="password"
+                type="password"
+                name="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="p-4 border-2 border-black/40 focus:border-green-500 rounded-lg outline-none"
+                placeholder="Enter Password"
+              />
+            </div>
+            <div className="flex gap-4 py-4">
+              <input type="checkbox" name="" id="" />
+              <p>Remember me</p>
+            </div>
+            <div className="flex justify-center items-center gap-4">
+              <button type="submit" className="py-4 bg-blue-600 font-bold text-2xl rounded-lg text-white w-[500px]">Login</button>
+            </div>
+          </form>
+          <div className="flex justify-center items-center py-4">
+            <p>Don't have an account? <Link href="/auth/register" className="text-blue-600 font-bold">SignUp</Link></p>
           </div>
-
-          <hr />
-
-          <button
-            type="button"
-            className="bg-slate-900 font-semibold rounded py-2 text-white"
-            onClick={async (e) => {
-              e.preventDefault();
-              setLoading(true);
-              const { data, error } = await supabase.auth.signInWithPassword({
-                email,
-                password,
-              });
-              if (error) setAlert({ msg: error.message, type: "error" });
-              setLoading(false);
-              if (data.session) push("/");
-            }}
-            disabled={loading}
-          >
-            {loading ? "..." : "Login"}
-          </button>
-          <button
-            type="button"
-            className="bg-slate-900 font-semibold rounded py-2 text-white"
-            onClick={async (e) => {
-              e.preventDefault();
-              const { data, error } = await supabase.auth.signUp({
-                email,
-                password,
-              });
-              if (error) setAlert({ msg: error.message, type: "error" });
-              else setAlert({ msg: "Check your email!", type: "info" });
-            }}
-          >
-            Register
-          </button>
-        </form>
+          <div className="flex flex-col justify-center items-center">
+            <Image
+              src="/assets/pendulum.png"
+              alt="pendulum"
+              width={50}
+              height={50}
+            />
+            <div className="flex flex-row gap-[100px] pt-2">
+              {providers.map((provider, index) => (
+                <Image
+                  key={index}
+                  src={provider.src}
+                  alt={provider.alt}
+                  width={50}
+                  height={50}
+                  className="cursor-pointer"
+                  onClick={() => signInWithGoogle(provider.name)}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
-    </>
-  );
-}
-
-const Alert: React.FC<AlertProps> = ({ type, msg }) => {
-  let style = "";
-
-  switch (type) {
-    case "info":
-    default:
-      style = "bg-blue-100 border-blue-300 text-blue-600";
-      break;
-    case "error":
-      style = "bg-red-100 border-red-300 text-red-600";
-      break;
-  }
-
-  return (
-    <div
-      className={`text-xs py-2 px-2 flex gap-2 mb-2 w-72 border rounded-md ${style}`}
-    >
-      <strong>{type}: </strong>
-      <span>{msg}</span>
     </div>
   );
-};
+}

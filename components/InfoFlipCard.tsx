@@ -25,7 +25,7 @@ const InfoFlipCard: FC<InfoFlipCardProps> = ({ frontContent, backContent }) => {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          border: "2px solid black",
+          border: "",
           padding: "1rem",
           borderRadius: "0.5rem",
         },

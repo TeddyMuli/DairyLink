@@ -1,10 +1,14 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import TopBar from "@/components/shared/TopBar";
 import Footer from "@/components/shared/Footer";
+import TopBar from "@/components/shared/TopBar";
+import type { Metadata } from "next";
+import { Inter, Quicksand, Tinos } from "next/font/google";
+import "./globals.css";
+import ToastProvider from "@/components/ToastProvider";
 
-const inter = Inter({ subsets: ["latin"] });
+const quickSand = Quicksand({
+  subsets: ["latin"],
+  variable: "--font-quickSand",
+});
 
 export const metadata: Metadata = {
   title: "DairyLink",
@@ -18,12 +22,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`m-8 ${inter.className}`}>
+      <body className={`${quickSand.variable}`}>
         <main>
           <section>
             <TopBar />
             <div>
-              {children}
+              <ToastProvider>
+                {children}
+              </ToastProvider>
             </div>
           </section>
         </main>

@@ -17,6 +17,9 @@ const config = {
         "2xl": "1400px",
       },
     },
+    fontFamily: {
+      primary: "var(--font-quickSand)"
+    },
     extend: {
       colors: {
         border: "hsl(var(--border))",
@@ -52,6 +55,9 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        customGreen: '#3a4235',
+        customGrey: "#BDC3C6",
+        customGreen2: "#00ff99"
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -67,13 +73,32 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        typing: {
+          "0%": {
+            width: "0%",
+            visibility: "hidden"
+          },
+          "100%": {
+            width: "100%"
+          },
+        },
+        blink: {
+          "50%": {
+            borderColor: "transparent"
+          },
+          "100%": {
+            borderColor: "white"
+          }
+        }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        typing: "typing 2s steps(11) alternate, blink .7s infinite"
       },
     },
   },
+  variants: {},
   plugins: [require("tailwindcss-animate")],
 } satisfies Config
 

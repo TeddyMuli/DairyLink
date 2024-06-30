@@ -69,16 +69,9 @@
   @layer base {
     * {
       @apply border-border;
+      letter-spacing: 0.1rem;
     }
     body {
-      @apply bg-background text-foreground;
+      @apply font-primary bg-background text-foreground;
     }
-  }
-
-  body {
-    background-image: url('/dairylink_bg_img.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    color: white;
   }
