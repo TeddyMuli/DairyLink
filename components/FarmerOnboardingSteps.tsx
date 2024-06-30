@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 
 export const Step1 = ({ nextStep, formData, handleFormDataChange } : {nextStep: any, formData: any, handleFormDataChange: any}) => (
   <div>
-    <h2>Step 1</h2>
+    <h2 className='text-xl font-semibold'>Step 1</h2>
     <form>
       <div className='grid grid-cols-1 grid-rows-3 gap-4 pb-4'>
         <div className='flex flex-col items-start gap-2'>
@@ -29,7 +29,7 @@ export const Step1 = ({ nextStep, formData, handleFormDataChange } : {nextStep: 
 
 export const Step2 = ({ prevStep, nextStep, formData, handleFormDataChange } : {prevStep: any, nextStep: any, formData: any, handleFormDataChange: any}) => (
   <div>
-    <h2>Step 2</h2>
+    <h2 className='text-xl font-semibold'>Step 2</h2>
     <form>
       <div className='grid grid-cols-1 grid-rows-3 gap-4 pb-4'>
         <div className='flex flex-col items-start gap-2'>
@@ -55,7 +55,7 @@ export const Step2 = ({ prevStep, nextStep, formData, handleFormDataChange } : {
 
 export const Step3 = ({ prevStep, submit, formData, handleFormDataChange } : {prevStep: any, submit: any, formData: any, handleFormDataChange: any}) => (
   <div>
-    <h2>Step 3</h2>
+    <h2 className='text-xl font-semibold'>Step 3</h2>
     <form>
       <div className='grid grid-cols-1 grid-rows-3 gap-4 pb-4'>
         <div className='flex flex-col items-start gap-2'>
@@ -78,7 +78,3 @@ export const Step3 = ({ prevStep, submit, formData, handleFormDataChange } : {pr
     </form>
   </div>
 );
-
-export default function FarmerOnboarding () {
-  
-}
