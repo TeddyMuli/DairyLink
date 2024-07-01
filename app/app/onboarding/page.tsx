@@ -1,15 +1,14 @@
 "use client"
 import React, { useState } from 'react';
-import {Step1, Step2, Step3} from "@/components/FarmerOnboardingSteps";
+import {Step1, Step2, Step3} from "@/components/farmer/FarmerOnboardingSteps";
+import { createClient } from '@supabase/supabase-js';
 
-const Page = () => {
+const Page = () => {  
+  const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL as string, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string)
   const [step, setStep] = useState(0);
 
   const nextStep = () => setStep(step + 1);
   const prevStep = () => setStep(step - 1);
-  const submit = () => {
-
-  };
 
   const [formData, setFormData] = useState({
     firstname: "",
@@ -30,8 +29,14 @@ const Page = () => {
       [name]: value
     });
   };
-  
 
+  const submit = async () => {
+    const error = await supabase
+    .from("")
+    .insert(formData)
+  };
+
+  
   return (
     <div className="container mx-auto flex justify-center items-center h-screen">
       <div className="flex flex-col justify-center items-center text-xl w-full max-w-md">
