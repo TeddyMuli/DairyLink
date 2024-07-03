@@ -14,24 +14,28 @@ export default function Page() {
 
   const handleSubmit = async (e: any, action: any) => {
     e.preventDefault();
-    const response = await fetch(action === 'login' ? '/api/login' : '/api/signup', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, password }),
-    });
-
-    const result = await response.json();
-    console.log("Login Response: ", response.json())
-
-    if (response.ok) {
-      if (action === 'login') {
-        toast.success("Logged In!", {closeOnClick: true})
-        router.push('/');
+    try {
+      const response = await fetch(action === 'login' ? '/api/login' : '/api/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+  
+      const result = await response.json();
+      
+      if (response.ok) {
+        if (action === 'login') {
+          console.log("Login Response: ", result)
+          toast.success("Logged In!", {closeOnClick: true})
+          router.push('/');
+        }
+      } else {
+        toast.error("Error logging in!", {closeOnClick: true})
       }
-    } else {
-      toast.error("Error logging in!", {closeOnClick: true})
+    } catch (error) {
+      console.error("Error: ", error)
     }
   };
 
