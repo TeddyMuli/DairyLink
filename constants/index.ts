@@ -13,3 +13,12 @@ export const providers = [
     { src: "/assets/google_logo.png", alt: "google", name: "google" },
     { src: "/assets/linkedin_logo.png", alt: "linkedin", link: "linkedin" }
   ]
+
+export const farmerLinks = [
+  { name: "Dashboard", path: "/app" },
+  { name: "Loans", path: "/app/loans" },
+  { name: "E-Learning", path: "/app/e-learning" },
+  { name: "Complaints", path: "/app/complaints" },
+  { name: "Agrovet Services", path: "/app/services" },
+  { name: "Profile", path: "/app/profile" }
+]
