@@ -5,7 +5,11 @@ import {
   Library,
   MessageSquareWarning,
   Bell,
-  HandHelping
+  HandHelping,
+  Heart,
+  Box,
+  CalendarDays,
+  NotepadText
 } from 'lucide-react';
 
 export const menus = [
@@ -26,14 +30,14 @@ export const providers = [
 
 export const farmerLinks = [
   { name: "Dashboard", path: "/app", icon: LayoutDashboard },
-  { name: "Products", path: "/app/products", icon: LayoutDashboard },
-  { name: "Favorites", path: "/app/favorites", icon: LayoutDashboard },
+  { name: "Products", path: "/app/products", icon: Box },
+  { name: "Favorites", path: "/app/favorites", icon: Heart },
   { name: "Loans", path: "/app/loans", icon: WalletMinimal },
   { name: "E-Learning", path: "/app/e-learning", icon: Library },
   { name: "Complaints", path: "/app/complaints", icon: MessageSquareWarning },
   { name: "Services", path: "/app/services", icon: HandHelping },
-  { name: "Calender", path: "/app/calender", icon: MessageSquareWarning },
-  { name: "Invoice", path: "/app/invoice", icon: HandHelping },
+  { name: "Calender", path: "/app/calender", icon: CalendarDays },
+  { name: "Invoice", path: "/app/invoice", icon: NotepadText },
   { name: "Notifications", path: "/app/notifications", icon: Bell },
   { name: "Profile", path: "/app/profile", icon: User }
 ]

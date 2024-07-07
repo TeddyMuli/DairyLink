@@ -22,19 +22,17 @@ export default async function RootLayout({
   const user = await getUser();
 
   return (
-      <div className={`text-black ${quickSand.variable}`}>
-          <div className="flex flex-row h-screen overflow-y-hidden">
-            <div className="flex flex-col w-[17%] pt-4">
-              <p className='text-center text-4xl font-semibold cursor-pointer'>Dairy<span className='text-green-500'>Link</span></p>
-              <div className="overflow-y-auto">
-                <FarmerSideBar />
-              </div>
-            </div>
-            <div className="flex min-h-screen flex-1 flex-col items-start bg-customLightGrey w-full">
-              <FarmerTopBar user={user} />
-              <div className="overflow-y-auto">{children}</div>
-            </div>
-          </div>
+    <div className={`text-black ${quickSand.variable} flex flex-row h-screen overflow-y-hidden`}>
+      <div className="flex flex-col w-[17%] pt-4">
+        <p className='text-center text-4xl font-semibold cursor-pointer'>Dairy<span className='text-green-500'>Link</span></p>
+        <div className="overflow-y-auto my-4">
+          <FarmerSideBar />
         </div>
+      </div>
+      <div className="flex min-h-screen flex-1 flex-col bg-customLightGrey w-full">
+        <div><FarmerTopBar user={user} /></div>
+        <div className="overflow-y-auto p-4 m-4">{children}</div>
+      </div>
+    </div>
   );
 }

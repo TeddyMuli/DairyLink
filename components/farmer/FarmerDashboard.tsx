@@ -9,8 +9,8 @@ const FarmerDashboard = () => {
 
   return (
     <div className='text-black'>
-      
       {/** Personal analytics */}
+      <p className='text-3xl font-bold'>Dashboard</p>
       <div className='grid py-4 gap-4'>
         <div className='grid grid-rows-1 grid-cols-2 gap-3'>
           <div className='p-3 bg-white rounded-xl'>

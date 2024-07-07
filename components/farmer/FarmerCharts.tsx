@@ -48,7 +48,7 @@ const data = [
 const FarmerCharts = () => {
   return (
     <div className='grid grid-cols-2 grid-rows-2 gap-4'>
-      <div style={{ width: '100%', height: '400px' }} className='bg-white p-3 rounded-lg]'>
+      <div style={{ width: '100%', height: '400px' }} className='bg-white p-3 rounded-lg'>
         <p className='text-lg text-neutral-500 font-semibold'>Milk Ouput</p>
         <ResponsiveContainer className="w-[500px] h-[500px]" width="100%" height="100%">
         <LineChart

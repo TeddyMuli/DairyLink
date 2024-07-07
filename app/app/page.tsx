@@ -5,9 +5,7 @@ const Page = () => {
   return (
     <div className=''>
       {/** Dashboard */}
-      <div>
         <FarmerDashboard />
-      </div>
     </div>
   );
 }
