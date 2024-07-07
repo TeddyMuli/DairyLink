@@ -59,7 +59,9 @@ const config = {
         customGrey: "#BDC3C6",
         customGreen2: "#00ff99",
         customDarkGrey: "#1D1D29",
-        customDark: "#11121E"
+        customDark: "#11121E",
+        customLightGrey: "#F3F3F3"
+        
       },
       borderRadius: {
         lg: "var(--radius)",

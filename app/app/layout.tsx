@@ -22,16 +22,14 @@ export default async function RootLayout({
   const user = await getUser();
 
   return (
-      <div className={`text-white ${quickSand.variable}`}>
-        <div>
-          <FarmerTopBar user={user} />
+      <div className={`text-black ${quickSand.variable}`}>
           <div className="flex flex-row">
             <FarmerSideBar />
-            <div className="flex min-h-screen flex-1 flex-col items-center bg-customDark w-full">
+            <div className="flex min-h-screen flex-1 flex-col items-start bg-customLightGrey w-full">
+              <FarmerTopBar user={user} />
               <div className="p-4">{children}</div>
             </div>
           </div>
         </div>
-      </div>
   );
 }

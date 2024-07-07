@@ -1,3 +1,13 @@
+import {
+  LayoutDashboard,
+  WalletMinimal,
+  User,
+  Library,
+  MessageSquareWarning,
+  Bell,
+  HandHelping
+} from 'lucide-react';
+
 export const menus = [
     { title: "Home", path: "/" },
     { title: "Features", path: "/#features" },
@@ -15,10 +25,11 @@ export const providers = [
   ]
 
 export const farmerLinks = [
-  { name: "Dashboard", path: "/app" },
-  { name: "Loans", path: "/app/loans" },
-  { name: "E-Learning", path: "/app/e-learning" },
-  { name: "Complaints", path: "/app/complaints" },
-  { name: "Agrovet Services", path: "/app/services" },
-  { name: "Profile", path: "/app/profile" }
+  { name: "Dashboard", path: "/app", icon: LayoutDashboard },
+  { name: "Loans", path: "/app/loans", icon: WalletMinimal },
+  { name: "E-Learning", path: "/app/e-learning", icon: Library },
+  { name: "Complaints", path: "/app/complaints", icon: MessageSquareWarning },
+  { name: "Services", path: "/app/services", icon: HandHelping },
+  { name: "Notifications", path: "/app/notifications", icon: Bell },
+  { name: "Profile", path: "/app/profile", icon: User }
 ]

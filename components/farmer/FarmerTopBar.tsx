@@ -2,12 +2,13 @@
 
 import Image from 'next/image';
 import React from 'react';
-import { useRouter } from 'next/navigation';
-import { IoMdNotifications } from "react-icons/io";
-import { Circle } from "lucide-react";
+import { usePathname, useRouter } from 'next/navigation';
+import { Bell, Circle } from "lucide-react";
+import { farmerLinks } from '@/constants';
 
 const FarmerTopBar = ({ user }: {user: any}) => {
   const router = useRouter();
+  const pathname = usePathname();
 
   const handleProfileClick = (e: any) => {
     e.preventDefault();
@@ -15,11 +16,18 @@ const FarmerTopBar = ({ user }: {user: any}) => {
   }
 
   return (
-      <div onClick={handleProfileClick} className='flex justify-between bg-customDarkGrey border-b border-white/60 p-3 w-full px-4'>
-        <p className='text-center text-4xl font-semibold'>Dairy<span className='text-green-500'>Link</span></p>
-        <div className='flex gap-4 justify-center items-center'>
+      <div onClick={handleProfileClick} className='flex bg-customLightGrey p-3 w-full px-8 py-8'>
+        <div className='flex items-center gap-4 justify-between'>
+          <>
+            {farmerLinks.map((link, index) => (
+              <p key={index} className='text-2xl font-bold'>{(link.path === pathname) && link.name}</p>
+            ))}
+          </>
+          <div className='ml-auto'>Calender</div>
+        </div>
+        <div className='flex gap-4 justify-center items-center ml-auto'>
           <div className='flex'>
-            <IoMdNotifications className='text-white w-8 h-8 -mr-3' />
+            <Bell onClick={() => router.push("/notifications")} className='w-8 h-8 -mr-3 cursor-pointer' />
             <Circle className='h-3 w-3 text-green-500 fill-green-500' />
           </div>
           <div className='flex justify-center items-center gap-3 cursor-pointer'>
@@ -30,7 +38,7 @@ const FarmerTopBar = ({ user }: {user: any}) => {
               alt='blank profile'
               className='rounded-full'
             />
-            <p>{user?.user_metadata?.full_name}</p>
+            <p className='font-semibold'>{user?.user_metadata?.full_name || "Username"}</p>
           </div>
         </div>
       </div>
