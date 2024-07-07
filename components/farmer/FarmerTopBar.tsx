@@ -1,14 +1,14 @@
 "use client";
 
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import { Bell, Circle } from "lucide-react";
+import { Bell, Circle, Search } from "lucide-react";
 import { farmerLinks } from '@/constants';
 
 const FarmerTopBar = ({ user }: {user: any}) => {
   const router = useRouter();
-  const pathname = usePathname();
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleProfileClick = (e: any) => {
     e.preventDefault();
@@ -16,14 +16,12 @@ const FarmerTopBar = ({ user }: {user: any}) => {
   }
 
   return (
-      <div onClick={handleProfileClick} className='flex bg-customLightGrey p-3 w-full px-8 py-8'>
+      <div onClick={handleProfileClick} className='flex bg-white p-3 w-full px-8'>
         <div className='flex items-center gap-4 justify-between'>
-          <>
-            {farmerLinks.map((link, index) => (
-              <p key={index} className='text-2xl font-bold'>{(link.path === pathname) && link.name}</p>
-            ))}
-          </>
-          <div className='ml-auto'>Calender</div>
+          <div className='bg-customLightGrey rounded-full py-2 px-3 flex gap-2'>
+            <Search />
+            <input type="text" id='search' value={searchTerm} name='search' placeholder='Search' className='bg-customLightGrey outline-none' />
+          </div>
         </div>
         <div className='flex gap-4 justify-center items-center ml-auto'>
           <div className='flex'>

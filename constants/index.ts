@@ -26,10 +26,14 @@ export const providers = [
 
 export const farmerLinks = [
   { name: "Dashboard", path: "/app", icon: LayoutDashboard },
+  { name: "Products", path: "/app/products", icon: LayoutDashboard },
+  { name: "Favorites", path: "/app/favorites", icon: LayoutDashboard },
   { name: "Loans", path: "/app/loans", icon: WalletMinimal },
   { name: "E-Learning", path: "/app/e-learning", icon: Library },
   { name: "Complaints", path: "/app/complaints", icon: MessageSquareWarning },
   { name: "Services", path: "/app/services", icon: HandHelping },
+  { name: "Calender", path: "/app/calender", icon: MessageSquareWarning },
+  { name: "Invoice", path: "/app/invoice", icon: HandHelping },
   { name: "Notifications", path: "/app/notifications", icon: Bell },
   { name: "Profile", path: "/app/profile", icon: User }
 ]

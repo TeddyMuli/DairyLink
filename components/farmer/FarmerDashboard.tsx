@@ -8,7 +8,7 @@ const FarmerDashboard = () => {
   const [scheduledVisit, setScheduledVisit] = useState("h")
 
   return (
-    <div className='text-black px-6'>
+    <div className='text-black'>
       
       {/** Personal analytics */}
       <div className='grid py-4 gap-4'>
