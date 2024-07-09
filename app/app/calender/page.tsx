@@ -1,9 +1,11 @@
+import Calender from '@/components/shared/Calender';
 import React from 'react';
 
 const Page = () => {
   return (
-    <div>
-      Calender
+    <div className='flex flex-col gap-4'>
+      <p className='text-3xl font-bold w-full'>Calender</p>
+      <Calender />
     </div>
   );
 }

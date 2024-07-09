@@ -28,12 +28,12 @@ const FarmerSideBar = () => {
   }
 
   return (
-    <div className='bg-white p-4 flex flex-col gap-6'>
+    <div className='bg-white pr-4 py-4 flex flex-col gap-6'>
       <div className='flex flex-col gap-4'>
         {farmerLinks.map((link, index) => {
           return (
-            <div className={`flex items-center gap-2`}>
-              <div className={`border-l border-2 border-green-500 h-6 opacity-0 ${pathname === link.path && "opacity-100"}`}></div>
+            <div key={index} className={`flex items-center gap-2`}>
+              <div className={`border-l border-4 border-green-500 h-8 rounded-lg opacity-0 ${pathname === link.path && "opacity-100"}`}></div>
               <Link key={index} href={link.path} className={`flex gap-2 items-center text-lg hover:bg-green-500 hover:text-white p-3 rounded-3xl font-medium transition-all duration-200 ${link.path === pathname && "text-white bg-green-500"}`}>
                 <link.icon className="" />
                 {link.name}
@@ -43,7 +43,7 @@ const FarmerSideBar = () => {
         })}
         <button
           onClick={handleSignOut}
-          className='p-3 bg-green-600 text-xl text-white font-semibold rounded-full'
+          className='p-3 ml-1 bg-green-600 text-xl text-white font-semibold rounded-full'
         >Signout</button>
       </div>
     </div>

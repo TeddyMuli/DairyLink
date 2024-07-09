@@ -20,7 +20,7 @@ const FarmerTopBar = ({ user }: {user: any}) => {
         <div className='flex items-center gap-4 justify-between'>
           <div className='bg-customLightGrey rounded-full py-2 px-3 flex gap-2'>
             <Search />
-            <input type="text" id='search' value={searchTerm} name='search' placeholder='Search' className='bg-customLightGrey outline-none' />
+            <input type="text" id='search' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} name='search' placeholder='Search' className='bg-customLightGrey outline-none' />
           </div>
         </div>
         <div className='flex gap-4 justify-center items-center ml-auto'>
