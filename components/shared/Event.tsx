@@ -2,8 +2,8 @@ import React from 'react';
 
 const Event = () => {
   return (
-    <>
-      <div className='flex gap-4'>
+    <div className='py-4'>
+      <div className='flex gap-4 pb-4'>
         <div className='h-10 w-10 rounded-full bg-black'>
         </div>
 
@@ -13,8 +13,8 @@ const Event = () => {
           <p className='text-lg text-customDarkGrey font-medium'>Ndenderu</p>
         </div>
       </div>
-      <div className='border-b border-black py-4'></div>
-    </>
+      <div className='border-b border-customDarkGrey'></div>
+    </div>
   );
 }
 

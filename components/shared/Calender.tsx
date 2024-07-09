@@ -2,7 +2,8 @@
 
 import { Plus } from 'lucide-react';
 import React from 'react';
-import Event from "@/components/shared/Event";
+import Event from "./Event";
+import BigCalender from './BigCalender';
 
 const Calender = () => {
   return (
@@ -15,10 +16,13 @@ const Calender = () => {
         <div>
           <p className='font-bold text-xl mb-8'>You are going to</p>
           <Event />
+          <Event />
+          <Event />
+          <Event />
         </div>
       </div>
       <div className='w-[70%] bg-white p-3 rounded-xl'>
-        Calender
+        <BigCalender />
       </div>
     </div>
   );
