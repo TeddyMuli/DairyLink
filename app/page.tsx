@@ -28,7 +28,7 @@ const team = [
     name: "Ian Karanja",
     link: "https://www.linkedin.com/in/ian-karanja-00027724b/",
     img: "/assets/images/team/ian.jpg",
-    role: "Product Manager",
+    role: "Backend Engineer",
   },
   {
     name: "Teddy Muli",
@@ -58,7 +58,7 @@ const team = [
     name: "Aketch Atem",
     link: "https://www.linkedin.com/in/akech-dau-atem-723455222/",
     img: "/assets/images/team/aketch.jpg",
-    role: "Machine Learning Engineer",
+    role: "Backend Engineer",
   },
 ];
 
