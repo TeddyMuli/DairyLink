@@ -4,8 +4,6 @@ import {
   User,
   Library,
   MessageSquareWarning,
-  Bell,
-  HandHelping,
   Heart,
   Box,
   CalendarDays,
