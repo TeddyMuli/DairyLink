@@ -77,10 +77,10 @@ export default function Home() {
           */}
           <div style={{ position: "relative", width: "100%", height: "500px" }}>
             <Image
-              src={`/cowlandscape.jpg`}
+              src={`/assets/images/cowlandscape.jpg`}
               alt="cow"
               fill
-              objectFit="cover"
+              style={{objectFit: "cover"}}
             />
           </div>
           {/** 
@@ -219,6 +219,7 @@ export default function Home() {
                   </p>
                 </>
               }
+              bgImage="/profile.jpg"
             />
             <InfoFlipCard
               frontContent={
@@ -240,6 +241,7 @@ export default function Home() {
                   </p>
                 </>
               }
+              bgImage="/dashboard.jpg"
             />
             <InfoFlipCard
               frontContent={
@@ -261,6 +263,7 @@ export default function Home() {
                   </p>
                 </>
               }
+              bgImage="/news.jpg"
             />
             <InfoFlipCard
               frontContent={
@@ -282,6 +285,7 @@ export default function Home() {
                   </p>
                 </>
               }
+              bgImage="/other_services.jpg"
             />
           </div>
         </div>
