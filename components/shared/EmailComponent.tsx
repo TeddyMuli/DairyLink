@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import MessageComponent from './MessageComponent';
 import MessageHeader from './MessageHeader';
+import { ScrollArea } from '../ui/scroll-area';
 
 const tabs = [
   { name: "inbox", icon: Mail, num: 4500 },
@@ -34,7 +35,7 @@ const EmailComponent = () => {
       <Tabs defaultValue='inbox' className='flex gap-4'>
         {/** Links */}
         <TabsList className='w-[30%]'>
-          <div className='flex gap-2 text-white cursor-pointer w-full text-lg p-3 bg-green-500 rounded-lg justify-center items-center font-medium mb-4'>
+          <div className='flex gap-2 text-white cursor-pointer w-full text-lg p-3 bg-green-500 rounded-lg justify-center items-center font-medium mb-4 -mt-32'>
             <Plus />
             <p>Compose</p>
           </div>
@@ -54,11 +55,23 @@ const EmailComponent = () => {
         </TabsList>
 
         {/** Content */}
-        <div className='bg-white w-[70%] p-4 rounded-xl'>
+        <ScrollArea className='bg-white w-[70%] h-[100vh] p-4 rounded-xl'>
           {/** Inbox */}
           <TabsContent value="inbox" className='w-full'>
             <MessageHeader selectedTab={selectedTab} />
             {/** Inbox */}
+            <MessageComponent />
+            <MessageComponent />
+            <MessageComponent />
+            <MessageComponent />
+            <MessageComponent />
+            <MessageComponent />
+            <MessageComponent />
+            <MessageComponent />
+            <MessageComponent />
+            <MessageComponent />
+            <MessageComponent />
+            <MessageComponent />
             <MessageComponent />
             <MessageComponent />
             <MessageComponent />
@@ -124,7 +137,7 @@ const EmailComponent = () => {
             <MessageComponent />
             <MessageComponent />
           </TabsContent>
-        </div>
+        </ScrollArea>
       </Tabs>
 
     </>
