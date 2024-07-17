@@ -65,6 +65,7 @@ const team = [
 export default function Home({ user } : { user: any }) {
   const [isArrowVisible, setIsArrowVisible] = useState<boolean>(false);
   const router = useRouter();
+  const userData = JSON.parse(user?.value)
 
   const [teamsData,setTeamsData] = useState<{
     name: string;
@@ -78,10 +79,12 @@ export default function Home({ user } : { user: any }) {
 
   const handleUserSignedIn = () => {
     if (user) {
-      if (user?.user_metadata?.accountType === "Farmer") {
+      if (userData?.user_metadata?.accountType === "Farmer") {
         router.push("/app")
-      } else {
+      } else if (userData?.user_metadata?.accountType === "Cooperative") {
         router.push("/admin")
+      } else {
+        return
       }
     } else {
       return
