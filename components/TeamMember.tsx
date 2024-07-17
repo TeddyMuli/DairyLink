@@ -1,7 +1,6 @@
 'use client'
 
 import Image from "next/image";
-import Link from "next/link";
 
 const TeamMember = ({name, img_src, link, role} : {name: string, img_src: string, link: string, role: string}) => {
     return (
@@ -11,10 +10,9 @@ const TeamMember = ({name, img_src, link, role} : {name: string, img_src: string
                     <Image
                         src={img_src}
                         alt="teammember"
-                        fill={true}
-                        objectFit="cover"
+                        fill
                         className="p-1 rounded-full border-8 border-black"
-
+                        style={{objectFit: "cover"}}
                     />
                 </div>
             </a>
