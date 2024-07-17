@@ -14,6 +14,7 @@ import { Session } from "@supabase/auth-helpers-nextjs";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Autoplay from "embla-carousel-autoplay";
+import { ChevronUp } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
@@ -65,13 +66,15 @@ const team = [
 export default function Home() {
   const [loading, setLoading] = useState(false);
   const [session, setSession] = useState<Session | null>(null);
+  const [isArrowVisible, setIsArrowVisible] = useState<boolean>(false);
+
   const [teamsData,setTeamsData] = useState<{
     name: string;
     link: string;
     img: string;
     role: string;
-}[]>(team);
-const [showAll, setShowAll] = useState<boolean>(false);
+  }[]>(team);
+  const [showAll, setShowAll] = useState<boolean>(false);
 
   const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
 
@@ -109,8 +112,35 @@ const [showAll, setShowAll] = useState<boolean>(false);
     setTeamsData(team);
   }
 
+  useEffect(() => {
+    const toggleVisibility = () => {
+      window.scrollY > 500 ? setIsArrowVisible(true) : setIsArrowVisible(false)
+    }
+    window.addEventListener("scroll", toggleVisibility);
+
+    return () => {
+      window.removeEventListener("scroll", toggleVisibility)
+    }
+  }, []);
+
+  const handleScrollToTop = () => {
+    isArrowVisible &&
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      })
+  }
+
   return (
     <div className="">
+      <button
+      className={`fixed bottom-4 right-4 text-green-500 border-2 border-green-500 rounded-full p-2 outline-none transition-opacity duration-200 ${
+        isArrowVisible ? "opacity-100" : "opacity-0"
+      }`}
+      onClick={handleScrollToTop}
+    >
+      <ChevronUp className="h-6 w-6" />
+    </button>
       <div
         className="relative w-full h-96 md:h-[600px] lg:h-[800px] flex flex-col justify-center items-center "
       >

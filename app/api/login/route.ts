@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/utils/supabase/server';
-import { redirect } from 'next/navigation';
 
 export async function POST(req: NextRequest) {
   const supabase = createClient();
@@ -15,14 +14,6 @@ export async function POST(req: NextRequest) {
     if (error) {
       return NextResponse.json({ error: error.message }, { status: 401 });
     }
-
-  if (user?.user_metadata?.accountType === "Farmer") {
-    redirect("/app");
-  } else if (user?.user_metadata?.accountType === "Farmer") {
-    redirect("/admin");
-  } else {
-    console.log("Error retrieving user account type");
-  }
     
-  return NextResponse.json({ message: 'Login successful' });
+  return NextResponse.json({ message: `Login successful\nUser Data: ${user}` });
 }

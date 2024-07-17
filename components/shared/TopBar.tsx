@@ -5,11 +5,29 @@ import { Menu } from "lucide-react";
 import Link from "next/link";
 import * as React from "react";
 import { Button } from "../ui";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
-export default function Navbar() {
+export default function Navbar({ user }: {user: any}) {
   const [state, setState] = React.useState(false);
-  const pathname = usePathname()
+  const pathname = usePathname();
+  const handleSignOut = async () => {
+    try {
+      const response = await fetch('/api/signout', {
+        method: 'POST',
+      });
+      const result = await response.json();
+      console.log("Logout: ", result)
+      if (result.error) {
+        console.log('Error signing out:', result.error);
+        return;
+      }
+      toast.success('Logged out');
+      useRouter().push('/');
+    } catch (error) {
+      console.log('Error:', error);
+    }
+  }
 
   return (
     <nav className={`w-full my-8 ${pathname !== "/" && "hidden"}`}>
@@ -43,7 +61,7 @@ export default function Navbar() {
                 key={idx}
                 className={` hover:text-black hover:font-bold hover:underline hover:underline-offset-1 text-slate-500 text-2xl`}
               >
-                {item.title === "Register" ? (
+                {(item.title === "Register") ? (
                   <Button
                     asChild
                     variant={"outline"}
@@ -56,6 +74,17 @@ export default function Navbar() {
                 )}
               </li>
             ))}
+          {user && (
+            <Button
+              onClick={handleSignOut}
+              asChild
+              variant={"outline"}
+              className="text-black transition-all duration-300 hover:translate-x-[-4px] hover:translate-y-[-4px] cursor-pointer"
+            >
+              <p>SignOut</p>
+            </Button>
+          )}
+
           </ul>
         </div>
       </div>

@@ -5,33 +5,62 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { providers } from '@/constants';
 import { toast } from 'react-toastify';
-import { signInWithGoogle } from '../action';
+import { signInWithProvider } from '../action';
+import { Eye, EyeOff } from "lucide-react";
+import { z } from 'zod';
+import { useForm, Controller } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Checkbox } from '@/components/ui/checkbox';
+
+const validationSchema = z
+.object({
+  email: z.string().email("Invalid email address").min(1, "Required"),
+  password: z.string().min(1, "Required")
+})
 
 export default function Page() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [seePassword, setSeePassword] = useState(false);
   const router = useRouter();
+  const { 
+    control,
+    reset,
+    formState: { isValid, isDirty, errors },
+    register,
+    handleSubmit,
+    getValues
+   } = useForm({
+    resolver: zodResolver(validationSchema),
+    mode: "onChange",
+    defaultValues: {
+      email: "",
+      password: "",
+      rememberMe: false
+    }
+  })
 
-  const handleSubmit = async (e: any, action: any) => {
-    e.preventDefault();
-    const response = await fetch(action === 'login' ? '/api/login' : '/api/signup', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, password }),
-    });
+  const onSubmit = async () => {
+    try {
+      const formData = getValues();
 
-    const result = await response.json();
-    console.log("Login Response: ", response.json())
-
-    if (response.ok) {
-      if (action === 'login') {
-        toast.success("Logged In!", {closeOnClick: true})
-        router.push('/');
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+  
+      const result = await response.json();
+      
+      if (response.ok) {
+          console.log("Login Response: ", result)
+          toast.success("Logged In!", {closeOnClick: true})
+          router.push('/');
+      } else {
+        toast.error("Error logging in!", {closeOnClick: true})
       }
-    } else {
-      toast.error("Error logging in!", {closeOnClick: true})
+    } catch (error) {
+      console.error("Error: ", error)
     }
   };
 
@@ -58,38 +87,53 @@ export default function Page() {
         <div className="bg-white rounded-xl m-8 p-8">
           <h1 className="text-center text-6xl font-extrabold p-4">Welcome</h1>
           <p className="text-center font-semibold pb-4">Create an account or login to access DairyLink</p>
-          <form className="px-8" onSubmit={(e) => handleSubmit(e, 'login')}>
+          <form className="px-8" onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col">
               <label htmlFor="email" className="text-xl p-2">Email address</label>
               <input
                 id="email"
                 type="text"
-                name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                {...register("email")}
                 placeholder="Email address"
                 className="p-4 border-2 border-black/40 rounded-lg focus:border-green-500 outline-none"
               />
+              {errors.email && <div className="text-red-500 text-sm font-medium">{errors.email.message}</div>}
             </div>
 
             <div className="flex flex-col">
               <label htmlFor="password" className="text-xl p-2">Enter Password</label>
-              <input
-                id="password"
-                type="password"
-                name="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="p-4 border-2 border-black/40 focus:border-green-500 rounded-lg outline-none"
-                placeholder="Enter Password"
-              />
+                <div className="flex gap-4 border-2 border-black/40 items-center group focus-within:border-green-500 rounded-lg w-full">
+                  <input
+                    id="password"
+                    type={seePassword ? "text" : "password"}
+                    {...register("password")}
+                    className="p-4 outline-none rounded-lg w-full"
+                    placeholder="Enter new Password"
+                  />
+                  <div className="flex ml-auto mr-4">
+                    {seePassword ? (
+                      <Eye onClick={() => setSeePassword(false)} className="cursor-pointer" />
+                    ): (
+                      <EyeOff onClick={() => setSeePassword(true)} className="cursor-pointer" />
+                    )}
+                  </div>
+                </div>
+                {errors.password && <div className="text-red-500 text-sm font-medium">{errors.password.message}</div>}
             </div>
             <div className="flex gap-4 py-4">
-              <input type="checkbox" name="" id="" />
-              <p>Remember me</p>
+              <Controller
+                name="rememberMe"
+                control={control}
+                render={({ field: {onChange, value} }) => (
+                  <>
+                    <Checkbox className="cursor-pointer" checked={value} onCheckedChange={(newValue) => onChange(newValue)} id="rememberMe" />
+                    <p>Remember me</p>
+                  </>
+                )}
+              />
             </div>
             <div className="flex justify-center items-center gap-4">
-              <button type="submit" className="py-4 bg-blue-600 font-bold text-2xl rounded-lg text-white w-[500px]">Login</button>
+              <button type="submit" disabled={!isValid || !isDirty} className={`py-4 bg-blue-600 cursor-pointer disabled:bg-blue-400 disabled:cursor-not-allowed font-bold text-2xl rounded-lg text-white w-[500px]`}>Log In</button>
             </div>
           </form>
           <div className="flex justify-center items-center py-4">
@@ -111,7 +155,7 @@ export default function Page() {
                   width={50}
                   height={50}
                   className="cursor-pointer"
-                  onClick={() => signInWithGoogle(provider.name)}
+                  onClick={() => signInWithProvider(provider.name)}
                 />
               ))}
             </div>
