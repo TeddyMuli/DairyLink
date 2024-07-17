@@ -4,6 +4,7 @@ import { Plus } from 'lucide-react';
 import React from 'react';
 import Event from "./Event";
 import BigCalender from './BigCalender';
+import { ScrollArea } from '../ui/scroll-area';
 
 const Calender = () => {
   return (
@@ -13,13 +14,17 @@ const Calender = () => {
           <Plus />
           <p>Add new event</p>
         </div>
-        <div>
+        <ScrollArea className='h-[100vh]'>
           <p className='font-bold text-xl mb-8'>You are going to</p>
           <Event />
           <Event />
           <Event />
           <Event />
-        </div>
+          <Event />
+          <Event />
+          <Event />
+          <Event />
+        </ScrollArea>
       </div>
       <div className='w-[70%] bg-white p-3 rounded-xl'>
         <BigCalender />
