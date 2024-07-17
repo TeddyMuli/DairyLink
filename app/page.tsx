@@ -9,8 +9,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui";
-import { supabase } from "@/lib/supabase";
-import { Session } from "@supabase/auth-helpers-nextjs";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Autoplay from "embla-carousel-autoplay";
@@ -64,8 +62,6 @@ const team = [
 ];
 
 export default function Home() {
-  const [loading, setLoading] = useState(false);
-  const [session, setSession] = useState<Session | null>(null);
   const [isArrowVisible, setIsArrowVisible] = useState<boolean>(false);
 
   const [teamsData,setTeamsData] = useState<{
@@ -85,14 +81,7 @@ export default function Home() {
       easing: "ease-in-out",
     });
 
-    supabase.auth
-      .getSession()
-      .then((session) => setSession(session.data.session || null))
-      .catch((err) => {
-        console.log("ERROR GET SESSION: ", err);
-      });
-
-      handleShowFewTeamMembers();
+    handleShowFewTeamMembers();
   }, []);
 
   useEffect(() => {
