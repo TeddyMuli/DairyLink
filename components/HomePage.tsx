@@ -77,20 +77,6 @@ export default function Home({ user } : { user: any }) {
 
   const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
 
-  const handleUserSignedIn = () => {
-    if (user) {
-      if (userData?.user_metadata?.accountType === "Farmer") {
-        router.push("/app")
-      } else if (userData?.user_metadata?.accountType === "Cooperative") {
-        router.push("/admin")
-      } else {
-        return
-      }
-    } else {
-      return
-    }
-  }
-
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -102,8 +88,22 @@ export default function Home({ user } : { user: any }) {
   }, []);
 
   useEffect(() => {
+    function handleUserSignedIn () {
+      if (userData) {
+        if (userData?.user_metadata?.accountType === "Farmer") {
+          router.push("/app")
+        } else if (userData?.user_metadata?.accountType === "Cooperative") {
+          router.push("/admin")
+        } else {
+          return
+        }
+      } else {
+        return
+      }
+    }
+  
     handleUserSignedIn();
-  }, [user]);
+  }, [userData]);
 
   useEffect(() => {
     if(showAll){
