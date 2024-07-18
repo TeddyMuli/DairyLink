@@ -5,9 +5,10 @@ import { farmerLinks } from '@/constants';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { toast } from 'react-toastify';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 const FarmerSideBar = () => {
+  const router = useRouter();
   const pathname = usePathname();
   const handleSignOut = async () => {
     try {
@@ -20,8 +21,8 @@ const FarmerSideBar = () => {
         console.log('Error signing out:', result.error);
         return;
       }
+      router.push('/auth/login');
       toast.success('Logged out');
-      useRouter().push('/');
     } catch (error) {
       console.log('Error:', error);
     }
