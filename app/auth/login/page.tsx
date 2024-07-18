@@ -133,7 +133,7 @@ export default function Page() {
               />
             </div>
             <div className="flex justify-center items-center gap-4">
-              <button type="submit" disabled={!isValid || !isDirty} className={`py-4 bg-blue-600 cursor-pointer disabled:bg-blue-400 disabled:cursor-not-allowed font-bold text-2xl rounded-lg text-white w-[500px]`}>Log In</button>
+              <button type="submit" disabled={!isValid || !isDirty} className="py-4 bg-blue-600 cursor-pointer disabled:bg-blue-400 disabled:cursor-not-allowed font-bold text-2xl rounded-lg text-white w-[500px]">Log In</button>
             </div>
           </form>
           <div className="flex justify-center items-center py-4">
