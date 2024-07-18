@@ -5,7 +5,7 @@ import { Quicksand } from "next/font/google";
 import "./globals.css";
 import ToastProvider from "@/components/ToastProvider";
 import { getUser } from "@/components/supabase/GetUser";
-import { redirect } from "next/navigation";
+
 const quickSand = Quicksand({
   subsets: ["latin"],
   variable: "--font-quickSand",
