@@ -12,7 +12,7 @@ const RadioGroup = React.forwardRef<
 >(({ className, ...props }, ref) => {
   return (
     <RadioGroupPrimitive.Root
-      className={cn("flex justify-between w-full", className)}
+      className={cn("flex flex-col xl:flex-row gap-4 justify-between w-full", className)}
       {...props}
       ref={ref}
     />

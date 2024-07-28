@@ -3,7 +3,7 @@ import { createClient } from '@/utils/supabase/server';
 
 export async function POST(req: NextRequest) {
   const { origin } = req.nextUrl;
-  const { username, email, password, accountType } = await req.json();
+  const { full_name, email, password, accountType } = await req.json();
   const supabase = createClient();
 
   const { data, error } = await supabase.auth.signUp({
@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
     password,
     options: {
       data: {
-        username,
+        full_name,
         accountType
       },
       emailRedirectTo: `${origin}/auth/callback`,

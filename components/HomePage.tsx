@@ -157,7 +157,7 @@ export default function Home({ user } : { user: any }) {
           src={`/assets/images/cowlandscape.jpg`}
           alt="cow"
           fill
-          objectFit="cover"
+          style={{ objectFit: "cover" }}
         />
         <div className="absolute inset-0 text-white flex flex-col justify-center items-center z-10">
           <Carousel

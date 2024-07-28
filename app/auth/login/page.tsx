@@ -15,7 +15,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 const validationSchema = z
 .object({
   email: z.string().email("Invalid email address").min(1, "Required"),
-  password: z.string().min(1, "Required")
+  password: z.string().min(6, "Required")
 })
 
 export default function Page() {

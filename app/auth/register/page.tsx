@@ -16,7 +16,7 @@ import { signInWithProvider } from "../action";
 
 const validationSchema = z
 .object({
-  username: z.string().min(4, "Username must be atleast 4 characters long"),
+  full_name: z.string().min(4, "Username must be atleast 4 characters long"),
   email: z.string().email("Invalid email address").min(1, "This field is required!"),
   password: z.string().min(6, "Password must be 6 characters long!"),
   confirmPassword: z.string(),
@@ -41,7 +41,7 @@ export default function Page() {
     resolver: zodResolver(validationSchema),
     mode: "onChange",
     defaultValues: {
-      username: "",
+      full_name: "",
       email: "",
       password: "",
       confirmPassword: "",
@@ -84,27 +84,37 @@ export default function Page() {
   };
 
   return (
-    <div style={backgroundImageStyle}>
-      <div className="container mx-auto grid grid-cols-1 grid-rows-2 lg:grid-cols-2 lg:grid-rows-1 text-xl">
-        <div className="flex flex-col justify-center items-center text-6xl text-left bg-white bg-opacity-30 w-[500px] rounded-xl ml-8">
+    <div className="relative w-full h-screen xl:h-[180vh] justify-center items-center bg-green-500 xl:bg-none">
+      <Image 
+        src={"/assets/dairy_cow.jpg"}
+        fill
+        style={{objectFit: "cover"}}
+        className="hidden xl:block"
+        alt="dairy cow"
+      />
+      <div className="absolute container mx-auto grid grid-cols-1 grid-rows-2 lg:grid-cols-2 lg:grid-rows-1 text-xl">
+        <div className="hidden xl:flex flex-col justify-center items-center text-6xl text-left bg-white bg-opacity-30 w-[500px] rounded-xl ml-8">
           <h1 className="font-bold mt-[100px]">DairyLink</h1>
           <div className="my-auto">
             <p className="text-green-800 font-medium">Connecting<br />dairy farmers<br />and simplifying<br /><span className="font-extrabold">success</span></p>
           </div>
         </div>
         <div className="bg-white rounded-xl m-8 p-4">
-          <h1 className="text-center text-5xl font-extrabold py-4">Create your account</h1>
+            <h1 className="block xl:hidden text-3xl font-bold text-accent text-slate-900 text-center">
+              Dairy<span className="text-green-600">Link</span>
+            </h1>          
+            <h1 className="text-center text-xl xl:text-5xl font-extrabold py-4">Create your account</h1>
             <form onSubmit={handleSubmit(onSubmit)} className="px-8">
               <div className="flex flex-col">
-                <label htmlFor="username" className="text-lg p-2">User name</label>
+                <label htmlFor="full_name" className="text-lg p-2">User name</label>
                 <input
-                  id="username"
+                  id="full_name"
                   type="text"
-                  {...register("username")}
+                  {...register("full_name")}
                   placeholder="Enter your Username"
                   className="p-4 border-2 border-black/40 rounded-lg focus:border-green-500 outline-none"
                 />
-                {errors.username && <div className="text-red-500 text-sm font-medium">{errors.username.message}</div>}
+                {errors.full_name && <div className="text-red-500 text-sm font-medium">{errors.full_name.message}</div>}
               </div>
 
               <div className="flex flex-col">
@@ -225,8 +235,7 @@ export default function Page() {
                 <div className="border-t w-24 border-black mt-3.5"></div>
               </div>
               <p className="text-center py-4">Sign up with</p>
-              <div className="flex flex-col justify-center items-center">
-                <div className="flex flex-row gap-[100px] pt-2 pb-8">
+                <div className="flex flex-row gap-[100px] pt-2 pb-8 justify-center items-center">
                   {providers.map((provider, index) => {
                     return (
                       <div key={index} className="cursor-pointer p-2 rounded-lg">
@@ -243,7 +252,6 @@ export default function Page() {
                     )
                   })}
                 </div>
-              </div>
             </form>
         </div>
       </div>

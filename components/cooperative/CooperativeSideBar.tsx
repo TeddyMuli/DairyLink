@@ -1,17 +1,17 @@
 "use client";
 
 import React, { useState } from 'react';
-import { farmerLinks } from '@/constants';
+import { cooperativeLinks } from '@/constants';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import Loading from '../Loading';
 
-const FarmerSideBar = () => {
-  const router = useRouter();
+const CooperativeSideBar = () => {
   const [isLoading, setIsLoading] = useState(false);
 
+  const router = useRouter();
   const pathname = usePathname();
   const handleSignOut = async () => {
     setIsLoading(true);
@@ -37,7 +37,7 @@ const FarmerSideBar = () => {
   return (
     <div className='bg-white pr-4 py-4 flex flex-col gap-6'>
       <div className='flex flex-col gap-4'>
-        {farmerLinks.map((link, index) => {
+        {cooperativeLinks.map((link, index) => {
           return (
             <div key={index} className={`flex items-center gap-2`}>
               <div className={`border-l border-4 border-green-500 h-8 rounded-lg opacity-0 ${pathname === link.path && "opacity-100"}`}></div>
@@ -61,4 +61,4 @@ const FarmerSideBar = () => {
   );
 }
 
-export default FarmerSideBar;
+export default CooperativeSideBar;
