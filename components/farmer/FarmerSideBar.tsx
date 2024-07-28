@@ -1,15 +1,20 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import { farmerLinks } from '@/constants';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { toast } from 'react-toastify';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
+import Loading from '../Loading';
 
 const FarmerSideBar = () => {
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+
   const pathname = usePathname();
   const handleSignOut = async () => {
+    setIsLoading(true);
     try {
       const response = await fetch('/api/signout', {
         method: 'POST',
@@ -20,10 +25,12 @@ const FarmerSideBar = () => {
         console.log('Error signing out:', result.error);
         return;
       }
+      router.push('/auth/login');
       toast.success('Logged out');
-      useRouter().push('/');
     } catch (error) {
       console.log('Error:', error);
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -41,10 +48,14 @@ const FarmerSideBar = () => {
             </div>
           )
         })}
-        <button
-          onClick={handleSignOut}
-          className='p-3 ml-1 bg-green-600 text-xl text-white font-semibold rounded-full'
-        >Signout</button>
+        <div onClick={handleSignOut} className='cursor-pointer flex gap-4 bg-green-600 justify-center items-center p-3 ml-1 text-white rounded-full'>
+          {isLoading && <Loading />}
+          <p
+            className='text-xl font-semibold'
+          >
+            Signout
+          </p>
+        </div>
       </div>
     </div>
   );

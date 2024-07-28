@@ -5,8 +5,8 @@ import { Quicksand } from "next/font/google";
 import "./globals.css";
 import ToastProvider from "@/components/ToastProvider";
 import { getUser } from "@/components/supabase/GetUser";
-import { createClient } from "@supabase/supabase-js";
-import { toast } from "react-toastify";
+import { ReactQueryClientProvider } from '@/components/ReactQueryClientProvider';
+
 const quickSand = Quicksand({
   subsets: ["latin"],
   variable: "--font-quickSand",
@@ -22,23 +22,25 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const user = await getUser(); 
-
+  const user = await getUser();
+  
   return (
-    <html lang="en">
-      <body className={`${quickSand.variable}`}>
-        <main>
-          <section>
-            <TopBar user={user} />
-            <div>
-              <ToastProvider>
-                {children}
-              </ToastProvider>
-            </div>
-          </section>
-        </main>
-        <Footer />
-      </body>
-    </html>
+    <ReactQueryClientProvider>
+      <html lang="en">
+        <body className={`${quickSand.variable}`}>
+          <main>
+            <section>
+              <TopBar user={user} />
+              <div>
+                <ToastProvider>
+                  {children}
+                </ToastProvider>
+              </div>
+            </section>
+          </main>
+          <Footer />
+        </body>
+      </html>
+    </ReactQueryClientProvider>
   );
 }

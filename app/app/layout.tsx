@@ -3,6 +3,7 @@ import FarmerTopBar from "@/components/farmer/FarmerTopBar";
 import { getUser } from "@/components/supabase/GetUser";
 import type { Metadata } from "next";
 import { Quicksand } from "next/font/google";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "DairyLink",
@@ -20,6 +21,8 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const user = await getUser();
+  if (!user) redirect("/auth/login")
+  if (user?.user_metadata?.accountType === "Cooperative") redirect("/admin")
 
   return (
     <div className={`text-black ${quickSand.variable} flex flex-row h-screen overflow-y-hidden`}>

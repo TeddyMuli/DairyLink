@@ -1,20 +1,23 @@
-import React, { useState } from 'react';
-import { Checkbox } from '../ui/checkbox';
-import { Star } from 'lucide-react';
+import React from 'react';
+import { SquareChevronLeft } from 'lucide-react';
 
-const MessageComponent = () => {
-  const [starClicked, setStarClicked] = useState(false);
-
+const MessageComponent = ({ message, setShowPreview } : { message: any, setShowPreview: any }) => {
   return (
     <div>
-      <div className='flex gap-3 py-4 w-full'>
-        <Checkbox />
-        <Star onClick={() => setStarClicked(!starClicked)} className={`cursor-pointer ${starClicked && "text-yellow-500 fill-yellow-500"}`} />
-        <p className='font-bold'>Teddy Muli</p>
-        <p className='text-customDarkGrey font-semibold'>This is the subject of the message</p>
-        <div className='ml-auto'><p className='text-customDarkGrey font-semibold'>8: 38 a.m</p></div>
+      <button type="button" onClick={() => setShowPreview(true)}>
+        <SquareChevronLeft />
+      </button>
+      <div>
+        <div className='flex w-full justify-between'>
+          <p className='font-semibold text-lg text-black'><span className='text-customDarkGrey font-medium'>From:</span> {message?.from}</p>
+          <p className='font-semibold text-lg text-black'><span className='text-customDarkGrey font-medium'>Time:</span> {message?.time}</p>
+        </div>
+        <p className='font-semibold text-lg text-black'><span className='text-customDarkGrey font-medium'>Subject:</span> {message?.header}</p>
+        {/** Body  */}
+        <div className='border border-black p-3 my-4 rounded-xl'>
+          <p className='text-lg font-medium'>{message?.body}</p>
+        </div>
       </div>
-      <div className='border-b border-black'></div>
     </div>
   );
 }

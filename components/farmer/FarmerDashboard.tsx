@@ -3,28 +3,46 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
 import FarmerCharts from "@/components/farmer/FarmerCharts";
+import { useQuery } from '@supabase-cache-helpers/postgrest-react-query';
+import { getCooperative, getFarmer } from '@/queries/get_queries';
+import useSupabaseBrowser from '@/utils/supabase-browser';
+import ChooseCoopModal from './ChooseCoopModal';
 
-const FarmerDashboard = () => {
-  const [scheduledVisit, setScheduledVisit] = useState("h")
+const FarmerDashboard = ({ user } : { user: any }) => {
+  const supabaseBrowser = useSupabaseBrowser();
+  const [scheduledVisit, setScheduledVisit] = useState("h");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { data: farmer, isLoading, isError } = useQuery(getFarmer(supabaseBrowser, user?.id));
+  const { data: cooperative, isLoading: cooperativeLoading, isError: cooperativeError } = useQuery(
+  getCooperative(supabaseBrowser, farmer?.cooperative_id!)
+  );
 
   return (
     <div className='text-black'>
       {/** Personal analytics */}
       <p className='text-3xl font-bold'>Dashboard</p>
+      <ChooseCoopModal user_id={user?.id} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
       <div className='grid py-4 gap-4'>
         <div className='grid grid-rows-1 grid-cols-2 gap-3'>
           <div className='p-3 bg-white rounded-xl'>
             <p className='text-lg text-neutral-500 font-semibold'>Cooperative</p>
-            <p className='text-xl text-green-500 font-bold'>Ndumberi Dairy Farmers</p>
-          </div>
 
+            <div className='text-xl text-green-500 font-bold'>
+              {cooperative?.cooperative_name ?
+                <p>{cooperative?.cooperative_name}</p> :
+                <div>
+                  <p>No cooperative found</p>
+                  <p onClick={() => setIsModalOpen(true)} className='text-sm cursor-pointer text-blue-500'>Join a cooperative</p>
+                </div>
+              }
+            </div>
+          </div>
+          
           <div className='p-3 bg-white rounded-xl'>
           <p className='text-lg text-neutral-500 font-semibold'>Members</p>
           <p className='text-xl text-green-500 font-bold'>500</p>
           </div>
         </div>
-
-        <div className='border border-black/20 mx-4'></div>
 
         <div className='grid grid-cols-4 grid-rows-1 gap-4'>
           {/** Milk and Cows */}
@@ -50,8 +68,8 @@ const FarmerDashboard = () => {
               </div>
             </div>
             <div className='flex flex-col bg-white rounded-xl p-3'>
-              <div className='flex font-semibold text-neutral-500 justify-center items-center gap-1'>
-                <p className='text-lg'>Monthly Milk Output </p>
+              <div className='flex items-start gap-1'>
+                <p className='text-lg font-semibold text-neutral-500 text-center'>Monthly Milk Output </p>
               </div>
               <div className='pb-4'></div>
               <div className='flex items-center font-semibold gap-2'>

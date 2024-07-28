@@ -15,7 +15,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 const validationSchema = z
 .object({
   email: z.string().email("Invalid email address").min(1, "Required"),
-  password: z.string().min(1, "Required")
+  password: z.string().min(6, "Required")
 })
 
 export default function Page() {
@@ -133,7 +133,7 @@ export default function Page() {
               />
             </div>
             <div className="flex justify-center items-center gap-4">
-              <button type="submit" disabled={!isValid || !isDirty} className={`py-4 bg-blue-600 cursor-pointer disabled:bg-blue-400 disabled:cursor-not-allowed font-bold text-2xl rounded-lg text-white w-[500px]`}>Log In</button>
+              <button type="submit" disabled={!isValid || !isDirty} className="py-4 bg-blue-600 cursor-pointer disabled:bg-blue-400 disabled:cursor-not-allowed font-bold text-2xl rounded-lg text-white w-[500px]">Log In</button>
             </div>
           </form>
           <div className="flex justify-center items-center py-4">

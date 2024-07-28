@@ -1,9 +1,10 @@
+import CooperativeDashboard from '@/components/cooperative/CooperativeDashboard';
 import React from 'react';
 
 const Page = () => {
   return (
     <div>
-      admin page
+      <CooperativeDashboard />
     </div>
   );
 }
