@@ -1,10 +1,9 @@
 "use client"
 import React, { useState } from 'react';
 import {Step1, Step2, Step3} from "@/components/farmer/FarmerOnboardingSteps";
-import { createClient } from '@supabase/supabase-js';
+import { supabase } from '@/utils/create_client';
 
 const Page = () => {  
-  const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL as string, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string)
   const [step, setStep] = useState(0);
 
   const nextStep = () => setStep(step + 1);

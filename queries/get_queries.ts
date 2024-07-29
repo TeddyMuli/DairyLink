@@ -24,3 +24,11 @@ export function getAllCooperatives(client: TypedSupabaseClient) {
     .select("*")
     .throwOnError()
 }
+
+export function getMessages(client: TypedSupabaseClient, user_id: string) {
+  return client
+    .from("message_recipients")
+    .select("*")
+    .eq("to", user_id)
+    .throwOnError()
+}

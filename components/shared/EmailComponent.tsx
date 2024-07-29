@@ -48,15 +48,15 @@ const messages = [
   { type: "bin", to: "", from: "Teddy", header: "This is the subject of the message.", body: "This is the body of the message 16.", time: "8. 38 pm" },
 ]
 
-const EmailComponent = () => {
+const EmailComponent = ({ user } : { user: any }) => {
   const [selectedTab, setSelectedTab] = useState("inbox");
   const [showPreview, setShowPreview] = useState(true);
   const [selectedMessage, setSelectedMessage] = useState({});
   const [showCompose, setShowCompose] = useState(false);
 
   return (
-    <>
-      {showCompose && <Compose setShowCompose={setShowCompose} />}
+    <div>
+      {showCompose && <Compose user={user} setShowCompose={setShowCompose} />}
       <Tabs defaultValue='inbox' className='flex gap-4'>
         {/** Links */}
         <TabsList className='w-[30%]'>
@@ -96,7 +96,7 @@ const EmailComponent = () => {
         </ScrollArea>
       </Tabs>
 
-    </>
+    </div>
   );
 }
 
