@@ -7,7 +7,7 @@ import { useQuery } from '@supabase-cache-helpers/postgrest-react-query';
 import Loading from '../Loading';
 import LoadingError from '../LoadingError';
 import { Dot, X } from 'lucide-react';
-import { createClient } from '@supabase/supabase-js';
+import { supabase } from '@/utils/create_client';
 import { toast } from 'react-toastify';
 import Image from 'next/image';
 
@@ -15,7 +15,6 @@ const ChooseCoopModal = ({ isModalOpen, setIsModalOpen, user_id } : { isModalOpe
   const supabaseBrowser = useSupabaseBrowser();
   const [loading, setLoading] = useState(false);
 
-  const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!);
   const { data: cooperatives, error, isLoading } = useQuery(getAllCooperatives(supabaseBrowser));
 
   const joinCooperative = async (cooperative_id: string) => {

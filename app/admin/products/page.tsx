@@ -1,3 +1,4 @@
+import CreateProduct from '@/components/cooperative/CreateProduct';
 import Product from '@/components/farmer/Product';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui';
 import React from 'react';
@@ -31,7 +32,7 @@ const Page = () => {
           </Carousel>
         </div>
         <div>
-          <Product name='Dog Food' rating={5} img='/assets/images/dog.jpg' price={300} />
+          <CreateProduct/>
         </div>
     </div>
   );

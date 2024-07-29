@@ -12,43 +12,43 @@ export type Database = {
     Tables: {
       blogs: {
         Row: {
-          content_URL: string | null
+          content_URL: string | undefined
           created_at: string
-          description: string | null
+          description: string | undefined
           id: string
-          title: string | null
+          title: string | undefined
         }
         Insert: {
-          content_URL?: string | null
+          content_URL?: string | undefined
           created_at?: string
-          description?: string | null
+          description?: string | undefined
           id?: string
-          title?: string | null
+          title?: string | undefined
         }
         Update: {
-          content_URL?: string | null
+          content_URL?: string | undefined
           created_at?: string
-          description?: string | null
+          description?: string | undefined
           id?: string
-          title?: string | null
+          title?: string | undefined
         }
         Relationships: []
       }
       collection_centers: {
         Row: {
           centre_id: number
-          centre_name: string | null
-          cooperative_id: string | null
+          centre_name: string | undefined
+          cooperative_id: string | undefined
         }
         Insert: {
           centre_id: number
-          centre_name?: string | null
-          cooperative_id?: string | null
+          centre_name?: string | undefined
+          cooperative_id?: string | undefined
         }
         Update: {
           centre_id?: number
-          centre_name?: string | null
-          cooperative_id?: string | null
+          centre_name?: string | undefined
+          cooperative_id?: string | undefined
         }
         Relationships: [
           {
@@ -62,37 +62,37 @@ export type Database = {
       }
       cooperatives: {
         Row: {
-          certificate_of_registration: string | null
-          cooperative_constitution: string | null
+          certificate_of_registration: string | undefined
+          cooperative_constitution: string | undefined
           cooperative_id: number
-          cooperative_name: string | null
-          date_of_registration: string | null
-          location: string | null
-          phone: string | null
-          registration_number: string | null
-          user_id: string | null
+          cooperative_name: string | undefined
+          date_of_registration: string | undefined
+          location: string | undefined
+          phone: string | undefined
+          registration_number: string | undefined
+          user_id: string | undefined
         }
         Insert: {
-          certificate_of_registration?: string | null
-          cooperative_constitution?: string | null
+          certificate_of_registration?: string | undefined
+          cooperative_constitution?: string | undefined
           cooperative_id?: number
-          cooperative_name?: string | null
-          date_of_registration?: string | null
-          location?: string | null
-          phone?: string | null
-          registration_number?: string | null
-          user_id?: string | null
+          cooperative_name?: string | undefined
+          date_of_registration?: string | undefined
+          location?: string | undefined
+          phone?: string | undefined
+          registration_number?: string | undefined
+          user_id?: string | undefined
         }
         Update: {
-          certificate_of_registration?: string | null
-          cooperative_constitution?: string | null
+          certificate_of_registration?: string | undefined
+          cooperative_constitution?: string | undefined
           cooperative_id?: number
-          cooperative_name?: string | null
-          date_of_registration?: string | null
-          location?: string | null
-          phone?: string | null
-          registration_number?: string | null
-          user_id?: string | null
+          cooperative_name?: string | undefined
+          date_of_registration?: string | undefined
+          location?: string | undefined
+          phone?: string | undefined
+          registration_number?: string | undefined
+          user_id?: string | undefined
         }
         Relationships: [
           {
@@ -106,64 +106,64 @@ export type Database = {
       }
       farmers: {
         Row: {
-          accountNumber: number | null
-          bankName: string | null
-          cooperative_id: string | null
-          DOB: string | null
+          accountNumber: number | undefined
+          bankName: string | undefined
+          cooperative_id: string | undefined
+          DOB: string | undefined
           email: string
           firstname: string
           idNumber: number
-          idPhoto: string | null
-          KRAPin: string | null
-          lastname: string | null
+          idPhoto: string | undefined
+          KRAPin: string | undefined
+          lastname: string | undefined
           memberId: number
-          nextOfKinName: string | null
-          nextOfKinPhone: number | null
-          no_of_cows: number | null
-          passportPhoto: string | null
+          nextOfKinName: string | undefined
+          nextOfKinPhone: number | undefined
+          no_of_cows: number | undefined
+          passportPhoto: string | undefined
           phone: string
-          postalAddress: string | null
-          user_id: string | null
+          postalAddress: string | undefined
+          user_id: string | undefined
         }
         Insert: {
-          accountNumber?: number | null
-          bankName?: string | null
-          cooperative_id?: string | null
-          DOB?: string | null
+          accountNumber?: number | undefined
+          bankName?: string | undefined
+          cooperative_id?: string | undefined
+          DOB?: string | undefined
           email: string
           firstname: string
           idNumber: number
-          idPhoto?: string | null
-          KRAPin?: string | null
-          lastname?: string | null
+          idPhoto?: string | undefined
+          KRAPin?: string | undefined
+          lastname?: string | undefined
           memberId?: number
-          nextOfKinName?: string | null
-          nextOfKinPhone?: number | null
-          no_of_cows?: number | null
-          passportPhoto?: string | null
+          nextOfKinName?: string | undefined
+          nextOfKinPhone?: number | undefined
+          no_of_cows?: number | undefined
+          passportPhoto?: string | undefined
           phone: string
-          postalAddress?: string | null
-          user_id?: string | null
+          postalAddress?: string | undefined
+          user_id?: string | undefined
         }
         Update: {
-          accountNumber?: number | null
-          bankName?: string | null
-          cooperative_id?: string | null
-          DOB?: string | null
+          accountNumber?: number | undefined
+          bankName?: string | undefined
+          cooperative_id?: string | undefined
+          DOB?: string | undefined
           email?: string
           firstname?: string
           idNumber?: number
-          idPhoto?: string | null
-          KRAPin?: string | null
-          lastname?: string | null
+          idPhoto?: string | undefined
+          KRAPin?: string | undefined
+          lastname?: string | undefined
           memberId?: number
-          nextOfKinName?: string | null
-          nextOfKinPhone?: number | null
-          no_of_cows?: number | null
-          passportPhoto?: string | null
+          nextOfKinName?: string | undefined
+          nextOfKinPhone?: number | undefined
+          no_of_cows?: number | undefined
+          passportPhoto?: string | undefined
           phone?: string
-          postalAddress?: string | null
-          user_id?: string | null
+          postalAddress?: string | undefined
+          user_id?: string | undefined
         }
         Relationships: [
           {
@@ -184,25 +184,25 @@ export type Database = {
       }
       loans: {
         Row: {
-          amount: number | null
+          amount: number | undefined
           created_at: string
           id: string
           memberId: number
-          status: string | null
+          status: string | undefined
         }
         Insert: {
-          amount?: number | null
+          amount?: number | undefined
           created_at?: string
           id?: string
           memberId: number
-          status?: string | null
+          status?: string | undefined
         }
         Update: {
-          amount?: number | null
+          amount?: number | undefined
           created_at?: string
           id?: string
           memberId?: number
-          status?: string | null
+          status?: string | undefined
         }
         Relationships: [
           {
@@ -218,20 +218,20 @@ export type Database = {
         Row: {
           created_at: string
           id: number
-          message_id: string | null
-          to: string | null
+          message_id: string | undefined
+          to: string | undefined
         }
         Insert: {
           created_at?: string
           id?: number
-          message_id?: string | null
-          to?: string | null
+          message_id?: string | undefined
+          to?: string | undefined
         }
         Update: {
           created_at?: string
           id?: number
-          message_id?: string | null
-          to?: string | null
+          message_id?: string | undefined
+          to?: string | undefined
         }
         Relationships: [
           {
@@ -252,34 +252,34 @@ export type Database = {
       }
       messages: {
         Row: {
-          body: string | null
+          body: string | undefined
           created_at: string
-          from: string | null
-          header: string | null
+          from: string | undefined
+          header: string | undefined
           message_id: string
-          parent_message_id: string | null
-          status: string | null
-          to: string | null
+          parent_message_id: string | undefined
+          status: string | undefined
+          to: string | undefined
         }
         Insert: {
-          body?: string | null
+          body?: string | undefined
           created_at?: string
-          from?: string | null
-          header?: string | null
+          from?: string | undefined
+          header?: string | undefined
           message_id?: string
-          parent_message_id?: string | null
-          status?: string | null
-          to?: string | null
+          parent_message_id?: string | undefined
+          status?: string | undefined
+          to?: string | undefined
         }
         Update: {
-          body?: string | null
+          body?: string | undefined
           created_at?: string
-          from?: string | null
-          header?: string | null
+          from?: string | undefined
+          header?: string | undefined
           message_id?: string
-          parent_message_id?: string | null
-          status?: string | null
-          to?: string | null
+          parent_message_id?: string | undefined
+          status?: string | undefined
+          to?: string | undefined
         }
         Relationships: [
           {
@@ -307,25 +307,25 @@ export type Database = {
       }
       milk_reports: {
         Row: {
-          center_id: number | null
+          center_id: number | undefined
           created_at: string
-          farmer_id: string | null
+          farmer_id: string | undefined
           id: string
-          quantity: number | null
+          quantity: number | undefined
         }
         Insert: {
-          center_id?: number | null
+          center_id?: number | undefined
           created_at?: string
-          farmer_id?: string | null
+          farmer_id?: string | undefined
           id?: string
-          quantity?: number | null
+          quantity?: number | undefined
         }
         Update: {
-          center_id?: number | null
+          center_id?: number | undefined
           created_at?: string
-          farmer_id?: string | null
+          farmer_id?: string | undefined
           id?: string
-          quantity?: number | null
+          quantity?: number | undefined
         }
         Relationships: [
           {
@@ -347,27 +347,27 @@ export type Database = {
       orders: {
         Row: {
           created_at: string
-          description: string | null
+          description: string | undefined
           id: string
           memberId: number
-          status: string | null
-          type: string | null
+          status: string | undefined
+          type: string | undefined
         }
         Insert: {
           created_at?: string
-          description?: string | null
+          description?: string | undefined
           id?: string
           memberId: number
-          status?: string | null
-          type?: string | null
+          status?: string | undefined
+          type?: string | undefined
         }
         Update: {
           created_at?: string
-          description?: string | null
+          description?: string | undefined
           id?: string
           memberId?: number
-          status?: string | null
-          type?: string | null
+          status?: string | undefined
+          type?: string | undefined
         }
         Relationships: [
           {
@@ -381,27 +381,27 @@ export type Database = {
       }
       products: {
         Row: {
-          amount: number | null
+          amount: number | undefined
           created_at: string
-          description: string | null
+          description: string | undefined
           id: string
-          item: string | null
+          item: string | undefined
           member_id: number
         }
         Insert: {
-          amount?: number | null
+          amount?: number | undefined
           created_at?: string
-          description?: string | null
+          description?: string | undefined
           id?: string
-          item?: string | null
+          item?: string | undefined
           member_id: number
         }
         Update: {
-          amount?: number | null
+          amount?: number | undefined
           created_at?: string
-          description?: string | null
+          description?: string | undefined
           id?: string
-          item?: string | null
+          item?: string | undefined
           member_id?: number
         }
         Relationships: [
