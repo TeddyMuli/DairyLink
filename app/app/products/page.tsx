@@ -1,8 +1,10 @@
-import Product from '@/components/farmer/Product';
+import ProductPage from '@/components/farmer/ProductPage';
+import { getUser } from '@/components/supabase/GetUser';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui';
 import React from 'react';
 
-const Page = () => {
+const Page = async () => {
+  const user = await getUser();
 
   return (
     <div className='flex flex-col gap-3 text-black'>
@@ -30,9 +32,7 @@ const Page = () => {
             <CarouselNext />
           </Carousel>
         </div>
-        <div>
-          <Product name='Dog Food' rating={5} img='/assets/images/dog.jpg' price={300} />
-        </div>
+        <ProductPage user={user} />
     </div>
   );
 }

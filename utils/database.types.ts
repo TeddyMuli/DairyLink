@@ -12,27 +12,38 @@ export type Database = {
     Tables: {
       blogs: {
         Row: {
-          content_URL: string | undefined
+          contentUrl: string | undefined
           created_at: string
           description: string | undefined
           id: string
           title: string | undefined
+          image: string | undefined
         }
         Insert: {
-          content_URL?: string | undefined
+          contentUrl?: string | undefined
           created_at?: string
           description?: string | undefined
           id?: string
           title?: string | undefined
+          image?: string | undefined
         }
         Update: {
-          content_URL?: string | undefined
+          contentUrl?: string | undefined
           created_at?: string
           description?: string | undefined
           id?: string
           title?: string | undefined
+          image?: string | undefined
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "blogs_cooperative_id_fkey"
+            columns: ["cooperative_id"]
+            isOneToOne: false
+            referencedRelation: "cooperatives"
+            referencedColumns: ["user_id"]
+          },
+        ]
       }
       collection_centers: {
         Row: {
@@ -258,7 +269,7 @@ export type Database = {
           header: string | undefined
           message_id: string
           parent_message_id: string | undefined
-          status: string | undefined
+          type: string | undefined
           to: string | undefined
         }
         Insert: {
@@ -386,7 +397,8 @@ export type Database = {
           description: string | undefined
           id: string
           item: string | undefined
-          member_id: number
+          cooperative_id: string | undefined
+          image: string | undefined
         }
         Insert: {
           amount?: number | undefined
@@ -394,7 +406,8 @@ export type Database = {
           description?: string | undefined
           id?: string
           item?: string | undefined
-          member_id: number
+          cooperative_id?: string | undefined
+          image?: string | undefined
         }
         Update: {
           amount?: number | undefined
@@ -402,15 +415,16 @@ export type Database = {
           description?: string | undefined
           id?: string
           item?: string | undefined
-          member_id?: number
+          cooperative_id?: string | undefined
+          image?: string | undefined
         }
         Relationships: [
           {
-            foreignKeyName: "agrovet_member_id_fkey"
-            columns: ["member_id"]
+            foreignKeyName: "products_cooperative_id_fkey"
+            columns: ["cooperative_id"]
             isOneToOne: true
-            referencedRelation: "farmers"
-            referencedColumns: ["memberId"]
+            referencedRelation: "cooperatives"
+            referencedColumns: ["user_id"]
           },
         ]
       }
