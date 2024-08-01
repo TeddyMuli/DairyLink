@@ -42,15 +42,12 @@ const events = [
   }
 ];
 
-const resourceMap = [
+const resources = [
   { resourceId: 1, resourceTitle: "Board room" },
   { resourceId: 2, resourceTitle: "Training room" },
   { resourceId: 3, resourceTitle: "Meeting room 1" },
   { resourceId: 4, resourceTitle: "Meeting room 2" }
 ];
-
-
-
 export default function BigCalender() {
   return (
     <div className="">
@@ -62,7 +59,7 @@ export default function BigCalender() {
         views={[Views.DAY, Views.WEEK, Views.MONTH]}
         step={60}
         defaultDate={new Date(2018, 0, 29)}
-        resources={resourceMap}
+        resources={resources}
         resourceIdAccessor="resourceId"
         resourceTitleAccessor="resourceTitle"
       />

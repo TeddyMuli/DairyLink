@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import {
   Mail,
@@ -18,41 +18,50 @@ import MessageHeader from './MessageHeader';
 import { ScrollArea } from '../ui/scroll-area';
 import MessageComponent from './MessageComponent';
 import Compose from './Compose';
-
-const tabs = [
-  { name: "inbox", icon: Mail, num: 4500 },
-  { name: "starred", icon: Star, num: 30 },
-  { name: "sent", icon: Send, num: 560 },
-  { name: "draft", icon: Pen, num: 9 },
-  { name: "spam", icon: TriangleAlert, num: 377 },
-  { name: "important", icon: MessageCircleWarning, num: 689 },
-  { name: "bin", icon: Trash2, num: 142 },
-]
-
-const messages = [
-  { type: "inbox", to: "", from: "Teddy", header: "This is the subject of the message.", body: "This is the body of the message 1.", time: "8. 38 pm" },
-  { type: "inbox", to: "", from: "Teddy", header: "This is the subject of the message.", body: "This is the body of the message 2.", time: "8. 38 pm" },
-  { type: "inbox", to: "", from: "Teddy", header: "This is the subject of the message.", body: "This is the body of the message 3.", time: "8. 38 pm" },
-  { type: "inbox", to: "", from: "Teddy", header: "This is the subject of the message.", body: "This is the body of the message 4.", time: "8. 38 pm" },
-  { type: "starred", to: "", from: "Teddy", header: "This is the subject of the message.", body: "This is the body of the message 5.", time: "8. 38 pm" },
-  { type: "sent", to: "", from: "Teddy", header: "This is the subject of the message.", body: "This is the body of the message 6.", time: "8. 38 pm" },
-  { type: "draft", to: "", from: "Teddy", header: "This is the subject of the message.", body: "This is the body of the message 7.", time: "8. 38 pm" },
-  { type: "spam", to: "", from: "Teddy", header: "This is the subject of the message.", body: "This is the body of the message 8.", time: "8. 38 pm" },
-  { type: "important", to: "", from: "Teddy", header: "This is the subject of the message.", body: "This is the body of the message 9.", time: "8. 38 pm" },
-  { type: "bin", to: "", from: "Teddy", header: "This is the subject of the message.", body: "This is the body of the message 10.", time: "8. 38 pm" },
-  { type: "starred", to: "", from: "Teddy", header: "This is the subject of the message.", body: "This is the body of the message 11.", time: "8. 38 pm" },
-  { type: "sent", to: "", from: "Teddy", header: "This is the subject of the message.", body: "This is the body of the message 12.", time: "8. 38 pm" },
-  { type: "draft", to: "", from: "Teddy", header: "This is the subject of the message.", body: "This is the body of the message 13.", time: "8. 38 pm" },
-  { type: "spam", to: "", from: "Teddy", header: "This is the subject of the message.", body: "This is the body of the message 14.", time: "8. 38 pm" },
-  { type: "important", to: "", from: "Teddy", header: "This is the subject of the message.", body: "This is the body of the message 15.", time: "8. 38 pm" },
-  { type: "bin", to: "", from: "Teddy", header: "This is the subject of the message.", body: "This is the body of the message 16.", time: "8. 38 pm" },
-]
+import { useQuery } from '@supabase-cache-helpers/postgrest-react-query';
+import { getAllCooperatives, getMessageContent, getMessages } from '@/queries/get_queries';
+import useSupabaseBrowser from '@/utils/supabase-browser';
+import { supabase } from '@/utils/create_client';
+import { User } from '@supabase/supabase-js';
 
 const EmailComponent = ({ user } : { user: any }) => {
+  const supabaseBrowser = useSupabaseBrowser();
+
   const [selectedTab, setSelectedTab] = useState("inbox");
   const [showPreview, setShowPreview] = useState(true);
   const [selectedMessage, setSelectedMessage] = useState({});
   const [showCompose, setShowCompose] = useState(false);
+  const [messagesContent, setMessagesContent] = useState([]);
+
+  const { data: messages, error: messagesError, isLoading: messagesIsLoading } = useQuery(getMessages(supabaseBrowser, user?.id));
+
+  useEffect(() => {
+    if (messages && Array.isArray(messages)) {
+      const fetchContent = async () => {
+        const contentPromises = messages.map(message => getMessageContent(supabaseBrowser, message.message_id));
+        const content = await Promise.all(contentPromises);
+        
+        // Extract the data from each content object and set messagesContent to the desired format
+        const formattedContent = content.map(item => item?.data[0]); // Assuming each data array contains one object
+        setMessagesContent(formattedContent);
+      };
+      fetchContent();
+    }
+  }, [messages, supabaseBrowser]);
+
+  const countMessageType = (type: string) => {
+    return messagesContent.filter(message => message?.type === type).length;
+  };
+
+  const tabs = [
+    { name: "inbox", icon: Mail, num: countMessageType("inbox") },
+    { name: "starred", icon: Star, num: countMessageType("starred") },
+    { name: "sent", icon: Send, num: countMessageType("sent") },
+    { name: "draft", icon: Pen, num: countMessageType("draft") },
+    { name: "spam", icon: TriangleAlert, num: countMessageType("spam") },
+    { name: "important", icon: MessageCircleWarning, num: countMessageType("important") },
+    { name: "bin", icon: Trash2, num: countMessageType("bin") },
+  ];
 
   return (
     <div>
@@ -82,7 +91,7 @@ const EmailComponent = ({ user } : { user: any }) => {
         {/** Content */}
         <ScrollArea className='bg-white w-[70%] h-[100vh] p-4 rounded-xl'>
           <MessageHeader selectedTab={selectedTab} />
-          {messages.map((message, index) => (
+          {messagesContent?.map((message, index) => (
             <TabsContent key={index} value={message.type} className='w-full'>
               {showPreview &&
                 <MessagePreview setSelectedMessage={setSelectedMessage} key={index} message={message} setShowPreview={setShowPreview} />

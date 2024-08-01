@@ -1,9 +1,13 @@
+import BlogPost from '@/components/farmer/BlogPost';
+import { getUser } from '@/components/supabase/GetUser';
 import React from 'react';
 
-const Page = () => {
+const Page = async () => {
+  const user = await getUser();
+
   return (
     <div>
-      E Learning
+      <BlogPost user={user} />
     </div>
   );
 }

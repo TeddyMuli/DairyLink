@@ -1,9 +1,11 @@
 import CreateProduct from '@/components/cooperative/CreateProduct';
 import Product from '@/components/farmer/Product';
+import { getUser } from '@/components/supabase/GetUser';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui';
 import React from 'react';
 
-const Page = () => {
+const Page = async () => {
+  const user = await getUser();
 
   return (
     <div className='flex flex-col gap-3 text-black'>
@@ -32,7 +34,7 @@ const Page = () => {
           </Carousel>
         </div>
         <div>
-          <CreateProduct/>
+          <CreateProduct user={user} />
         </div>
     </div>
   );
